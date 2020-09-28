@@ -53,6 +53,6 @@ Huiying Li
 1) I worked on researching the tools the team is planning on using for the project.
    For backend, we are using python.
 
-2) To be determined... 
+2) I will work on basic UML diagram for search and register/login.
 
 3) No task are blocked on my end.
