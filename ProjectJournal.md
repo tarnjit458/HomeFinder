@@ -14,7 +14,13 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Tarnjit Ghag
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9/28
+1) I worked on researching the tools the team is planning on using for the project.
+   For frontend, I looked into React and started learning more about it.
 
+2) To be determined...
+
+3) No tasks are blocked for me right now.
 
 
 
@@ -34,7 +40,7 @@ Kan Hioki
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 9/28
 1) I worked on researching the tools the team is planning on using for the project.
-   For Backend, we are using Python. For AGILE planning and tracking we are using Trello.
+   For frontend, we are using React and bootstrap. For AGILE planning and tracking we are using Trello.
 
 2) To be determined... 
 
