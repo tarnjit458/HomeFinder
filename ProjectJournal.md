@@ -18,7 +18,7 @@ Tarnjit Ghag
 1) I worked on researching the tools the team is planning on using for the project.
    For frontend, I looked into React and started learning more about it.
 
-2) To be determined...
+2) I will work on the basic design of the UML diagram for the User and Roles classes.
 
 3) No tasks are blocked for me right now.
 
@@ -40,7 +40,7 @@ Kan Hioki
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 9/28
 1) I worked on researching the tools the team is planning on using for the project.
-   For backend, we are using Python. For AGILE planning and tracking we are using Trello.
+   For frontend, we are using React and bootstrap. For AGILE planning and tracking we are using Trello.
 
 2) To be determined... 
 
