@@ -34,7 +34,7 @@ Kan Hioki
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 9/28
 1) I worked on researching the tools the team is planning on using for the project.
-   For frontend, we are using React and bootstrap. For AGILE planning and tracking we are using Trello.
+   For Backend, we are using Python. For AGILE planning and tracking we are using Trello.
 
 2) To be determined... 
 
