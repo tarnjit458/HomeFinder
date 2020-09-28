@@ -4,7 +4,7 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
   1. What tasks did I work on / complete?
   2. What am I planning to work on next?
   3. What tasks are blocked waiting on another team member?
-Select one of the XP Core Values and keep a journal of how the team kept these values throughout the project.  Report this in your Project Journal with the weekly Scrum Report submissions:
+- Select one of the XP Core Values and keep a journal of how the team kept these values throughout the project.  Report this in your Project Journal with the weekly Scrum Report submissions:
   Communication
   Simplicity
   Feedback
