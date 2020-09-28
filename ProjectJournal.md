@@ -22,10 +22,12 @@ Tarnjit Ghag
 Eric Lin
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 9/28
-- I worked on researching the tools the team is planning on using for the project.
-  For frontend, we are using React and bootstrap. For AGILE planning and tracking we are using Trello.
-- No task are blocked on my end.
+1) I worked on researching the tools the team is planning on using for the project.
+   For frontend, we are using React and bootstrap. For AGILE planning and tracking we are using Trello.
 
+2) To be determined... 
+
+3) No task are blocked on my end.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Kan Hioki
