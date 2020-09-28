@@ -1,4 +1,16 @@
 Project Journal:
+
+Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree daily stand-up questions:
+  What tasks did I work on / complete?
+  What am I planning to work on next?
+  What tasks are blocked waiting on another team member?
+Select one of the XP Core Values and keep a journal of how the team kept these values throughout the project.  Report this in your Project Journal with the weekly Scrum Report submissions:
+  Communication
+  Simplicity
+  Feedback
+  Courage
+  Respect
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Tarnjit Ghag
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
