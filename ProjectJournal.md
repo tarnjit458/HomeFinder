@@ -35,6 +35,13 @@ Eric Lin
 
 3) No task are blocked on my end.
 
+10/5
+1) I worked on doing the basic design of the UML component diagram for buy and sell.
+
+2) I will work on coding out a basic structure for the Home page.
+
+3) No task are blocked on my end.
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Kan Hioki
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
