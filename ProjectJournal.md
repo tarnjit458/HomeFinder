@@ -53,6 +53,15 @@ Kan Hioki
 
 3) No task are blocked on my end.
 
+10/5
+
+1) I worked on doing the basic design of the UML component diagram Rent and Rent Out.
+
+2) I will work on research API for login and set up database. I will try to create a sample for using database.
+
+3) No task are blocked on my end.
+
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Huiying Li
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
