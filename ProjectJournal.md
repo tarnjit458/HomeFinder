@@ -63,3 +63,11 @@ Huiying Li
 2) I will work on basic UML diagram for search and register/login.
 
 3) No task are blocked on my end.
+
+10/5
+
+1) I worked on doing the basic design of the UML component diagram search and register/login.
+
+2) I will work on research API for register user and set up database. I will try to create a sample for using database.
+
+3) No task are blocked on my end.
