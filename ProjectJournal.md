@@ -48,6 +48,13 @@ Eric Lin
 
 3) No task are blocked on my end.
 
+10/12
+1) I worked on implementing the basic component for the home page and navbar. I haven't completed this task yet.
+
+2) I will continue to work on the home page. Help with research on linking up frontend to django.
+
+3) No task are blocked on my end.
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Kan Hioki
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
