@@ -23,10 +23,16 @@ Tarnjit Ghag
 3) No tasks are blocked for me right now.
 
 10/5
-
 1) I worked on the basic design of the UML component diagram for the Role and User.
 
 2) I will work on coding the basic structure of the Login/Register page.
+
+3) No tasks are blocked for me right now.
+
+10/12
+1) I worked on creating the Login page component.
+
+2) I will be researching on how to connect the react frontend with the django backend.
 
 3) No tasks are blocked for me right now.
 
