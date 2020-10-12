@@ -99,3 +99,11 @@ Huiying Li
 2) I will work on research API for register user and set up database. I will try to create a sample for using database.
 
 3) No task are blocked on my end.
+
+10/12
+
+1) I worked on register user and logout function and set up database.
+
+2) I will work on revise register user and logout function and backend setup.
+
+3) No tasks are blocked for me right now.
