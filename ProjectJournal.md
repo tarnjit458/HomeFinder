@@ -106,3 +106,10 @@ Huiying Li
 2) I will work on research API for register user and set up database. I will try to create a sample for using database.
 
 3) No task are blocked on my end.
+
+10/12
+1) I worked on RESTFUL API for register user and logout, set up database.
+
+2) I will be continue work on RESTFUL API for register user and logout based on Frondend.
+
+3) No tasks are blocked for me right now.
