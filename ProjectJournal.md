@@ -36,6 +36,12 @@ Tarnjit Ghag
 
 3) No tasks are blocked for me right now.
 
+10/19
+1) I worked on researching how the front end and back end will connect using react and django.
+
+2) I will work on the UI wireframe and basic implementation of the Buy and Rent page.
+
+3) No tasks are blocked for me right now.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Eric Lin
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
