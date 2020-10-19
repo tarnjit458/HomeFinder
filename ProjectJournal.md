@@ -93,6 +93,12 @@ Kan Hioki
 
 3) No tasks are blocked for me right now.
 
+10/19
+1) I still worked on researching Restful API for Login.
+
+2) I will continue to research on restful API and database for Login and create a sample page.
+
+3) No tasks are blocked for me right now.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Huiying Li
