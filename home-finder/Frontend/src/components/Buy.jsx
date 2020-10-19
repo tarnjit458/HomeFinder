@@ -4,7 +4,7 @@ class Buy extends React.Component {
     render() {
         return(
             <div>
-                Buy
+                Find places to buy.
             </div>
         );
     }
