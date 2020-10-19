@@ -116,6 +116,14 @@ Huiying Li
 10/12
 1) I worked on RESTFUL API for register user and logout, set up database.
 
-2) I will be continue work on RESTFUL API for register user and logout based on Frondend.
+2) I will continue work on RESTFUL API for register user and logout based on Frondend.
+
+3) No tasks are blocked for me right now.
+
+10/19
+
+1) I worked on RESTFUL API for register user and logout
+
+2) I will work on basic implementation of the API Search .
 
 3) No tasks are blocked for me right now.
