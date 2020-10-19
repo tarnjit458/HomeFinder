@@ -67,6 +67,13 @@ Eric Lin
 
 3) No task are blocked on my end.
 
+10/19
+1) I worked on finishing up implementing the UI Wireframe and basic framework for the home page. I added components such as Navbar, Footer and Layout.
+
+2) I will work on implementing the UI Wireframe and basic framework for Sell/Rent out page.
+
+3) No tasks are blocked on my end.
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Kan Hioki
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
