@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Home</title>
+
+  <!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+
+
+<body>
+
+	<a href="home.html">Home</a>
+	<br/>
+	{%if user.is_authenticated %}
+		<a href="/logout">Logout</a>
+		<br/>
+		<a href="/account">{{user.username}}</a>
+	{% else %} 
+		<a href="/login">Login</a>
+		<br/>
+		<a href="/register">Register</a>
+	{% endif %}
+
+
+	{% if messages %}
+		{% for message in messages %} 
+			{% if message.tags == 'success'%}
+				<script>M.toast({html: "{{message}}", classes: 'green rounded', displayLength:2000});</script>
+			{% elif message.tags == 'info'%}
+				<script>M.toast({html: "{{message}}", classes: 'blue rounded', displayLength:2000});</script>
+			{% elif message.tags == 'warning'%}
+				<script>M.toast({html: "{{message}}", classes: 'orange rounded', displayLength:2000});</script>
+			{% elif message.tags == 'error'%}
+				<script>M.toast({html: "{{message}}", classes: 'red rounded', displayLength:2000});</script>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+
+</body>
+
+</html>
