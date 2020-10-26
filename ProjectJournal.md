@@ -74,6 +74,13 @@ Eric Lin
 
 3) No tasks are blocked on my end.
 
+10/26
+1) I worked on implementing the UI Wireframe and basic framework for Sell/Rent out page.
+
+2) I am still working on implementing the basic framework for Sell/Rent out page.
+
+3) No tasks are blocked on my end.
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Kan Hioki
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
