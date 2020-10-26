@@ -142,8 +142,15 @@ Huiying Li
 
 10/19
 
-1) I worked on RESTFUL API for register user and logout
+1) I worked on RESTFUL API for register user and logout.
 
-2) I will work on basic implementation of the API Search .
+2) I will work on basic implementation of the API Search.
 
 3) No tasks are blocked for me right now.
+
+10/26
+1) I worked on basic implementation of the API Search.
+
+2) I will continue work on basic implementation of the API Search.
+
+3) No tasks are blocked on my end.
