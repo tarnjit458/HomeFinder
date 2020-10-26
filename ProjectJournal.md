@@ -42,6 +42,14 @@ Tarnjit Ghag
 2) I will work on the UI wireframe and basic implementation of the Buy and Rent page.
 
 3) No tasks are blocked for me right now.
+
+10/26
+1) I worked on implementing the UI Wireframe and basic framework for Buy/Rent page.
+
+2) I am still working on implementing the basic framework for Buy/Rent page.
+
+3) No tasks are blocked on my end.
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Eric Lin
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
