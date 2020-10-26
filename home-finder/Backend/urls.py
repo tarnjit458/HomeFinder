@@ -16,11 +16,16 @@ Including another URLconf
 from django.urls import path
 from . import views
 
-app_name = "main"
+#app_name = "main"
+app_name = "Backend"
 
 urlpatterns = [
     path("", views.homepage, name="homepage"),
-    path("register/", views.register, name="register"),
-    path("logout/", views.logout_request, name="logout"),
-
+    #path("register/", views.register, name="register"),
+    #path("logout/", views.logout_request, name="logout"),
+    path("register/", views.UserRegistrationView.as_view(), name="register"),
+    path("regi_success/", views.UserRegiSuccessView.as_view(), name="regi_success"),
+    path("logout/", views.UserLogoutView.as_view(), name="logout"),
+	path("login/", views.UserLoginView.as_view(), name="login"),
+	path('member/<int:pk>', views.MemberPageView.as_view(), name='member'),
 ]
