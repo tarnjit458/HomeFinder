@@ -8,10 +8,11 @@ import {
   Col,
   Container,
 } from "reactstrap";
-import { BrowserRouter as Router, Link } from "react-router-dom";
 
 class Login extends React.Component {
   state = {
+    name: "",
+    email: "",
     username: "",
     password: "",
   };
@@ -31,9 +32,30 @@ class Login extends React.Component {
     return (
       <div className="App">
         <h1>Home Finder</h1>
+        <h2>Register</h2>
         <Form className="login-form" onSubmit={this.handleSubmit}>
           <Container className="login-border">
             <Col className="font-weight-bold">
+              <FormGroup>
+                <Label for="name">Name</Label>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="email">Email</Label>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
               <FormGroup>
                 <Label for="username">Username</Label>
                 <Input
@@ -54,10 +76,7 @@ class Login extends React.Component {
                   onChange={this.handleChange}
                 />
               </FormGroup>
-              <Button type="submit">Login</Button>{" "}
-              <Link to="./Register">
-                <Button>Register</Button>
-              </Link>
+              <Button type="submit">Register</Button>
             </Col>
           </Container>
         </Form>
