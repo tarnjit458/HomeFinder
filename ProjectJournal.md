@@ -89,6 +89,12 @@ Eric Lin
 
 3) No tasks are blocked on my end.
 
+11/02
+1) I worked on implementing the basic framework for Sell/Rent out page.
+
+2) Next step is to work on a general form component for applications such as buying house or listing house.
+
+3) Need API for data to finish the current component for Sell/Rent and Home page. 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Kan Hioki
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
