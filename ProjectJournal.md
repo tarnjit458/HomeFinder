@@ -122,6 +122,13 @@ Kan Hioki
 
 3) No tasks are blocked for me right now.
 
+10/26
+1) I worked on basic implementation of the API login and logout.
+
+2) I will work on reserching and implementation of the Sell functionality.
+
+3) No tasks are blocked on my end.
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Huiying Li
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
