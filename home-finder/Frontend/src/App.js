@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 
+import ListingForm from './components/ListingForm.jsx';
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 import Home from "./components/Home.jsx";
@@ -23,6 +24,9 @@ function App() {
     <Layout>
       <Router>
         <Switch>
+          <Route path="/list_form">
+            <ListingForm />
+          </Route>
           <Route path="/login">
             <Login />
           </Route>
