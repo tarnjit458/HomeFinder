@@ -18,7 +18,7 @@
 
 <body>
 
-	<a href="home.html">Home</a>
+	<a href="">Home</a>
 	<br/>
 	{%if user.is_authenticated %}
 		<a href="/logout">Logout</a>
@@ -29,7 +29,8 @@
 		<br/>
 		<a href="/register">Register</a>
 	{% endif %}
-
+	<br>
+	<a href="/search">Search</a>
 
 	{% if messages %}
 		{% for message in messages %} 

@@ -22,3 +22,17 @@ class User(AbstractUser):
     @property
     def username(self):
         return self.email
+
+class House(models.Model):
+    address = models.CharField("address line", max_length=1024, blank=True)
+    zip_code = models.CharField("zip code", max_length=12, blank=True)
+    city = models.CharField("city", max_length=1024, blank=True)
+    state = models.CharField("state", max_length=1024, blank=True)
+    status = models.CharField("status", max_length=1024)
+    price = models.CharField("price", max_length=1024)
+    class Meta:
+        verbose_name = ("house")
+        verbose_name_plural = ("houses")
+
+    def __str__(self):
+        return self.address

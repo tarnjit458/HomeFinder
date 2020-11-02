@@ -9,8 +9,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, DetailView, TemplateView
 #from django.urls import reverse
 from django.views import generic
-from .models import User
+from .models import User, House
 from .forms import LoginForm, UserRegistrationForm
+
+from django.http import Http404, HttpResponseRedirect, HttpRequest
+from django.db.models import Q
+from django.http import JsonResponse
+from django.core import serializers
 
 # Create your views here.
 def homepage(request):
@@ -80,3 +85,28 @@ class MemberOnlyMixin(UserPassesTestMixin):
 class MemberPageView(MemberOnlyMixin, DetailView):
 	model = User
 	template_name = 'Backend/member_page.html'
+
+def searchView(request):
+	if request.method == 'POST':
+		search = request.POST.get('search')
+		print (search)
+		if search:
+			match = House.objects.filter(Q(address__icontains=search) | Q(zip_code__icontains=search)| Q(city__icontains=search) | Q(state__icontains=search))
+			if match:
+				#match_json = serializers.serialize('json', match)
+				print (match)
+				#print (match_json)
+				#return HttpResponse(match_json, content_type='application/json')
+				return render(request, 'Backend/search.html', {'res': match})
+			else:
+				messages.error(request, 'no result found')
+	return render(request, 'Backend/search.html')
+
+
+
+
+
+
+
+
+

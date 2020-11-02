@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SEARCH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<h2>Search</h2>
+	<form action="" method="POST">
+	{% csrf_token %}
+	<input type="text" name="search" placeholder="Enter address">
+	<button type="submit">Search</button>
+
+
+	{% block content %}
+	<!--
+	<script>
+	$(document).ready(function () {
+    $.getJSON(url,
+	    function (json) {
+	        var tr;
+	        for (var i = 0; i < json.length; i++) {
+	            tr = $('<tr/>');
+	            tr.append("<td>" + json[i].model + "</td>");
+	            tr.append("<td>" + json[i].score + "</td>");
+	            tr.append("<td>" + json[i].team + "</td>");
+	            $('table').append(tr);
+	        }
+	    });
+	});
+	</script>
+	-->
+	{% if res %}
+		{% for r in res %}
+		<table border="0px" width="300px">
+		<tr>
+			<td>ID</td>
+			<td>{{ r.id }}</td>
+		<tr>
+		<tr>
+			<td>Address</td>
+			<td>{{ r.address }}</td>
+		<tr>
+
+		<tr>
+			<td>zip code</td>
+			<td>{{ r.zip_code }}</td>
+		<tr>
+
+		<tr>
+			<td>City</td>
+			<td>{{ r.city }}</td>
+		<tr>
+
+		<tr>
+			<td>State</td>
+			<td>{{ r.state }}</td>
+		<tr>
+		</table>
+		<br/>
+    	{% endfor %}
+    {% endif %}
+	{% endblock %}
+
+</body>
+</html>
+
