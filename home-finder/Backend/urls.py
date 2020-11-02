@@ -20,12 +20,15 @@ from . import views
 app_name = "Backend"
 
 urlpatterns = [
-    path("", views.homepage, name="homepage"),
-    #path("register/", views.register, name="register"),
-    #path("logout/", views.logout_request, name="logout"),
-    path("register/", views.UserRegistrationView.as_view(), name="register"),
-    path("regi_success/", views.UserRegiSuccessView.as_view(), name="regi_success"),
-    path("logout/", views.UserLogoutView.as_view(), name="logout"),
+	path("", views.homepage, name="homepage"),
+	#path("register/", views.register, name="register"),
+	#path("logout/", views.logout_request, name="logout"),
+	path("user_regi/", views.UserRegistrationView.as_view(), name="user_regi"),
+	path("regi_success/", views.UserRegiSuccessView.as_view(), name="user_regi_success"),
+	path("logout/", views.UserLogoutView.as_view(), name="logout"),
 	path("login/", views.UserLoginView.as_view(), name="login"),
 	path('member/<int:pk>', views.MemberPageView.as_view(), name='member'),
+	path('member/<int:pk>/house_regi/', views.register_house, name='house_regi'),
+	path('member/<int:pk>/house_list/', views.HouseListView.as_view(), name='house_list'),
+	path('member/<int:pk>/house_detail/<int:house_pk>', views.HouseDetailView.as_view(), name='house_detail'),
 ]

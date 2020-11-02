@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>HOUSE LIST</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<h2>House List</h2>
+	{% for house in house_list %}
+		{% if house.sold == False %}
+			<h3><a href="{% url 'Backend:house_detail' user.pk house.pk %}">{{ house.house_name }}</h3>
+		{% endif %}
+	{% endfor %}
+</body>
+</html>
+
