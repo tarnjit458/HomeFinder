@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>USER REGISTRATION</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h2>{{ title }}</h2>
+    <table>
+        <form action="{% url 'Backend:house_regi' user.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <tr><td></td><td><input type="submit" value="Submit"></td></tr>
+        </form>
+    </table>
+</body>
+</html>
+

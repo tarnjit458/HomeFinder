@@ -8,6 +8,8 @@
 <body>
 	<h2>Member Page for {{ user.email }}</h2>
 
+	<h3><a href="{{ user.pk }}/house_regi/">Register House</a></h3>
+	<h3><a href="{{ user.pk }}/house_list/">Buy House</a></h3>
 	<form action="{% url 'Backend:logout' %}" method="POST">
 		{% csrf_token %}
 		<button type="submit">Logout</button>

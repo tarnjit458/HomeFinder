@@ -1,5 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import get_user_model
+from django.forms import ModelForm
+from .models import House;
 
 User = get_user_model()
 
@@ -22,3 +24,16 @@ class UserRegistrationForm(UserCreationForm):
 		super().__init__(*args, **kwargs)
 		for field in self.fields.values():
 			field.widget.attrs['class'] = 'form-control'
+			
+class HouseRegistrationForm(ModelForm):
+	class Meta:
+		model = House;
+		fields = ('house_name', 'address', 'zip_code', 'cost', 'for_sale', 'description')
+		labels = {
+			'house_name': 'House name',
+			'address': 'Address',
+			'zip_code': 'Zip code',
+			'cost': 'Cost',
+			'for_sale': 'For sale',
+			'description': 'Description'
+		}
