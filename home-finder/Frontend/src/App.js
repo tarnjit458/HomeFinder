@@ -8,6 +8,7 @@ import Rent from './components/Rent.jsx';
 import RentSell from './components/Rental-Sell.jsx';
 import Layout from './components/Layout.jsx';
 import Profile from './components/Profile.jsx';
+import ListingForm from './components/ListingForm.jsx';
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import PageNotFound from './components/PageNotFound';
@@ -34,6 +35,9 @@ function App() {
             </Route>
             <Route path="/profile">
               <Profile />
+            </Route>
+            <Route path="/list_form">
+              <ListingForm />
             </Route>
             <Route exact path="/">
               <Redirect to="/home"/>
