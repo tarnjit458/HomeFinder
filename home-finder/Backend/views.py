@@ -3,23 +3,23 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, DetailView, TemplateView
 from django.views import generic
-<<<<<<< HEAD
-from .models import User, House
-from .forms import LoginForm, UserRegistrationForm
-=======
+
 from django.conf import settings
 from .models import User, House
 from .forms import LoginForm, UserRegistrationForm, HouseRegistrationForm
 
 import stripe
->>>>>>> a487b27cbb47cb785031fd52f757f86e20a19a01
 
 from django.http import Http404, HttpResponseRedirect, HttpRequest
 from django.db.models import Q
 from django.http import JsonResponse
 from django.core import serializers
-
+from .serializers import HouseSerializer
+from .serializers import UserSerializer
+from rest_framework import generics
+  
 # Create your views here.
+
 def homepage(request):
 	return render(request=request,
 				  template_name="Backend/home.html",
@@ -121,7 +121,7 @@ def searchView(request):
 		search = request.POST.get('search')
 		print (search)
 		if search:
-			match = House.objects.filter(Q(address__icontains=search) | Q(zip_code__icontains=search))
+			match = House.objects.filter(Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search))
 			if match:
 				#match_json = serializers.serialize('json', match)
 				print (match)
@@ -131,3 +131,13 @@ def searchView(request):
 			else:
 				messages.error(request, 'no result found')
 	return render(request, 'Backend/search.html')
+
+
+class UserView(viewsets.ModelViewSet): 
+    serializer_class = UserSerializer         
+    queryset = User.objects.all()  
+
+
+class HouseView(viewsets.ModelViewSet): 
+	serializer_class = HouseSerializer         
+	queryset = House.objects.all()  

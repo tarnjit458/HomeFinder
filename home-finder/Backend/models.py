@@ -19,17 +19,14 @@ class User(AbstractUser):
 		verbose_name = _('user')
 		verbose_name_plural = _('users')
 
-    @property
-    def username(self):
-        return self.email
-
 class House(models.Model):
-	house_name = models.CharField('house name', max_length=50)
-	address = models.CharField('adress', max_length=100)
+	address = models.CharField('address', max_length=100)
+	city = models.CharField('city', max_length=100)
+	state = models.CharField('state', max_length=100)
 	zip_code = models.CharField('zip code', max_length=50)
 	cost = models.IntegerField('cost', default=0)
 	description = models.TextField('description')
 	for_sale = models.BooleanField(default=False)
-	owner = models.ForeignKey(User, verbose_name='owner', on_delete=models.CASCADE);
-	registered_at = models.DateTimeField('degistered date', default=timezone.now);
+	owner = models.ForeignKey(User, verbose_name='owner', on_delete=models.CASCADE)
+	registered_at = models.DateTimeField('degistered date', default=timezone.now)
 	sold = models.BooleanField(default=False)
