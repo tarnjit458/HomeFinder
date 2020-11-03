@@ -7,7 +7,6 @@ from django.views import generic
 from django.conf import settings
 from .models import User, House
 from .forms import LoginForm, UserRegistrationForm, HouseRegistrationForm
-
 import stripe
 
 from django.http import Http404, HttpResponseRedirect, HttpRequest
