@@ -18,7 +18,7 @@ class LoginForm(AuthenticationForm):
 class UserRegistrationForm(UserCreationForm):
 	class Meta:
 		model = User
-		fields = ( 'first_name', 'last_name', 'address', 'phone', 'email')
+		fields = ( 'first_name', 'last_name', 'address', 'city', 'state', 'zip_code', 'phone', 'email')
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
@@ -28,10 +28,11 @@ class UserRegistrationForm(UserCreationForm):
 class HouseRegistrationForm(ModelForm):
 	class Meta:
 		model = House;
-		fields = ('house_name', 'address', 'zip_code', 'cost', 'for_sale', 'description')
+		fields = ('address', 'city', 'state', 'zip_code', 'cost', 'for_sale', 'description')
 		labels = {
-			'house_name': 'House name',
-			'address': 'Address',
+			'address': 'address',
+			'city': 'City',
+			'state': 'State',
 			'zip_code': 'Zip code',
 			'cost': 'Cost',
 			'for_sale': 'For sale',

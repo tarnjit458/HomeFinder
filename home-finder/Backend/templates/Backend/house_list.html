@@ -9,7 +9,7 @@
 	<h2>House List</h2>
 	{% for house in house_list %}
 		{% if house.sold == False %}
-			<h3><a href="{% url 'Backend:house_detail' user.pk house.pk %}">{{ house.house_name }}</h3>
+			<h3><a href="{% url 'Backend:house_detail' user.pk house.pk %}">{{ house.address }} {{ house.city }} {{ house.state }} {{ house.zip_code }}</h3>
 		{% endif %}
 	{% endfor %}
 </body>
