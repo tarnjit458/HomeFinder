@@ -16,6 +16,7 @@ from django.core import serializers
 from .serializers import HouseSerializer
 from .serializers import UserSerializer
 from rest_framework import generics
+from rest_framework import viewsets 
   
 # Create your views here.
 

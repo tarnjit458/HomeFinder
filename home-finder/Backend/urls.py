@@ -32,7 +32,7 @@ urlpatterns = [
 	path('member/<int:pk>/house_list/', views.HouseListView.as_view(), name='house_list'),
 	path('member/<int:pk>/house_detail/<int:house_pk>', views.HouseDetailView.as_view(), name='house_detail'),
 	path('search/', views.searchView, name='search'),
-	path('allUsers/', views.UserView., name='users'),
+	path('allUsers/', views.UserView, name='users'),
 	path('allHouses/', views.HouseView, name='house'),
 
 ]
