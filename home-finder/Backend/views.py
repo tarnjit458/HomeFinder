@@ -3,16 +3,12 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import CreateView, DetailView, TemplateView
 from django.views import generic
-<<<<<<< HEAD
 from .models import User, House
 from .forms import LoginForm, UserRegistrationForm
-=======
 from django.conf import settings
 from .models import User, House
 from .forms import LoginForm, UserRegistrationForm, HouseRegistrationForm
-
 import stripe
->>>>>>> a487b27cbb47cb785031fd52f757f86e20a19a01
 
 from django.http import Http404, HttpResponseRedirect, HttpRequest
 from django.db.models import Q
