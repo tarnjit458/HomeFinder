@@ -50,6 +50,13 @@ Tarnjit Ghag
 
 3) No tasks are blocked on my end.
 
+11/02
+1) I worked on improving the login and register components.
+
+2) Next step is to work on getting data from backend and testing the login and reigster functionality.
+
+3) Need API for data to finish the current components. 
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Eric Lin
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
