@@ -30,7 +30,7 @@ class HouseRegistrationForm(ModelForm):
 		model = House;
 		fields = ('address', 'city', 'state', 'zip_code', 'cost', 'for_sale', 'description')
 		labels = {
-			'address': 'address',
+			'address': 'Address',
 			'city': 'City',
 			'state': 'State',
 			'zip_code': 'Zip code',
