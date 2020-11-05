@@ -16,13 +16,10 @@ Including another URLconf
 from django.urls import path
 from . import views
 
-#app_name = "main"
 app_name = "Backend"
 
 urlpatterns = [
 	path("", views.homepage, name="homepage"),
-	#path("register/", views.register, name="register"),
-	#path("logout/", views.logout_request, name="logout"),
 	path("user_regi/", views.UserRegistrationView.as_view(), name="user_regi"),
 	path("regi_success/", views.UserRegiSuccessView.as_view(), name="user_regi_success"),
 	path("logout/", views.UserLogoutView.as_view(), name="logout"),
@@ -32,7 +29,6 @@ urlpatterns = [
 	path('member/<int:pk>/house_list/', views.HouseListView.as_view(), name='house_list'),
 	path('member/<int:pk>/house_detail/<int:house_pk>', views.HouseDetailView.as_view(), name='house_detail'),
 	path('search/', views.searchView, name='search'),
-	path('allUsers/', views.UserView, name='users'),
-	path('allHouses/', views.HouseView, name='house'),
-
+	path('api/allUsers/', views.UserList.as_view(), name='user'),
+	path('api/allHouses/', views.HouseList.as_view(), name='house'),
 ]
