@@ -16,7 +16,6 @@ from django.core import serializers
 from .serializers import HouseSerializer
 from .serializers import UserSerializer
 from rest_framework import generics
-from rest_framework import viewsets 
   
 # Create your views here.
 
@@ -133,11 +132,11 @@ def searchView(request):
 	return render(request, 'Backend/search.html')
 
 
-class UserView(viewsets.ModelViewSet): 
-    serializer_class = UserSerializer         
-    queryset = User.objects.all()  
+class HouseList(generics.ListAPIView):         
+    queryset = House.objects.all()  
+    serializer_class = HouseSerializer 
 
 
-class HouseView(viewsets.ModelViewSet): 
-	serializer_class = HouseSerializer         
-	queryset = House.objects.all()  
+class UserList(generics.ListAPIView):          
+	queryset = User.objects.all()  
+	serializer_class = UserSerializer
