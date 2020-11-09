@@ -9,13 +9,17 @@ from .models import User, House
 from .forms import LoginForm, UserRegistrationForm, HouseRegistrationForm
 import stripe
 
-from django.http import Http404, HttpResponseRedirect, HttpRequest
+from django.http import Http404, HttpResponseRedirect, HttpRequest, HttpResponse
 from django.db.models import Q
 from django.http import JsonResponse
 from django.core import serializers
-from .serializers import HouseSerializer
-from .serializers import UserSerializer
+from .serializers import HouseSerializer, UserSerializer, RegistrationSerializer
 from rest_framework import generics
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
   
 # Create your views here.
 
@@ -24,6 +28,7 @@ def homepage(request):
 				  template_name="Backend/home.html",
 				  context={})
 
+"""
 class UserRegistrationView(CreateView):
 	form_class = UserRegistrationForm
 	template_name = "Backend/user_regi.html"
@@ -34,12 +39,14 @@ class UserRegistrationView(CreateView):
 class UserRegiSuccessView(TemplateView):
 	template_name = "Backend/user_regi_success.html"
 
+
 class UserLoginView(LoginView):
 	form_class = LoginForm
 	template_name = "Backend/login.html"
 
 	def get_success_url(self):
 		return resolve_url('Backend:member', pk=self.request.user.pk)
+"""
 
 class UserLogoutView(LoginRequiredMixin, LogoutView):
 	template_name = "Backend/member_page.html"
@@ -115,28 +122,58 @@ class HouseDetailView(generic.DetailView):
 			'message': 'Your payment has been completed successfully.'
 		})
 
-def searchView(request):
-	if request.method == 'POST':
-		search = request.POST.get('search')
-		print (search)
-		if search:
-			match = House.objects.filter(Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search))
-			if match:
-				#match_json = serializers.serialize('json', match)
-				print (match)
-				#print (match_json)
-				#return HttpResponse(match_json, content_type='application/json')
-				return render(request, 'Backend/search.html', {'res': match})
-			else:
-				messages.error(request, 'no result found')
-	return render(request, 'Backend/search.html')
-
-
-class HouseList(generics.ListAPIView):         
+class HouseList(generics.ListAPIView):        
     queryset = House.objects.all()  
     serializer_class = HouseSerializer 
 
 
-class UserList(generics.ListAPIView):          
+class UserList(generics.ListAPIView):         
 	queryset = User.objects.all()  
 	serializer_class = UserSerializer
+
+@api_view(['POST'],)
+def registration_view(request):
+
+	if request.method == 'POST':
+		serializer = RegistrationSerializer(data = request.data)
+		data = {}
+		if serializer.is_valid():
+			user = serializer.save()
+			data['response'] = "successfully registered a new user"
+			data['email'] = user.email
+			token = Token.objects.get(user=user).key
+			data['token'] = token 
+		else:
+			data = serializer.errors
+		return Response(data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def searchView(request):
+	if request.method == 'GET':
+		#data = JSONParser().parse(request)
+		#print (data)
+		search = request.GET.get('search')
+		queryset = House.objects.filter(Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search))
+		if queryset:
+			serializer = HouseSerializer(queryset, many=True)
+			return HttpResponse(serializer.data)
+		else:
+			message = "No match records"
+			return HttpResponse(message)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
