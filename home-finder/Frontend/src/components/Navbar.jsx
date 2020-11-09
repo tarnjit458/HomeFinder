@@ -1,8 +1,25 @@
 import React from 'react';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import {withRouter} from 'react-router-dom';
+
 
 class NavBar extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            profileToggle: false
+        }
+    }
+
+    profileToggle = () => {
+        this.setState({
+            profileToggle: !this.state.profileToggle
+        });
+    }
+
+    handleLogout = () => {
+        localStorage.clear();
+        this.props.history.push('/login');
     }
 
     render() {
@@ -32,7 +49,17 @@ class NavBar extends React.Component {
                                 <a className="nav-link" href="/rent-sell">Rent Out</a>
                             </li>
                         </ul>
-                        <a className="nav-link" style={profileColor} href="/profile">Profile</a>
+                        <Dropdown isOpen={this.state.profileToggle} toggle={this.profileToggle}>
+                        <DropdownToggle caret>
+                            Profile
+                            </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem header>Profile</DropdownItem>
+                            <DropdownItem href="/profile">Settings</DropdownItem>
+                            <DropdownItem divider />
+                            <DropdownItem onClick={this.handleLogout}>Logout</DropdownItem>
+                        </DropdownMenu>
+                        </Dropdown>
                     </div>
                 </nav>
             </>
@@ -40,4 +67,4 @@ class NavBar extends React.Component {
     }
 }
 
-export default NavBar;
+export default withRouter(NavBar);

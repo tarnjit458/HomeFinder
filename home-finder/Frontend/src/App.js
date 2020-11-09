@@ -1,15 +1,9 @@
 import React from "react";
 import "./App.css";
 
-import ListingForm from './components/ListingForm.jsx';
 import Login from "./components/Login.jsx";
-import Register from "./components/Register.jsx";
-import Home from "./components/Home.jsx";
-import Buy from "./components/Buy.jsx";
-import Rent from "./components/Rent.jsx";
-import RentSell from "./components/Rental-Sell.jsx";
-import Layout from "./components/Layout.jsx";
-import Profile from "./components/Profile.jsx";
+import LoggedInRoutes from "./components/LoggedInRoutes.jsx";
+import { createBrowserHistory } from 'history';
 
 import {
   BrowserRouter as Router,
@@ -19,46 +13,31 @@ import {
 } from "react-router-dom";
 import PageNotFound from "./components/PageNotFound";
 
-function App() {
-  return (
-    <Layout>
-      <Router>
-        <Switch>
-          <Route path="/list_form">
-            <ListingForm />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="/buy">
-            <Buy />
-          </Route>
-          <Route path="/rent">
-            <Rent />
-          </Route>
-          <Route path="/rent-sell">
-            <RentSell />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
+class App extends React.Component {
 
-          <Route path="*">
-            <PageNotFound />
-          </Route>
-        </Switch>
-      </Router>
-    </Layout>
-  );
+  isLoggedIn() {
+    return localStorage.getItem("user") != null;
+  }
+  render(){
+    let history = createBrowserHistory();
+    return (
+        <Router forceRefresh={true} history={history}>
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/"
+                    render={props => {
+                        if (this.isLoggedIn()) {
+                            return <LoggedInRoutes {...props} />;
+                        } else {
+                            return <Redirect to="/login"/>;
+                        }
+                    }} />
+          </Switch>
+        </Router>
+    );
+  }
 }
 
 export default App;

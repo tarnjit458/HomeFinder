@@ -8,13 +8,16 @@ import {
   Col,
   Container,
 } from "reactstrap";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 
 class Login extends React.Component {
-  state = {
-    username: "",
-    password: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+    };
+  }
 
   handleChange = (event) => {
     this.setState({
@@ -25,6 +28,9 @@ class Login extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
+    // if validation passes
+    localStorage.setItem('user', 'true');
+    this.props.history.push("/");
   };
 
   render() {
@@ -66,4 +72,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
