@@ -190,3 +190,19 @@ Huiying Li
 2) I will continue work on basic implementation of the API Search.
 
 3) No tasks are blocked on my end.
+
+11/02
+
+1)I worked on implementing search, houseList and UserList API.
+
+2)I will continue work on search API, update register API and set up connection between frontend and backend.
+
+3)No tasks are blocked on my end.
+
+11/09
+
+1)I worked on research API and set up connection between frontend and backend.
+
+2)I will update login, search, HouseList API.
+
+3)No tasks are blocked on my end.
