@@ -101,7 +101,15 @@ Eric Lin
 
 2) Next step is to work on a general form component for applications such as buying house or listing house.
 
-3) Need API for data to finish the current component for Sell/Rent and Home page. 
+3) Need API for data to finish the current component for Sell/Rent and Home page.
+
+11/09
+1) I worked on refactoring the routing for login and logout. All user will need to login before they can view the home page.
+   Logout will redirect user to the login page.
+
+2) Next step is to work on forms for listing house for sale or rent.
+
+3) Need the Sell/Rent api to finish up the sell/rent page.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Kan Hioki
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
