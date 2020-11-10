@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 class HouseSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = House
-		fields = ['id', 'address', 'city', 'state', 'zip_code', 'cost', 'description', 'for_sale', 'owner', 'registered_at', 'sold', "on_loan"]
+		fields = ['id', 'address', 'city', 'state', 'zip_code', 'cost', 'description', 'for_sale', 'owner', 'registered_at', 'sold', "on_loan", "image"]
 
 class RegistrationSerializer(serializers.ModelSerializer):
 

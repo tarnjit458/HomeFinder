@@ -145,7 +145,7 @@ def registration_view(request):
 			data['token'] = token 
 		else:
 			data = serializer.errors
-		return Response(data)
+		return JsonResponse(data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -157,10 +157,10 @@ def searchView(request):
 		queryset = House.objects.filter(Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search))
 		if queryset:
 			serializer = HouseSerializer(queryset, many=True)
-			return HttpResponse(serializer.data)
+			return JsonResponse(serializer.data, safe=False)
 		else:
 			message = "No match records"
-			return HttpResponse(message)
+			return JsonResponse(message, safe=False)
 
 
 

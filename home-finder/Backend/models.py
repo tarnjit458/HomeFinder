@@ -42,6 +42,7 @@ class House(models.Model):
 	registered_at = models.DateTimeField('degistered date', default=timezone.now)
 	sold = models.BooleanField(default=False)
 	on_loan = models.BooleanField(default=False)
+	image = models.CharField('image url', max_length=500)
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
