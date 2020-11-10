@@ -201,8 +201,8 @@ Huiying Li
 
 11/09
 
-1) I worked on research API and set up connection between frontend and backend.
+1) I worked on search API, register API and set up connection between frontend and backend.
 
-2) I will update login, search, HouseList API.
+2) I will update login, search, houseList API.
 
 3) No tasks are blocked on my end.
