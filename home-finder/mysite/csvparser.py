@@ -30,7 +30,7 @@ with open(filename, 'r') as csvfile:
 user_query = "INSERT INTO `backend_user` (`id`, `password`, `last_login`, `is_superuser`, `is_staff`, `is_active`, `first_name`, `last_name`, `address`, `city`, `state`, `zip_code`, `phone`, `email`, `date_joined`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 rows_affected = 0
 for row in rows:
-    mycursor.execute(user_query, (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14]))
+    mycursor.execute(user_query, (row[0], row[1], None, row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], '2020-11-09 23:01:30.802876'))
     mydb.commit()
     rows_affected += mycursor.rowcount
 
