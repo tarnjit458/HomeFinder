@@ -136,6 +136,14 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 
 3. Need the Sell/Rent api to finish up the sell/rent page.
 
+11/16
+
+1. I worked on setting up the sell and rental page in preparation for linking sell/rental api.
+
+2. Next step is to link the sell/rental api.
+
+3. No blockers.
+
 ---
 
 ## Kan Hioki
