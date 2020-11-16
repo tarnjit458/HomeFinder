@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText} from 'reactstrap';
+import { Container, Button, Modal, ModalHeader,
+    ModalBody, ModalFooter, Form, FormGroup,
+    Label, Input, FormText, Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export default class ListingForm extends React.Component {
@@ -15,10 +17,35 @@ export default class ListingForm extends React.Component {
 
     render() {
         return(
-            <Form onSubmit={this.handleListSubmit}>
+            <Container>
+                <h2>Sell Home</h2>
+                <Form onSubmit={this.handleListSubmit}>
                     <FormGroup>
-                        <Label for="exampleEmail">Email</Label>
-                        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+                        <Label>Address</Label>
+                        <Input name="address"/>
+                        <Row>
+                            <Col>
+                                <Label>City</Label>
+                                <Input name="city"/>
+                            </Col>
+                            <Col>
+                                <Label>State</Label>
+                                <Input name="address"/>
+                            </Col>
+                            <Col>
+                                <Label>Zipcode</Label>
+                                <Input name="address"/>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="house_type">House Type</Label>
+                        <Input type="select" name="select" id="exampleSelect">
+                            <option value="condo">Condo</option>
+                            <option value="townhouse">Townhouse</option>
+                            <option value="single">Single Family</option>
+                            <option value="multi">MultiFamily</option>
+                        </Input>
                     </FormGroup>
                     <FormGroup>
                         <Label for="examplePassword">Password</Label>
@@ -35,9 +62,16 @@ export default class ListingForm extends React.Component {
                         <Label for="exampleText">Text Area</Label>
                         <Input type="textarea" name="text" id="exampleText" />
                     </FormGroup>
-                    <Button color="primary" type="submit" action="submit">Submit</Button>
-                    <Link classNamme="btn btn-primary"  to="/rent-sell">Go Back</Link>
-            </Form>
+                    <Row>
+                        <Col md="1">
+                            <Button color="primary" type="submit" action="submit">Submit</Button>
+                        </Col>
+                        <Col md="2">
+                            <Link className="btn btn-primary"  to="/rent-sell">Go Back</Link>
+                        </Col>
+                    </Row>
+                </Form>
+            </Container>
         );
     }
 } 

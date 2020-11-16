@@ -40,13 +40,13 @@ class NavBar extends React.Component {
                                 <a className="nav-link" href="/buy">Buy</a>
                             </li>
                             <li className="nav-item active">
-                                <a className="nav-link" href="/rent-sell">Sell</a>
+                                <a className="nav-link" href="/sell">Sell</a>
                             </li>
                             <li className="nav-item active">
                                 <a className="nav-link" href="/rent">Rent</a>
                             </li>
                             <li className="nav-item active">
-                                <a className="nav-link" href="/rent-sell">Rent Out</a>
+                                <a className="nav-link" href="/rent-out">Rent Out</a>
                             </li>
                         </ul>
                         <Dropdown isOpen={this.state.profileToggle} toggle={this.profileToggle}>

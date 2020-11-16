@@ -70,7 +70,7 @@ class Home extends React.Component {
                     description="Some quick example text to build on the card title and make up the bulk of the card's content."
                     image_src="/For-sale-sign.jpg"
                     button="Make Money"
-                    button_src="/rent-sell"
+                    button_src="/sell"
                     />
                     <PropertyCard title="Find a place to rent!" 
                     description="Some quick example text to build on the card title and make up the bulk of the card's content."
