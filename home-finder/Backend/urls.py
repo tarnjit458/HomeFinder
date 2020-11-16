@@ -30,11 +30,12 @@ urlpatterns = [
 	#path('member/<int:pk>/house_regi/', views.register_house, name='house_regi'),
 	#path('member/<int:pk>/house_list/', views.HouseListView.as_view(), name='house_list'),
 	#path('member/<int:pk>/house_detail/<int:house_pk>', views.HouseDetailView.as_view(), name='house_detail'),
-	path('api/search/', views.searchView, name='search'),
 	path('api/allUsers/', views.UserList.as_view(), name='user'),
 	path('api/allHouses/', views.HouseList.as_view(), name='house'),
 	path('api/user_register', views.registration_view, name='user_register'),
 	path('api/login', obtain_auth_token, name='login'),
 	path('api/register_house/', views.register_house, name='house_register'),
+	path('api/rent_search/', views.rent_search_view, name='rent_search'),
+	path('api/buy_search/', views.buy_search_view, name='buy_search'),
 	path('api/house_detail/<int:pk>/', views.HouseDetailView.as_view(), name='house_detail'),
 ]
