@@ -3,6 +3,16 @@ import mysql.connector
 import csv
 from settings import DATABASES
 
+
+mydb = mysql.connector.connect(host=DATABASES['default']['HOST'], user=DATABASES['default']['USER'], password=DATABASES['default']['PASSWORD'], database=DATABASES['default']['NAME'])
+mycursor = mydb.cursor()
+
+mycursor.execute("DELETE FROM backend_house")
+mydb.commit()
+
+mycursor.execute("DELETE FROM backend_user")
+mydb.commit()
+
 # Insert User Data
 filename = "parser_files/Backend_user.csv"
 
@@ -16,9 +26,6 @@ with open(filename, 'r') as csvfile:
 
     for row in csvreader:
         rows.append(row)
-
-mydb = mysql.connector.connect(host=DATABASES['default']['HOST'], user=DATABASES['default']['USER'], password=DATABASES['default']['PASSWORD'], database=DATABASES['default']['NAME'])
-mycursor = mydb.cursor()
 
 user_query = "INSERT INTO `backend_user` (`id`, `password`, `last_login`, `is_superuser`, `is_staff`, `is_active`, `first_name`, `last_name`, `address`, `city`, `state`, `zip_code`, `phone`, `email`, `date_joined`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 rows_affected = 0
