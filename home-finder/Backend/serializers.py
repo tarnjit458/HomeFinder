@@ -7,6 +7,7 @@ class UserSerializer(serializers.ModelSerializer):
 		fields = ['id', 'first_name', 'last_name', 'address', 'city', 'state', 'zip_code', 'phone', 'email', 'date_joined']
 
 class HouseSerializer(serializers.ModelSerializer):
+	owner = UserSerializer()
 	class Meta:
 		model = House
 		fields = ['id', 'address', 'city', 'state', 'zip_code', 'cost', 'description', 'for_sale', 'owner', 'registered_at', 'sold', "on_loan", "image"]

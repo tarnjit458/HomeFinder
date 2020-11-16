@@ -19,7 +19,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.authtoken.models import Token
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.views import APIView
+from rest_framework.response import Response
   
 # Create your views here.
 
@@ -46,7 +48,7 @@ class UserLoginView(LoginView):
 
 	def get_success_url(self):
 		return resolve_url('Backend:member', pk=self.request.user.pk)
-"""
+
 
 class UserLogoutView(LoginRequiredMixin, LogoutView):
 	template_name = "Backend/member_page.html"
@@ -121,10 +123,11 @@ class HouseDetailView(generic.DetailView):
 		return render(request, 'Backend/payment_result.html', {
 			'message': 'Your payment has been completed successfully.'
 		})
+"""
 
 class HouseList(generics.ListAPIView):        
-    queryset = House.objects.all()  
-    serializer_class = HouseSerializer 
+	queryset = House.objects.all()  
+	serializer_class = HouseSerializer 
 
 
 class UserList(generics.ListAPIView):         
@@ -148,7 +151,7 @@ def registration_view(request):
 		return JsonResponse(data)
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+#@permission_classes([IsAuthenticated])
 def searchView(request):
 	if request.method == 'GET':
 		#data = JSONParser().parse(request)
@@ -163,17 +166,54 @@ def searchView(request):
 			return JsonResponse(message, safe=False)
 
 
+@api_view(['POST'],)
+@permission_classes([IsAuthenticated])
+def register_house(request):
+	if request.method == 'POST':
+		serializer = HouseSerializer(data = request.data)
+		data = {}
+		if serializer.is_valid():
+			house = serializer.save()
+			data['response'] = "successfully registered a new house"
+		else:
+			data = serializer.errors
+		return JsonResponse(data)
 
 
-
-
-
-
-
-
-
-
-
-
-
+class HouseDetailView(APIView):
+	authentication_classes = [TokenAuthentication]
+	permission_classes = [IsAuthenticated]
+	model = House
+	
+	def get(self, request, pk, format=None):
+		house = House.objects.get(id=pk);
+		return JsonResponse({
+			'publick_key': settings.STRIPE_PUBLIC_KEY,
+			'house': HouseSerializer(house).data,
+		})
+		
+	def post(self, request, pk, format=None):
+		user = Token.objects.get(key=request.auth.key).user
+		house = House.objects.get(id=pk)
+		stripe.api_key = settings.STRIPE_SECRET_KEY
+		token = request.POST['stripeToken']
+		try:
+			charge = stripe.Charge.create(
+				amount=house.cost*100,
+				currency='usd',
+				source=token,
+				description='E-mail:{} Name:{}'.format(
+					user.email,
+					user.first_name + " " +
+					user.last_name),
+			)
+			house.sold = True
+			house.save()
+		except stripe.error.CardError as e:
+			return JsonResponse({
+				'message': 'Your payment cannot be completed. The card has been declined.',
+			})
+		return JsonResponse({
+			'message': 'Your payment has been completed successfully.'
+		})
 
