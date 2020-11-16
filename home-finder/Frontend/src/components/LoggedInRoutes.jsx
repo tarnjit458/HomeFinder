@@ -4,7 +4,8 @@ import Register from "./Register.jsx";
 import Home from "./Home.jsx";
 import Buy from "./Buy.jsx";
 import Rent from "./Rent.jsx";
-import RentSell from "./Rental-Sell.jsx";
+import Sell from "../SellPage/Sell.jsx";
+import RentOut from "./RentOut.jsx";
 import Layout from "./Layout.jsx";
 import Profile from "./Profile.jsx";
 import {
@@ -36,8 +37,11 @@ export default class LoggedInRoutes extends React.Component {
                     <Route path="/rent">
                         <Rent />
                     </Route>
-                    <Route path="/rent-sell">
-                        <RentSell />
+                    <Route path="/sell">
+                        <Sell />
+                    </Route>
+                    <Route path="/rent-out">
+                        <RentOut />
                     </Route>
                     <Route path="/profile">
                         <Profile />
