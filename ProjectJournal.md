@@ -197,22 +197,6 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 
 3. No tasks are blocked on my end.
 
-11/02
-
-1. I worked on implementing Sell and Rent out, and House detail API.
-
-2. I will continue work on Sell and Rent out, and House detail API.
-
-3. No tasks are blocked on my end.
-
-11/09
-
-1. I worked on implementing Sell and Rent out, and House detail API.
-
-2. I will continue work on Sell and Rent out, and House detail API.
-
-3. No tasks are blocked on my end.
-
 ---
 
 ## Huiying Li
@@ -271,5 +255,13 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 1. I worked on search API, register API and set up connection between frontend and backend.
 
 2. I will update login, search, houseList API.
+
+3. No tasks are blocked on my end.
+
+11/16
+
+1. I updated buy_search, rent_search API and houseList API.
+
+2. I will work on sell_search API, Rent_out API and Rent API.
 
 3. No tasks are blocked on my end.
