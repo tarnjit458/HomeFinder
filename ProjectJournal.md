@@ -74,6 +74,14 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 
 3. No tasks are blocked on my end.
 
+11/16
+
+1. I worked on creating a csv parser to read in data into the local database and made progress on the buy search component.
+
+2. Next step is to test the user registration api with the frontend and continue the buy search component.
+
+3. No blockers.
+
 ---
 
 ## Eric Lin
