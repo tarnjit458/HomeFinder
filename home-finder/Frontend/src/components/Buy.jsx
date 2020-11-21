@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "./Search.jsx";
+import BuySearch from "./Search/BuySearch.jsx";
 
 import {
   Card,
@@ -15,6 +15,7 @@ class Buy extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentInput: "",
       filteredHomes: [],
     };
   }
@@ -53,7 +54,7 @@ class Buy extends React.Component {
     });
     return (
       <div>
-        <Search callbackFromParent={this.myCallback} />
+        <BuySearch callbackFromParent={this.myCallback} />
         <Row>{homesJsx}</Row>
       </div>
     );

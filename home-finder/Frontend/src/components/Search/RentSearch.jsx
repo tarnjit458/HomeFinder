@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Input } from "reactstrap";
+import axios from "axios";
 
-class Search extends React.Component {
+class RentSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,10 +15,17 @@ class Search extends React.Component {
   }
 
   async componentDidMount() {
-    const url = "http://127.0.0.1:8000/api/allHouses/";
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ homes: data });
+    axios
+      .get("http://127.0.0.1:8000/api/rent_search?search=", {
+        headers: { Authorization: "Token " + localStorage.getItem("user") },
+      })
+      .then((response) => {
+        console.log(response);
+        this.setState({ homes: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   handleChange = (event) => {
@@ -57,6 +65,7 @@ class Search extends React.Component {
       }
     });
     this.setState({ search: true });
+    console.log(this.state);
     this.props.callbackFromParent(this.state.filteredHomes);
   };
 
@@ -106,4 +115,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+export default RentSearch;

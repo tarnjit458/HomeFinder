@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "./Search.jsx";
+import RentSearch from "./Search/RentSearch.jsx";
 
 import {
   Card,
@@ -53,7 +53,7 @@ class Rent extends React.Component {
     });
     return (
       <div>
-        <Search callbackFromParent={this.myCallback} />
+        <RentSearch callbackFromParent={this.myCallback} />
         <Row>{homesJsx}</Row>
       </div>
     );
