@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 
 import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
 import LoggedInRoutes from "./components/LoggedInRoutes.jsx";
 import { createBrowserHistory } from 'history';
 
@@ -25,6 +26,9 @@ class App extends React.Component {
           <Switch>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
             </Route>
             <Route path="/"
                     render={props => {
