@@ -7,6 +7,9 @@ from settings import DATABASES
 mydb = mysql.connector.connect(host=DATABASES['default']['HOST'], user=DATABASES['default']['USER'], password=DATABASES['default']['PASSWORD'], database=DATABASES['default']['NAME'])
 mycursor = mydb.cursor()
 
+mycursor.execute("DELETE FROM authtoken_token")
+mydb.commit()
+
 mycursor.execute("DELETE FROM backend_house")
 mydb.commit()
 

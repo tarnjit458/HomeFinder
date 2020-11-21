@@ -8,7 +8,7 @@ import {
   Col,
   Container,
   Alert,
-  Row
+  Row,
 } from "reactstrap";
 import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
 import axios from "axios";
@@ -17,9 +17,9 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      email: "",
       password: "",
-      alertToggle: false
+      alertToggle: false,
     };
   }
 
@@ -31,24 +31,27 @@ class Login extends React.Component {
 
   toggleLoginAlert = () => {
     this.setState({
-      alertToggle: !this.state.alertToggle
+      alertToggle: !this.state.alertToggle,
     });
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    axios.post('http://127.0.0.1:8000/api/login', {
-      'username': this.state.username,
-      'password': this.state.password
-    }).then((response) => {
-      localStorage.setItem('user', response.data.token);
-      this.props.history.push("/");
-    }).catch((error) => {
-      // validation failed
-      console.log(error);
-      this.toggleLoginAlert();
-    });
+    axios
+      .post("http://127.0.0.1:8000/api/login", {
+        username: this.state.email,
+        password: this.state.password,
+      })
+      .then((response) => {
+        localStorage.setItem("user", response.data.token);
+        this.props.history.push("/");
+      })
+      .catch((error) => {
+        // validation failed
+        console.log(error);
+        this.toggleLoginAlert();
+      });
   };
 
   render() {
@@ -59,12 +62,12 @@ class Login extends React.Component {
           <Container className="login-border">
             <Col className="font-weight-bold">
               <FormGroup>
-                <Label for="username">Username</Label>
+                <Label for="email">Email</Label>
                 <Input
                   type="text"
-                  name="username"
-                  placeholder="Username"
-                  value={this.state.username}
+                  name="email"
+                  placeholder="Email"
+                  value={this.state.email}
                   onChange={this.handleChange}
                 />
               </FormGroup>
@@ -87,10 +90,14 @@ class Login extends React.Component {
         </Form>
         <Row className="justify-content-center">
           <Col md="4">
-        <Alert color="danger" isOpen={this.state.alertToggle} toggle={this.toggleLoginAlert}>
-                Incorrect login information!
-        </Alert>
-        </Col>
+            <Alert
+              color="danger"
+              isOpen={this.state.alertToggle}
+              toggle={this.toggleLoginAlert}
+            >
+              Incorrect login information!
+            </Alert>
+          </Col>
         </Row>
       </div>
     );
