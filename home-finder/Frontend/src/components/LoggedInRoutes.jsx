@@ -24,10 +24,6 @@ export default class LoggedInRoutes extends React.Component {
                     <Route path="/list_form">
                         <ListingForm />
                     </Route>
-
-                    <Route path="/register">
-                        <Register />
-                    </Route>
                     <Route path="/home">
                         <Home />
                     </Route>

@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import {
   Button,
   Form,
@@ -8,6 +9,7 @@ import {
   Col,
   Container,
 } from "reactstrap";
+import {withRouter, Link} from 'react-router-dom';
 
 class Login extends React.Component {
   state = {
@@ -25,7 +27,18 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
+
+    axios.post('http://127.0.0.1:8000/api/user_register', {
+      'email': this.state.email,
+      'password': this.state.password,
+      "password2": this.state.password
+    })
+    .then((response) => {
+      console.log(response);
+    }).catch((error) => {
+      console.log(error);
+    });
+    this.props.history.push('/login');
   };
 
   render() {
@@ -76,7 +89,8 @@ class Login extends React.Component {
                   onChange={this.handleChange}
                 />
               </FormGroup>
-              <Button type="submit">Register</Button>
+              <Button color="primary" type="submit">Register</Button>{' '}
+              <Link className="btn btn-danger" to="/login">Cancel</Link>
             </Col>
           </Container>
         </Form>
@@ -85,4 +99,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

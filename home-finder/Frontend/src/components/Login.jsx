@@ -7,8 +7,11 @@ import {
   Label,
   Col,
   Container,
+  Alert,
+  Row
 } from "reactstrap";
 import { BrowserRouter as Router, Link, withRouter } from "react-router-dom";
+import axios from "axios";
 
 class Login extends React.Component {
   constructor(props) {
@@ -16,6 +19,7 @@ class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
+      alertToggle: false
     };
   }
 
@@ -25,12 +29,26 @@ class Login extends React.Component {
     });
   };
 
+  toggleLoginAlert = () => {
+    this.setState({
+      alertToggle: !this.state.alertToggle
+    });
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    // if validation passes
-    localStorage.setItem('user', 'true');
-    this.props.history.push("/");
+    axios.post('http://127.0.0.1:8000/api/login', {
+      'username': this.state.username,
+      'password': this.state.password
+    }).then((response) => {
+      localStorage.setItem('user', response.data.token);
+      this.props.history.push("/");
+    }).catch((error) => {
+      // validation failed
+      console.log(error);
+      this.toggleLoginAlert();
+    });
   };
 
   render() {
@@ -61,12 +79,19 @@ class Login extends React.Component {
                 />
               </FormGroup>
               <Button type="submit">Login</Button>{" "}
-              <Link to="./Register">
+              <Link to="./register">
                 <Button>Register</Button>
               </Link>
             </Col>
           </Container>
         </Form>
+        <Row className="justify-content-center">
+          <Col md="4">
+        <Alert color="danger" isOpen={this.state.alertToggle} toggle={this.toggleLoginAlert}>
+                Incorrect login information!
+        </Alert>
+        </Col>
+        </Row>
       </div>
     );
   }
