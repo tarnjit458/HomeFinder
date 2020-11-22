@@ -1,10 +1,6 @@
 import React from 'react';
-import PropertyCard from '../components/PropertyCard.jsx';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Card, CardText, CardBody, Button,
-    CardTitle, CardSubtitle, Row, Col,
-    Modal, ModalBody, ModalHeader, ModalFooter, Table, Badge
+import { Button, ModalBody, ModalHeader, ModalFooter, Table, Badge
 }from 'reactstrap';
 
 class ReviewApp extends React.Component {
@@ -12,28 +8,27 @@ class ReviewApp extends React.Component {
         super(props);
     }
 
+    offerResponse = (decision) => {
+        // accept or reject action
+    }
+
     render() {
         return(
             <div>
-                <ModalHeader toggle={this.props.inspectAppToggle}>Individual Application</ModalHeader>
+                <ModalHeader toggle={this.props.inspectAppToggle}>{this.props.offer[0]}'s Offer</ModalHeader>
                 <ModalBody>
                 <Table>
                     <tbody>
-                        {/* <tr onClick={(e) => this.props.handleRowClick(e, r)}> */}
                         <tr>
-                            <td>Eric</td>
-                            <td>Lin</td>
+                            <td>Price:</td>
+                            <td>${this.props.offer[1]}</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>$100,000</td>
-                            <td>Single Family House</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>3 bd</td>
-                            <td>2 ba</td>
-                            <td>1800 sqft</td>
+                            <td>Credit Score:</td>
+                            <td>{this.props.offer[2]}</td>
+                            <td>Payment Type:</td>
+                            <td>{this.props.offer[3]}</td>
                         </tr>
                     </tbody>
                 </Table>
