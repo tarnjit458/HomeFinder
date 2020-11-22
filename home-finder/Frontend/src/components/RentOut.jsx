@@ -2,9 +2,9 @@ import React from 'react';
 import PropertyCard from './PropertyCard.jsx';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Card, CardText, CardBody, Button,
-    CardTitle, CardSubtitle, Row, Col,
-    Modal, ModalBody, ModalHeader, ModalFooter, Table, Badge
+import { Card, CardBody, Button,CardTitle,
+    Row, Col, Form, Modal, ModalBody,
+    ModalHeader, ModalFooter, Table, Badge, Input
 }from 'reactstrap';
 
 class RentOut extends React.Component {
@@ -13,7 +13,8 @@ class RentOut extends React.Component {
         this.state = {
             currentInput : '',
             list_toggle: false,
-            manageHouseModal: false
+            manageHouseModal: false,
+            filteredOption: []
         };
     }
 
@@ -44,36 +45,54 @@ class RentOut extends React.Component {
         // handle row click for application list
     }
 
-    handleChange = () => {
-
+    handleChange = (e) => {
+        this.setState({
+            currentInput: e.target.value
+        });
     }
+    handleFilterChange = (e) => {
+        this.setState({
+            filterOption: e.target.value
+        });
+    }
+
     render() {
-        const justifySearch = {
-            "flex": "none",
-            "padding": "32px 21px"
-        }
         return(
             <div>
                 <div className="row justify-content-center">
                     <h2>
-                        Rent Out for Income!
+                        Rental Dashboard
                     </h2>
                 </div>
-                
-                <div className="row justify-content-end" style={justifySearch}>
-                    <div className="col-5">
-                        <input 
-                        className="form-control mr-sm-2"
-                        type="text" 
-                        placeholder="Enter a address, zip code or city..."
-                        onChange={this.handleChange}
-                        value={this.state.currentInput} 
-                        aria-label="Search"/>
-                    </div>
-                    <div className="col-4">
-                        <button className="btn btn-secondary my-2 my-sm-0" type="submit" onClick={this.searchHomes}>Search</button>
-                    </div>
-                </div>
+                <Form className="pb-4" onSubmit={this.searchHomes}>
+                    <Row className="justify-content-center">
+                        <Col md="9">
+                            <input 
+                            className="form-control mr-sm-2"
+                            type="text" 
+                            placeholder="Enter a address, zip code or city..."
+                            onChange={this.handleChange}
+                            value={this.state.currentInput} 
+                            aria-label="Search"/>
+                        </Col>
+                        <Col md="2">
+                            <Input
+                                type="select"
+                                name="filterOption"
+                                value={this.state.filterOption}
+                                onChange={this.handleFilterChange}
+                                >
+                                <option value="all">Select a Filter</option>
+                                <option value="address">Street Address</option>
+                                <option value="zip_code">Zip Code</option>
+                                <option value="city">City</option>
+                            </Input>
+                        </Col>
+                        <Col md="1">
+                            <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                        </Col>
+                    </Row>
+                </Form>
                 
                 <Row>
                     <Col md="4">
