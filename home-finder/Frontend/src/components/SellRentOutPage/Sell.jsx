@@ -1,11 +1,9 @@
 import React from 'react';
-import PropertyCard from '../PropertyCard.jsx';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ReviewApp from './ReviewApp.jsx';
 import { Card, CardBody, Button,
     CardTitle, Row, Col, Input, Form,
-    Modal, ModalBody, ModalHeader, ModalFooter, Table, Badge, Container
+    Modal, Badge, Container
 }from 'reactstrap';
 import Manage from './Manage.jsx';
 
@@ -54,11 +52,12 @@ class Sell extends React.Component {
         console.log("on sale");
         e.preventDefault();
         let filter = this.state.filterOption;
+        let input = this.state.currentInput.toLowerCase().trim();
         let tmp = this.state.userHouses.map((house) => {
             if (filter === "all" ||
-            (filter === "address" && house.address === this.state.currentInput.trim()) ||
-            (filter === "zip_code" && house.zip_code === this.state.currentInput.trim()) ||
-            (filter === "city" && house.city === this.state.currentInput.trim())) {
+            (filter === "address" && house.address.toLowerCase().startsWith(input)) ||
+            (filter === "zip_code" && house.zip_code.toLowerCase().startsWith(input)) ||
+            (filter === "city" && house.city.toLowerCase().startsWith(input))) {
                 house.hide = false;
             } else {
                 house.hide = true;
@@ -70,9 +69,7 @@ class Sell extends React.Component {
         });
     }
 
-
     manageHouseToggle = (e, house) => {
-        console.log(house);
         this.setState({
             manageHouseModal: !this.state.manageHouseModal,
             selectedHouse: house ? house : {}
@@ -80,7 +77,7 @@ class Sell extends React.Component {
     }
 
     deleteHouse = (e) => {
-        // delete housse from database
+        // delete house from database
         // check event.target to get house info
     }
 
@@ -182,7 +179,8 @@ class Sell extends React.Component {
                                             <img className="card-img-top" src={house.image} alt="Card image cap"/>
                                             <Row className="pt-2">
                                                 <Col md="8">
-                                                    <CardTitle tag="h5">{house.address}</CardTitle>
+                                                    <CardTitle tag="h5">{house.address}, {house.city}
+                                                    , {house.state}, {house.zip_code}</CardTitle>
                                                 </Col>
                                                 <Col>
                                                     <Badge color="info">{house.for_sale ? "On Market" : "Sold"}</Badge>
@@ -202,6 +200,7 @@ class Sell extends React.Component {
                     <Manage
                         home={this.state.selectedHouse}
                         manageHouseToggle={this.manageHouseToggle}
+                        isRental={false}
                         />
                 </Modal>
             </Container>

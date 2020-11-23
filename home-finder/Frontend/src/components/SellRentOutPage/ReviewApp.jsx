@@ -20,7 +20,7 @@ class ReviewApp extends React.Component {
                 <Table>
                     <tbody>
                         <tr>
-                            <td>Price:</td>
+                            <td>{this.props.isRental ? "Salary:" : "Price:"}</td>
                             <td>${this.props.offer[1]}</td>
                             <td></td>
                         </tr>

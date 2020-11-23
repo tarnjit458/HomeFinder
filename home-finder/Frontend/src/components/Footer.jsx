@@ -8,7 +8,7 @@ class Footer extends React.Component {
                     <a href="#">Back to top</a>
                 </p>
                 <p>Home Finder</p>
-                <p>Read? 
+                <p>Ready? 
                     <a href="/"> Visit the homepage</a>
                 </p>
             </div>
