@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Input, Row } from "reactstrap";
+import { Col, Container, Form, Input, Row } from "reactstrap";
 import axios from "axios";
 
 class BuySearch extends React.Component {
@@ -35,7 +35,8 @@ class BuySearch extends React.Component {
     });
   };
 
-  filterHomes = () => {
+  filterHomes = (e) => {
+    e.preventDefault();
     this.state.filteredHomes = this.state.homes.filter((home) => {
       if (this.state.filterOption === "all") {
         return home;
@@ -78,39 +79,37 @@ class BuySearch extends React.Component {
 
     return (
       <Container>
-        <Row className="pb-4" style={justifySearch}>
-          <Col md="9">
-            <Input
-              type="text"
-              name="currentInput"
-              placeholder="Enter an address, zip code or city..."
-              value={this.state.currentInput}
-              onChange={this.handleChange}
-            />
-          </Col>
-          <Col md="2">
-            <Input
-              type="select"
-              name="filterOption"
-              value={this.state.filterOption}
-              onChange={this.handleChange}
-            >
-              <option value="all">Select a Filter</option>
-              <option value="address">Street Address</option>
-              <option value="zip_code">Zip Code</option>
-              <option value="city">City</option>
-            </Input>
-          </Col>
-          <Col md="1">
-            <button
-              className="btn btn-secondary my-2 my-sm-0"
-              type="submit"
-              onClick={this.filterHomes}
-            >
-              Search
-            </button>
-          </Col>
-        </Row>
+        <Form className="pb-4" onSubmit={this.filterHomes}>
+          <Row className="justify-content-center" style={justifySearch}>
+            <Col md="9">
+              <Input
+                type="text"
+                name="currentInput"
+                placeholder="Enter an address, zip code or city..."
+                value={this.state.currentInput}
+                onChange={this.handleChange}
+              />
+            </Col>
+            <Col md="2">
+              <Input
+                type="select"
+                name="filterOption"
+                value={this.state.filterOption}
+                onChange={this.handleChange}
+              >
+                <option value="all">Select a Filter</option>
+                <option value="address">Street Address</option>
+                <option value="zip_code">Zip Code</option>
+                <option value="city">City</option>
+              </Input>
+            </Col>
+            <Col md="1">
+              <button className="btn btn-secondary my-2 my-sm-0" type="submit">
+                Search
+              </button>
+            </Col>
+          </Row>
+        </Form>
       </Container>
     );
   }
