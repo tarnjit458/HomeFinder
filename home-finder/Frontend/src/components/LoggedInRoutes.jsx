@@ -1,10 +1,10 @@
 import React from 'react';
-import ListingForm from './SellPage/ListingForm.jsx';
+import ListingForm from './SellRentOutPage/ListingForm.jsx';
 import Home from "./Home.jsx";
 import Buy from "./Buy.jsx";
 import Rent from "./Rent.jsx";
-import Sell from "./SellPage/Sell.jsx";
-import RentOut from "./RentOut.jsx";
+import Sell from "./SellRentOutPage/Sell.jsx";
+import RentOut from "./SellRentOutPage/RentOut.jsx";
 import Layout from "./Layout.jsx";
 import Profile from "./Profile.jsx";
 import {

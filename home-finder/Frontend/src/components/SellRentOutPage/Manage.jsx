@@ -1,12 +1,7 @@
 import React from 'react';
-import PropertyCard from '../PropertyCard.jsx';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import ReviewApp from './ReviewApp.jsx';
-import { Card, CardBody, Button,
-    CardTitle, Row, Col, Input, Form,
-    Modal, ModalBody, ModalHeader, ModalFooter, Table, Badge, Container
-}from 'reactstrap';
+import { Button, ModalBody, ModalHeader, ModalFooter, Table } from 'reactstrap';
 import Details from './Details.jsx';
 import Schedule from './Schedule.jsx';
 
@@ -55,16 +50,19 @@ class Manage extends React.Component {
             return(<ReviewApp 
                 inspectAppToggle={this.inspectAppToggle}
                 offer={this.state.offer}
+                isRental={this.props.isRental}
                 />);
         } else if (this.state.editDetailModal) {
             return(<Details
                 editDetailToggle={this.editDetailToggle}
                 home={this.state.home}
+                isRental={this.props.isRental}
                 />);
         } else if (this.state.scheduleModal) {
             return(<Schedule 
                     schedule={this.state.selectedSchedule} 
                     scheduleToggle={this.scheduleToggle}
+                    isRental={this.props.isRental}
                     />);
         } else {
             const schedule = [
@@ -74,8 +72,8 @@ class Manage extends React.Component {
             ];
             const offers = [
                 ["Eric Lin", "100000", "800","Mortgage"],
-                ["Bob", "Mcbobby", "97,001", "690", "All cash" ],
-                ["Mary", "Bob", "98,001", "710", "Mortgage" ],
+                ["Bob Mcbobby", "97,001", "690", "All cash" ],
+                ["Mary Bob", "98,001", "710", "Mortgage" ],
             ]
             return(
                 <div>
@@ -87,7 +85,7 @@ class Manage extends React.Component {
                             <Table borderless={true}>
                                 <tbody>
                                     <tr>
-                                        <td>Price:</td>
+                                        <td>{this.props.isRental ? "Monthly Price:" : "Price:"}</td>
                                         <td>${this.state.home.cost}</td>
                                     </tr>
                                     <tr>
@@ -108,7 +106,7 @@ class Manage extends React.Component {
                                 <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Offer($)</th>
+                                    <th>{this.props.isRental ? "Salary($)" : "Offer($)"}</th>
                                     <th>Credit Score</th>
                                     <th>Payment Type</th>
                                 </tr>
@@ -129,7 +127,6 @@ class Manage extends React.Component {
                                     }
                                 </tbody>
                             </Table>
-                            {/* <Button color="primary" onClick={this.inspectAppToggle}>Review</Button> */}
                             <h3>Upcoming Open Houses</h3>
                             <Table hover={true}>
                                 <thead>
