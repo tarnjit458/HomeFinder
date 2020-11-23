@@ -1,55 +1,55 @@
-import React from 'react';
-import ListingForm from './SellRentOutPage/ListingForm.jsx';
+import React from "react";
+import ListingForm from "./SellRentOutPage/ListingForm.jsx";
 import Home from "./Home.jsx";
-import Buy from "./Buy.jsx";
-import Rent from "./Rent.jsx";
+import Buy from "./BuyRentPage/Buy.jsx";
+import Rent from "./BuyRentPage/Rent.jsx";
 import Sell from "./SellRentOutPage/Sell.jsx";
 import RentOut from "./SellRentOutPage/RentOut.jsx";
 import Layout from "./Layout.jsx";
 import Profile from "./Profile.jsx";
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Redirect,
-  } from "react-router-dom";
-  import PageNotFound from "./PageNotFound";
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import PageNotFound from "./PageNotFound";
 
 export default class LoggedInRoutes extends React.Component {
-    render() {
+  render() {
     return (
-            <Layout>
-                <Switch>
-                    <Route path="/list_form">
-                        <ListingForm />
-                    </Route>
-                    <Route path="/home">
-                        <Home />
-                    </Route>
-                    <Route path="/buy">
-                        <Buy />
-                    </Route>
-                    <Route path="/rent">
-                        <Rent />
-                    </Route>
-                    <Route path="/sell">
-                        <Sell />
-                    </Route>
-                    <Route path="/rent-out">
-                        <RentOut />
-                    </Route>
-                    <Route path="/profile">
-                        <Profile />
-                    </Route>
-                    <Route exact path="/">
-                        <Redirect to="/home" />
-                    </Route>
+      <Layout>
+        <Switch>
+          <Route path="/list_form">
+            <ListingForm />
+          </Route>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/buy">
+            <Buy />
+          </Route>
+          <Route path="/rent">
+            <Rent />
+          </Route>
+          <Route path="/sell">
+            <Sell />
+          </Route>
+          <Route path="/rent-out">
+            <RentOut />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
 
-                    <Route path="*">
-                        <PageNotFound />
-                    </Route>
-                </Switch>
-            </Layout>
-            );
-        }
+          <Route path="*">
+            <PageNotFound />
+          </Route>
+        </Switch>
+      </Layout>
+    );
+  }
 }

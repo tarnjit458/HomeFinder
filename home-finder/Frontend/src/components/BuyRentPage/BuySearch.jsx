@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Input } from "reactstrap";
+import { Col, Container, Input, Row } from "reactstrap";
 import axios from "axios";
 
 class BuySearch extends React.Component {
@@ -22,6 +22,7 @@ class BuySearch extends React.Component {
       .then((response) => {
         console.log(response);
         this.setState({ homes: response.data });
+        this.props.callbackFromParent(this.state.homes);
       })
       .catch((error) => {
         console.log(error);
@@ -77,8 +78,8 @@ class BuySearch extends React.Component {
 
     return (
       <Container>
-        <div className="row justify-content-end" style={justifySearch}>
-          <div className="col-5">
+        <Row className="pb-4" style={justifySearch}>
+          <Col md="9">
             <Input
               type="text"
               name="currentInput"
@@ -86,8 +87,8 @@ class BuySearch extends React.Component {
               value={this.state.currentInput}
               onChange={this.handleChange}
             />
-          </div>
-          <div>
+          </Col>
+          <Col md="2">
             <Input
               type="select"
               name="filterOption"
@@ -99,8 +100,8 @@ class BuySearch extends React.Component {
               <option value="zip_code">Zip Code</option>
               <option value="city">City</option>
             </Input>
-          </div>
-          <div className="col-4">
+          </Col>
+          <Col md="1">
             <button
               className="btn btn-secondary my-2 my-sm-0"
               type="submit"
@@ -108,8 +109,8 @@ class BuySearch extends React.Component {
             >
               Search
             </button>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </Container>
     );
   }
