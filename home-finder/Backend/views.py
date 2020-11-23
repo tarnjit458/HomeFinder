@@ -152,28 +152,13 @@ def registration_view(request):
 		return JsonResponse(data)
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def rent_search_view(request):
+#@permission_classes([IsAuthenticated])
+def searchView(request):
 	if request.method == 'GET':
 		#data = JSONParser().parse(request)
 		#print (data)
 		search = request.GET.get('search')
-		queryset = House.objects.filter((Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search)), Q(for_sale = '0'))
-		if queryset:
-			serializer = HouseSerializer(queryset, many=True)
-			return JsonResponse(serializer.data, safe=False)
-		else:
-			message = "No match records"
-			return JsonResponse(message, safe=False)
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def buy_search_view(request):
-	if request.method == 'GET':
-		#data = JSONParser().parse(request)
-		#print (data)
-		search = request.GET.get('search')
-		queryset = House.objects.filter((Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search)), Q(for_sale = '1'))
+		queryset = House.objects.filter(Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search))
 		if queryset:
 			serializer = HouseSerializer(queryset, many=True)
 			return JsonResponse(serializer.data, safe=False)
@@ -185,6 +170,12 @@ def buy_search_view(request):
 @permission_classes([IsAuthenticated])
 def register_house(request):
 	if request.method == 'POST':
+		
+		_mutable = request.data._mutable
+		request.data._mutable = True
+		request.data['owner'] = request.user.id
+		request.data._mutable = _mutable
+		
 		serializer = HouseSerializer(data = request.data)
 		data = {}
 		if serializer.is_valid():
@@ -195,40 +186,35 @@ def register_house(request):
 		return JsonResponse(data)
 
 
-class HouseDetailView(APIView):
-	authentication_classes = [TokenAuthentication]
-	permission_classes = [IsAuthenticated]
-	model = House
-	
-	def get(self, request, pk, format=None):
+@api_view(['GET'],)
+@permission_classes([IsAuthenticated])
+def show_house_detail(request, pk):
+	if request.method == 'GET':
 		house = House.objects.get(id=pk);
 		return JsonResponse({
-			'publick_key': settings.STRIPE_PUBLIC_KEY,
 			'house': HouseSerializer(house).data,
 		})
 		
-	def post(self, request, pk, format=None):
-		user = Token.objects.get(key=request.auth.key).user
-		house = House.objects.get(id=pk)
-		stripe.api_key = settings.STRIPE_SECRET_KEY
-		token = request.POST['stripeToken']
-		try:
-			charge = stripe.Charge.create(
-				amount=house.cost*100,
-				currency='usd',
-				source=token,
-				description='E-mail:{} Name:{}'.format(
-					user.email,
-					user.first_name + " " +
-					user.last_name),
-			)
-			house.sold = True
-			house.save()
-		except stripe.error.CardError as e:
-			return JsonResponse({
-				'message': 'Your payment cannot be completed. The card has been declined.',
-			})
+@api_view(['POST'],)
+@permission_classes([IsAuthenticated])
+def approve_application(request, pk):
+	if request.method == 'POST':
+		application = Appliation.objects.get(id=pk);
+		application.status = 1;
+		application.save();
 		return JsonResponse({
-			'message': 'Your payment has been completed successfully.'
+			'message': "application approved",
 		})
+		
+@api_view(['POST'],)
+@permission_classes([IsAuthenticated])
+def send_application(request):
+	if request.method == 'POST':
+		application = Appliation.objects.get(id=pk);
+		application.status = 1;
+		application.save();
+		return JsonResponse({
+			'message': "application submitted",
+		})
+
 
