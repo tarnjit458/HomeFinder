@@ -171,18 +171,25 @@ def searchView(request):
 def register_house(request):
 	if request.method == 'POST':
 		
-		_mutable = request.data._mutable
-		request.data._mutable = True
-		request.data['owner'] = request.user.id
-		request.data._mutable = _mutable
+		print(request.data)
+		if hasattr(request.data, '_mutable'):
+			_mutable = request.data._mutable
+			request.data._mutable = True
+			request.data['owner'] = request.user.id
+			request.data._mutable = _mutable
+			serializer = HouseSerializer(data = request.data)
+		else:
+			request_data = request.data
+			request_data['owner'] = request.user.id
+			serializer = HouseSerializer(data = request_data)		
 		
-		serializer = HouseSerializer(data = request.data)
 		data = {}
 		if serializer.is_valid():
 			house = serializer.save()
 			data['response'] = "successfully registered a new house"
 		else:
 			data = serializer.errors
+			print(serializer.errors)
 		return JsonResponse(data)
 
 
