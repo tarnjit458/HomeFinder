@@ -152,6 +152,15 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 
 3. No blockers.
 
+11/16
+
+1. I worked on setting up the sell and rental application where user can see offers and open houses.
+   I also temporarily linked the sell/rent out page with the allhouses api.
+
+2. Next step is to update the logged in routes for the roles and clean up the home page.
+
+3. Wait on backend for the sell/rental api.
+
 ---
 
 ## Kan Hioki
