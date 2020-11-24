@@ -152,19 +152,35 @@ def registration_view(request):
 		return JsonResponse(data)
 
 @api_view(['GET'])
-#@permission_classes([IsAuthenticated])
-def searchView(request):
+@permission_classes([IsAuthenticated])
+def rent_search_view(request):
 	if request.method == 'GET':
 		#data = JSONParser().parse(request)
 		#print (data)
 		search = request.GET.get('search')
-		queryset = House.objects.filter(Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search))
+		queryset = House.objects.filter((Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search)), Q(for_sale = '0'))
 		if queryset:
 			serializer = HouseSerializer(queryset, many=True)
 			return JsonResponse(serializer.data, safe=False)
 		else:
 			message = "No match records"
 			return JsonResponse(message, safe=False)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def buy_search_view(request):
+	if request.method == 'GET':
+		#data = JSONParser().parse(request)
+		#print (data)
+		search = request.GET.get('search')
+		queryset = House.objects.filter((Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search)), Q(for_sale = '1'))
+		if queryset:
+			serializer = HouseSerializer(queryset, many=True)
+			return JsonResponse(serializer.data, safe=False)
+		else:
+			message = "No match records"
+			return JsonResponse(message, safe=False)
+
 
 @api_view(['POST'],)
 @permission_classes([IsAuthenticated])
