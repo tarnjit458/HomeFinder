@@ -239,7 +239,7 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 3. No tasks are blocked on my end.
 
 
-11/16
+11/23
 
 1. I worked on implementing Sell and Rent out, and House detail API.
 
