@@ -37,5 +37,5 @@ urlpatterns = [
 	path('api/register_house/', views.register_house, name='house_register'),
 	path('api/rent_search/', views.rent_search_view, name='rent_search'),
 	path('api/buy_search/', views.buy_search_view, name='buy_search'),
-	path('api/house_detail/<int:pk>/', views.HouseDetailView.as_view(), name='house_detail'),
+	path('api/house_detail/<int:pk>/', views.show_house_detail, name='house_detail'),
 ]
