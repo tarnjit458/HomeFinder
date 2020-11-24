@@ -82,6 +82,14 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 
 3. No blockers.
 
+11/23
+
+1. I worked on setting up the buy and rent components and connecting it to the APIs.
+
+2. Next step is to help makes changes to some of the backend APIs.
+
+3. Wait on backend for the buy/rent application APIs.
+
 ---
 
 ## Eric Lin
@@ -152,7 +160,7 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 
 3. No blockers.
 
-11/16
+11/23
 
 1. I worked on setting up the sell and rental application where user can see offers and open houses.
    I also temporarily linked the sell/rent out page with the allhouses api.
