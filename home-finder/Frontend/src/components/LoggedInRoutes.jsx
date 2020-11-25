@@ -27,9 +27,9 @@ export default class LoggedInRoutes extends React.Component {
     return (
       <Layout>
         <Switch>
-          <Route path="/list_form">
-            <ListingForm />
-          </Route>
+          <Route path="/list_form" render={props => {
+                            return <ListingForm {...props} />;
+                        }} />
           <Route path="/home">
             <Home />
           </Route>

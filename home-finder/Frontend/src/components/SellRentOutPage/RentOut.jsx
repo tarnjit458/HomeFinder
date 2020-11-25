@@ -203,7 +203,10 @@ class RentOut extends React.Component {
                   src="/For-sale-sign.jpg"
                   alt="Card image cap"
                 />
-                <Link to="/list_form" className="btn btn-primary">
+                <Link
+                  to={{ pathname: "/list_form", state: { isRental: true } }}
+                  className="btn btn-primary"
+                >
                   Start Listing
                 </Link>
               </CardBody>
