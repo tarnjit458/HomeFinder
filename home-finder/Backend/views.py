@@ -5,7 +5,7 @@ from django.views.generic import CreateView, DetailView, TemplateView
 from django.views import generic
 
 from django.conf import settings
-from .models import User, House
+from .models import User, House, Application
 from .forms import LoginForm, UserRegistrationForm, HouseRegistrationForm
 import stripe
 
@@ -13,7 +13,7 @@ from django.http import Http404, HttpResponseRedirect, HttpRequest, HttpResponse
 from django.db.models import Q
 from django.http import JsonResponse
 from django.core import serializers
-from .serializers import HouseSerializer, UserSerializer, RegistrationSerializer
+from .serializers import HouseSerializer, UserSerializer, RegistrationSerializer, ApplicationSerializer
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
@@ -198,8 +198,6 @@ def buy_search_view(request):
 @permission_classes([IsAuthenticated])
 def register_house(request):
 	if request.method == 'POST':
-		
-		print(request.data)
 		if hasattr(request.data, '_mutable'):
 			_mutable = request.data._mutable
 			request.data._mutable = True
@@ -210,46 +208,99 @@ def register_house(request):
 			request_data = request.data
 			request_data['owner'] = request.user.id
 			serializer = HouseSerializer(data = request_data)		
-		
 		data = {}
 		if serializer.is_valid():
 			house = serializer.save()
 			data['response'] = "successfully registered a new house"
 		else:
 			data = serializer.errors
-			print(serializer.errors)
 		return JsonResponse(data)
 
 
 @api_view(['GET'],)
 @permission_classes([IsAuthenticated])
-def show_house_detail(request, pk):
+def show_house_detail(request):
 	if request.method == 'GET':
-		house = House.objects.get(id=pk);
+		house = House.objects.get(id=request.data['house_id']);
 		return JsonResponse({
 			'house': HouseSerializer(house).data,
 		})
 		
 @api_view(['POST'],)
 @permission_classes([IsAuthenticated])
-def approve_application(request, pk):
-	if request.method == 'POST':
-		application = Appliation.objects.get(id=pk);
-		application.status = 1;
-		application.save();
+def send_application(request):
+	if request.method == 'POST':		
+		application = Application()
+		application.user = request.user
+		application.house = House.objects.get(id=request.data['house_id'])
+		application.employment = request.data['employment']
+		application.credit_score = request.data['credit_score']
+		application.offer = request.data['offer']
+		application.save()
+		
 		return JsonResponse({
-			'message': "application approved",
+			'message': "application sent",
 		})
+
+@api_view(['GET'],)
+@permission_classes([IsAuthenticated])
+def show_application_for_user(request):
+	if request.method == 'GET':
+		try:
+			queryset = Application.objects.filter(user_id=request.user.id)
+			return JsonResponse({
+				'application': ApplicationSerializer(queryset, many=True).data,
+			})
+		except Application.DoesNotExist:
+			return JsonResponse({
+				'application': ApplicationSerializer(set()).data,
+			})
+		
+@api_view(['GET'],)
+@permission_classes([IsAuthenticated])
+def show_application_for_owner(request):
+	if request.method == 'GET':
+		house_set = House.objects.filter(owner_id=request.user.id)
+		application_set = set()
+		for house in house_set:
+			try:
+				application = Application.objects.get(house_id=house.id)
+				application_set.add(application)
+			except Application.DoesNotExist:
+				pass
+		return JsonResponse({
+			'application': ApplicationSerializer(application_set, many=True).data,
+		})
+
 		
 @api_view(['POST'],)
 @permission_classes([IsAuthenticated])
-def send_application(request):
+def approve_application(request):
 	if request.method == 'POST':
-		application = Appliation.objects.get(id=pk);
-		application.status = 1;
-		application.save();
-		return JsonResponse({
-			'message': "application submitted",
-		})
-
-
+		try:
+			application = Application.objects.get(id=request.data['application_id']);
+			application.status = 1;
+			application.save();
+			return JsonResponse({
+				'message': "application approved",
+			})
+		except Application.DoesNotExist:
+			return JsonResponse({
+				'message': "no matching application",
+			})
+		
+@api_view(['POST'],)
+@permission_classes([IsAuthenticated])
+def reject_application(request):
+	if request.method == 'POST':
+		try:
+			application = Application.objects.get(id=request.data['application_id']);
+			application.status = 2;
+			application.save();
+			return JsonResponse({
+				'message': "application rejected",
+			})
+		except Application.DoesNotExist:
+			return JsonResponse({
+				'message': "no matching application",
+			})

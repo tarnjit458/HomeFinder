@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, House
+from .models import User, House, Application
 
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -36,3 +36,8 @@ class RegistrationSerializer(serializers.ModelSerializer):
 		user.set_password(password)
 		user.save()
 		return user
+		
+class ApplicationSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Application
+		fields = ['user', 'house', 'employment', 'credit_score', 'offer', 'status', 'date_applied']

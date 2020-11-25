@@ -49,6 +49,15 @@ class House(models.Model):
 	sold = models.BooleanField(default=False)
 	on_loan = models.BooleanField(default=False)
 	image = models.CharField('image url', max_length=500)
+	
+class Application(models.Model):
+	user = models.ForeignKey(User, verbose_name='user', on_delete=models.CASCADE)
+	house = models.ForeignKey(House, verbose_name='house', on_delete=models.CASCADE)
+	employment = models.CharField('employment', max_length=100)
+	credit_score = models.IntegerField('credit_score', default=0)
+	offer = models.IntegerField('cost', default=0)
+	status = models.IntegerField('status', default=0)
+	date_applied = models.DateTimeField(_('date_applied'), default=timezone.now)
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
