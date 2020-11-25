@@ -1,9 +1,6 @@
 import React from "react";
 import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  Button
 } from "reactstrap";
 import { withRouter } from "react-router-dom";
 
@@ -12,6 +9,7 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       profileToggle: false,
+      role: localStorage.getItem("user"),
     };
   }
 
@@ -50,39 +48,34 @@ class NavBar extends React.Component {
 
           <div className="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="/buy">
-                  Buy
-                </a>
-              </li>
-              <li className="nav-item active">
-                <a className="nav-link" href="/sell">
-                  Sell
-                </a>
-              </li>
-              <li className="nav-item active">
-                <a className="nav-link" href="/rent">
-                  Rent
-                </a>
-              </li>
-              <li className="nav-item active">
-                <a className="nav-link" href="/rent-out">
-                  Rent Out
-                </a>
-              </li>
+              {this.state.role === "admin" ? null : (
+                <>
+                  <li className="nav-item active">
+                    <a className="nav-link" href="/buy">
+                      Buy
+                    </a>
+                  </li>
+                  <li className="nav-item active">
+                    <a className="nav-link" href="/sell">
+                      Sell
+                    </a>
+                  </li>
+                  {this.state.role === "realtor" ? null : (
+                    <li className="nav-item active">
+                      <a className="nav-link" href="/rent">
+                        Rent
+                      </a>
+                    </li>
+                  )}
+                  <li className="nav-item active">
+                    <a className="nav-link" href="/rent-out">
+                      Rent Out
+                    </a>
+                  </li>
+                </>
+              )}
             </ul>
-            <Dropdown
-              isOpen={this.state.profileToggle}
-              toggle={this.profileToggle}
-            >
-              <DropdownToggle caret>Profile</DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem header>Profile</DropdownItem>
-                <DropdownItem href="/profile">Settings</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem onClick={this.handleLogout}>Logout</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+            <Button onClick={this.handleLogout}>Logout</Button>
           </div>
         </nav>
       </>

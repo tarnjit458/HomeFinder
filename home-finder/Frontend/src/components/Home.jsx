@@ -24,10 +24,6 @@ class Home extends React.Component {
     }
 
     render() {
-        const justifySearch = {
-            "flex": "none",
-            "padding": "32px 21px"
-        }
 
         const justifyCards = {
             "flexDirection": "row",
@@ -45,20 +41,6 @@ class Home extends React.Component {
                     </h2>
                 </div>
                 
-                <div className="row justify-content-end" style={justifySearch}>
-                    <div className="col-5">
-                        <input 
-                        className="form-control mr-sm-2"
-                        type="text" 
-                        placeholder="Enter a address, zip code or city..."
-                        onChange={this.handleChange}
-                        value={this.state.currentInput} 
-                        aria-label="Search"/>
-                    </div>
-                    <div className="col-4">
-                        <button className="btn btn-secondary my-2 my-sm-0" type="submit" onClick={this.searchHomes}>Search</button>
-                    </div>
-                </div>
                 <div className="row card-deck" style={justifyCards}>
                     <PropertyCard title="Buy a House!" 
                     description="Some quick example text to build on the card title and make up the bulk of the card's content."
