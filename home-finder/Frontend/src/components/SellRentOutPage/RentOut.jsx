@@ -68,9 +68,20 @@ class RentOut extends React.Component {
         filter === "all" ||
         (filter === "address" &&
           house.address.toLowerCase().startsWith(input)) ||
-        (filter === "zip_code" &&
-          house.zip_code.toLowerCase().startsWith(input)) ||
-        (filter === "city" && house.city.toLowerCase().startsWith(input))
+        (filter === "city" && house.city.toLowerCase().startsWith(input)) ||
+        (filter === "state" && house.state.toLowerCase().startsWith(input)) ||
+        (filter === "zip_code" && house.zip_code.startsWith(input)) ||
+        (filter === "sqft_g" && Number(house.sqft) >= Number(input)) ||
+        (filter === "sqft_l" && Number(house.sqft) <= Number(input)) ||
+        (filter === "year_built_g" &&
+          Number(house.year_built) >= Number(input)) ||
+        (filter === "year_built_l" &&
+          Number(house.year_built) <= Number(input)) ||
+        (filter === "bedrooms" && house.bedrooms.startsWith(input)) ||
+        (filter === "bathrooms" && house.bathrooms.startsWith(input)) ||
+        (filter === "flooring" &&
+          house.flooring.toLowerCase().startsWith(input)) ||
+        (filter === "parking" && house.parking.toLowerCase().startsWith(input))
       ) {
         house.hide = false;
       } else {
@@ -159,8 +170,19 @@ class RentOut extends React.Component {
               >
                 <option value="all">Select a Filter</option>
                 <option value="address">Street Address</option>
-                <option value="zip_code">Zip Code</option>
                 <option value="city">City</option>
+                <option value="state">State</option>
+                <option value="zip_code">Zip Code</option>
+                <option value="sqft_g">Square footage (Greater Than)</option>
+                <option value="sqft_l">Square footage (Less Than)</option>
+                <option value="year_built_g">Year Built (Greater Than)</option>
+                <option value="year_built_l">Year Built (Less Than)</option>
+                <option value="bedrooms">Bedrooms</option>
+                <option value="bathrooms">Bathrooms</option>
+                <option value="flooring">
+                  Flooring (Tile, Wooden, Carpet)
+                </option>
+                <option value="parking">Parking (Open, Closed)</option>
               </Input>
             </Col>
             <Col md="1">
