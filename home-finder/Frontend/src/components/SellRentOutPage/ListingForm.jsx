@@ -44,7 +44,7 @@ export default class ListingForm extends React.Component {
           zip_code: this.state.zip_code,
           cost: this.state.cost,
           description: this.state.description,
-          for_sale: this.props.isRental ? false : true,
+          for_sale: this.props.isRental ? true : false,
           for_loan: this.props.isRental,
           image: "",
         },
