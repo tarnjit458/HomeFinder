@@ -40,6 +40,7 @@ export default class ListingForm extends React.Component {
         {
           address: this.state.address,
           city: this.state.city,
+          state: this.state.state,
           zip_code: this.state.zip_code,
           cost: this.state.cost,
           description: this.state.description,

@@ -1,10 +1,14 @@
 from rest_framework import serializers
-from .models import User, House, Application
+from .models import User, House, Application, Schedule
+from django.core.validators import EmailValidator
 
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
 		fields = ['id', 'first_name', 'last_name', 'address', 'city', 'state', 'zip_code', 'phone', 'email', 'date_joined']
+		extra_kwargs = {
+        'email': {'validators': [EmailValidator,]},
+    	}
 
 class HouseSerializer(serializers.ModelSerializer):
 	owner = UserSerializer()
@@ -41,3 +45,9 @@ class ApplicationSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Application
 		fields = ['user', 'house', 'employment', 'credit_score', 'offer', 'status', 'date_applied']
+
+class ScheduleSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Schedule
+		fields = ['user', 'house', 'date', 'time', 'party_size', 'created_at']
+
