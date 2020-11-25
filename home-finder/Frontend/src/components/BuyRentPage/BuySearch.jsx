@@ -37,37 +37,34 @@ class BuySearch extends React.Component {
 
   filterHomes = (e) => {
     e.preventDefault();
+    let filter = this.state.filterOption;
+    let input = this.state.currentInput.toLowerCase().trim();
     this.state.filteredHomes = this.state.homes.filter((home) => {
-      if (this.state.filterOption === "all") {
+      if (
+        filter === "all" ||
+        (filter === "address" &&
+          home.address.toLowerCase().startsWith(input)) ||
+        (filter === "city" && home.city.toLowerCase().startsWith(input)) ||
+        (filter === "state" && home.state.toLowerCase().startsWith(input)) ||
+        (filter === "zip_code" && home.zip_code.startsWith(input)) ||
+        (filter === "sqft_g" && Number(home.sqft) >= Number(input)) ||
+        (filter === "sqft_l" && Number(home.sqft) <= Number(input)) ||
+        (filter === "year_built_g" &&
+          Number(home.year_built) >= Number(input)) ||
+        (filter === "year_built_l" &&
+          Number(home.year_built) <= Number(input)) ||
+        (filter === "bedrooms" && home.bedrooms.startsWith(input)) ||
+        (filter === "bathrooms" && home.bathrooms.startsWith(input)) ||
+        (filter === "flooring" &&
+          home.flooring.toLowerCase().startsWith(input)) ||
+        (filter === "parking" && home.parking.toLowerCase().startsWith(input))
+      ) {
         return home;
-      } else if (this.state.filterOption === "zip_code") {
-        if (
-          home.zip_code
-            .toLowerCase()
-            .startsWith(this.state.currentInput.toLowerCase())
-        ) {
-          return home;
-        }
-      } else if (this.state.filterOption === "address") {
-        if (
-          home.address
-            .toLowerCase()
-            .startsWith(this.state.currentInput.toLowerCase())
-        ) {
-          return home;
-        }
-      } else if (this.state.filterOption === "city") {
-        if (
-          home.city
-            .toLowerCase()
-            .startsWith(this.state.currentInput.toLowerCase())
-        ) {
-          return home;
-        }
       }
     });
     this.setState({ search: true });
     console.log(this.state);
+
     this.props.callbackFromParent(this.state.filteredHomes);
   };
 
@@ -99,8 +96,19 @@ class BuySearch extends React.Component {
               >
                 <option value="all">Select a Filter</option>
                 <option value="address">Street Address</option>
-                <option value="zip_code">Zip Code</option>
                 <option value="city">City</option>
+                <option value="state">State</option>
+                <option value="zip_code">Zip Code</option>
+                <option value="sqft_g">Square footage (Greater Than)</option>
+                <option value="sqft_l">Square footage (Less Than)</option>
+                <option value="year_built_g">Year Built (Greater Than)</option>
+                <option value="year_built_l">Year Built (Less Than)</option>
+                <option value="bedrooms">Bedrooms</option>
+                <option value="bathrooms">Bathrooms</option>
+                <option value="flooring">
+                  Flooring (Tile, Wooden, Carpet)
+                </option>
+                <option value="parking">Parking (Open, Closed)</option>
               </Input>
             </Col>
             <Col md="1">

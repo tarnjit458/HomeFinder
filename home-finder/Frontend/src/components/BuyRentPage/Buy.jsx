@@ -94,7 +94,7 @@ class Buy extends React.Component {
 
     const modal = this.state.filteredHomes.map((home) => {
       return this.state.selectedHome === home.id ? (
-        <div key={home.id}>
+        <div key={home.id} style={{ textAlign: "center" }}>
           <ModalHeader toggle={this.manageHouseToggle}>
             {home.address}, {home.city} {home.state} {home.zip_code}
           </ModalHeader>
@@ -102,22 +102,32 @@ class Buy extends React.Component {
             <Table bordered>
               <tbody>
                 <tr>
-                  <td>Pice:</td>
-                  <td>${home.cost}</td>
+                  <td>Price: ${home.cost}</td>
                 </tr>
                 <tr>
-                  <td>Description:</td>
-                  <td>{home.description}</td>
+                  <td>Description: {home.description}</td>
                 </tr>
               </tbody>
             </Table>
             <Table bordered>
               <tbody>
                 <tr>
-                  <td>Single Family House</td>
-                  <td>3 bd</td>
-                  <td>2 ba</td>
-                  <td>1800 sqft</td>
+                  <td>{home.bedrooms} bd</td>
+                  <td>{home.bathrooms} ba</td>
+                  <td>{home.sqft} sqft</td>
+                </tr>
+              </tbody>
+            </Table>
+            <Table bordered>
+              <tbody>
+                <tr>
+                  <td>Built {home.year_built}</td>
+                </tr>
+                <tr>
+                  <td>{home.flooring} flooring</td>
+                </tr>
+                <tr>
+                  <td>{home.parking} parking</td>
                 </tr>
               </tbody>
             </Table>
