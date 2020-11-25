@@ -6,7 +6,7 @@ import Rent from "./BuyRentPage/Rent.jsx";
 import Sell from "./SellRentOutPage/Sell.jsx";
 import RentOut from "./SellRentOutPage/RentOut.jsx";
 import Layout from "./Layout.jsx";
-import Profile from "./Profile.jsx";
+import Admin from "./Admin.jsx";
 import {
   BrowserRouter as Router,
   Route,
@@ -16,6 +16,13 @@ import {
 import PageNotFound from "./PageNotFound";
 
 export default class LoggedInRoutes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      role: localStorage.getItem("user"),
+    };
+  }
+
   render() {
     return (
       <Layout>
@@ -29,21 +36,29 @@ export default class LoggedInRoutes extends React.Component {
           <Route path="/buy">
             <Buy />
           </Route>
-          <Route path="/rent">
-            <Rent />
-          </Route>
+          {this.state.role === "realtor" ? null : (
+            <Route path="/rent">
+              <Rent />
+            </Route>
+          )}
           <Route path="/sell">
             <Sell />
           </Route>
           <Route path="/rent-out">
             <RentOut />
           </Route>
-          <Route path="/profile">
-            <Profile />
+          <Route path="/admin">
+            <Admin />
           </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
+          {this.state.role === "admin" ? (
+            <Route exact path="/">
+              <Redirect to="/admin" />
+            </Route>
+          ) : (
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+          )}
 
           <Route path="*">
             <PageNotFound />

@@ -19,6 +19,7 @@ class App extends React.Component {
   isLoggedIn() {
     return localStorage.getItem("user") != null;
   }
+  
   render(){
     let history = createBrowserHistory();
     return (
