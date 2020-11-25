@@ -315,3 +315,11 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 2. I will work on sell_search API, Rent_out API and Rent API.
 
 3. No tasks are blocked on my end.
+
+11/23
+
+1. I worked on implementing API for user properties.
+
+2. I will work on APIs for Sell and Rend Out.
+
+3. No tasks are blocked on my end.

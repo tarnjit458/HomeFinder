@@ -281,7 +281,7 @@ def display_house_by_user(request):
 			return JsonResponse({
 				'house': HouseSerializer(queryset, many=True).data,
 			})
-		except Application.DoesNotExist:
+		except House.DoesNotExist:
 			return JsonResponse({
 				'house': HouseSerializer(set()).data,
 			})
