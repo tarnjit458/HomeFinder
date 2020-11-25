@@ -202,7 +202,10 @@ class Sell extends React.Component {
                   src="/For-sale-sign.jpg"
                   alt="Card image cap"
                 />
-                <Link to="/list_form" className="btn btn-primary">
+                <Link
+                  to={{ pathname: "/list_form", state: { isRental: false } }}
+                  className="btn btn-primary"
+                >
                   Start Listing
                 </Link>
               </CardBody>

@@ -34,6 +34,7 @@ export default class ListingForm extends React.Component {
     e.preventDefault();
     console.log("submitting");
     console.log(e.target);
+    console.log(this.props.location.state.isRental);
     axios
       .post(
         "http://127.0.0.1:8000/api/register_house/",
@@ -44,8 +45,8 @@ export default class ListingForm extends React.Component {
           zip_code: this.state.zip_code,
           cost: this.state.cost,
           description: this.state.description,
-          for_sale: this.props.isRental ? true : false,
-          for_loan: this.props.isRental,
+          for_sale: this.props.location.state.isRental ? false : true,
+          for_loan: this.props.location.state.isRental,
           image: "",
         },
         {
