@@ -23,10 +23,6 @@ class Manage extends React.Component {
     this.getSchedules(this.state.home.id);
   }
 
-  componentDidUpdate() {
-    this.getSchedules(this.state.home.id);
-  }
-
   removeHomeCard = () => {
     // reload page
   };
@@ -47,10 +43,12 @@ class Manage extends React.Component {
   };
 
   scheduleToggle = (e, r) => {
+    e.preventDefault();
     this.setState({
       selectedSchedule: r,
       scheduleModal: !this.state.scheduleModal,
     });
+    this.getSchedules(this.state.home.id);
   };
 
   getSchedules = (id) => {
