@@ -24,6 +24,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.parsers import JSONParser
   
 # Create your views here.
 
@@ -99,23 +100,23 @@ def buy_search_view(request):
 			return JsonResponse(message, safe=False)
 
 
-@api_view(['POST'],)
+@api_view(['POST', 'DELETE'],)
 @permission_classes([IsAuthenticated])
 def register_house(request):
 	print (request.user)
 
 	if request.method == 'POST':
-		"""
 		print(request.data)
+		"""
 		if hasattr(request.data, '_mutable'):
 			_mutable = request.data._mutable
 			request.data._mutable = True
-			request_data['owner_id'] = request.user.id
+			request_data['owner'] = request.user
 			request.data._mutable = _mutable
 			serializer = HouseSerializer(data = request.data)
 		else:
 			request_data = request.data
-			request_data['owner_id'] = request.user.id
+			request_data['owner'] = request.user
 			serializer = HouseSerializer(data = request_data)		
 		data = {}
 		if serializer.is_valid():
@@ -139,8 +140,6 @@ def register_house(request):
 		return JsonResponse({
 			'message': "successfully registered a new house",
 		})
-
-
 
 @api_view(['GET'],)
 @permission_classes([IsAuthenticated])
@@ -285,3 +284,32 @@ def display_house_by_user(request):
 			return JsonResponse({
 				'house': HouseSerializer(set()).data,
 			})
+
+@api_view(['PUT', 'DELETE'],)
+@permission_classes([IsAuthenticated])
+def edit_house(request):
+	try: 
+		house = House.objects.get(id=request.GET.get("house_id"))
+	except House.DoesNotExist:
+		return JsonResponse({'Message': 'This house does not exist.'})
+	
+	if request.method == 'PUT':
+		house.address = request.data['address']
+		house.city = request.data['city']
+		house.state = request.data['state']
+		house.zip_code = request.data['zip_code']
+		house.cost = request.data['cost']
+		house.description = request.data['description']
+		house.for_sale = request.data['for_sale']
+		house.image = request.data['image']
+		house.owner = request.user
+		house.save()
+		return JsonResponse({
+			'message': "successfully edited a house",
+		})
+	
+	elif request.method == 'DELETE':
+		house.delete()
+		return JsonResponse({'message': 'House was deleted successfully!'})
+
+
