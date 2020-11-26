@@ -47,4 +47,5 @@ urlpatterns = [
 	path('api/display_schedule/', views.display_schedule, name='display_schedule'),
 	path('api/display_application/', views.display_application, name='display_application'),
 	path('api/display_house_by_user/', views.display_house_by_user, name='display_house_by_user'),
+	path('api/edit_house/', views.edit_house, name='edit_house'),
 ]
