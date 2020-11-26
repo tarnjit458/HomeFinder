@@ -25,12 +25,23 @@ class Manage extends React.Component {
     this.getHouseApplications(this.state.home.id);
   }
 
-  removeHomeCard = () => {
-    // reload page
+  removeHomeCard = (e) => {
+    axios.delete("http://127.0.0.1:8000/api/edit_house/", {
+      headers: {
+        Authorization: "Token " + localStorage.getItem("user"),
+      },
+      params: {
+        house_id: this.state.home.id,
+      },
+    }).then((response) => {
+      console.log(response);
+      this.props.manageHouseToggle(e, {});
+    }).catch((error) => {
+      console.log(error);
+    });
   };
 
   inspectAppToggle = (e, r) => {
-    console.log("hit");
     this.setState({
       inspectAppModal: !this.state.inspectAppModal,
       offer: r,
@@ -154,7 +165,7 @@ class Manage extends React.Component {
             <Button onClick={this.editDetailToggle} color="primary">
               Edit
             </Button>{" "}
-            <Button color="danger">Remove</Button>
+            <Button color="danger" onClick={this.removeHomeCard}>Remove</Button>
             {/*
                                 this.state.totalListing.house_num.length > 0 ? 
                                 this.state.totalListing.house_num.map(() => {}) :

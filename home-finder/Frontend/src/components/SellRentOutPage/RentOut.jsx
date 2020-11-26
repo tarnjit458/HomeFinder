@@ -27,7 +27,7 @@ class RentOut extends React.Component {
       userHouses: [],
       filterOption: "all",
       selectedHouse: {},
-      selectedHouseSchedule: []
+      selectedHouseSchedule: [],
     };
   }
 
@@ -43,9 +43,9 @@ class RentOut extends React.Component {
           Authorization: "Token " + localStorage.getItem("user"),
         },
         params: {
-          for_sale: 'False',
-          owner_id: localStorage.getItem("user_id")
-        }
+          for_sale: "False",
+          owner_id: localStorage.getItem("user_id"),
+        },
       })
       .then((response) => {
         console.log(response);
@@ -100,16 +100,13 @@ class RentOut extends React.Component {
   };
 
   manageHouseToggle = (e, house) => {
-    console.log(house);
+    if (Object.keys(house).length === 0) {
+      this.getUserListing();
+    }
     this.setState({
       manageHouseModal: !this.state.manageHouseModal,
       selectedHouse: house ? house : {},
     });
-  };
-
-  deleteHouse = (e) => {
-    // delete housse from database
-    // check event.target to get house info
   };
 
   handleRowClick = (e, r) => {

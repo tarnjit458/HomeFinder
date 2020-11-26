@@ -27,7 +27,7 @@ class Sell extends React.Component {
       userHouses: [],
       filterOption: "all",
       selectedHouse: {},
-      selectedHouseSchedule: []
+      selectedHouseSchedule: [],
     };
   }
 
@@ -43,9 +43,9 @@ class Sell extends React.Component {
           Authorization: "Token " + localStorage.getItem("user"),
         },
         params: {
-          for_sale: 'True',
-          owner_id: localStorage.getItem("user_id")
-        }
+          for_sale: "True",
+          owner_id: localStorage.getItem("user_id"),
+        },
       })
       .then((response) => {
         console.log(response);
@@ -100,15 +100,13 @@ class Sell extends React.Component {
   };
 
   manageHouseToggle = (e, house) => {
+    if (Object.keys(house).length === 0) {
+      this.getUserListing();
+    }
     this.setState({
       manageHouseModal: !this.state.manageHouseModal,
       selectedHouse: house ? house : {},
     });
-  };
-
-  deleteHouse = (e) => {
-    // delete house from database
-    // check event.target to get house info
   };
 
   handleRowClick = (e, r) => {
