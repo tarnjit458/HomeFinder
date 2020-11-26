@@ -2,22 +2,17 @@ import React from "react";
 import {
   Container,
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Form,
   FormGroup,
   Label,
   Input,
-  FormText,
   Row,
   Col,
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 
-export default class ListingForm extends React.Component {
+class ListingForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,14 +22,18 @@ export default class ListingForm extends React.Component {
       state: "",
       zip_code: "",
       description: "",
+      flooring: "",
+      parking: "",
+      image: "",
+      sqft: "",
+      year_built: "",
+      bedrooms: "",
+      bathrooms: "",
     };
   }
 
   handleListSubmit = (e) => {
     e.preventDefault();
-    console.log("submitting");
-    console.log(e.target);
-    console.log(this.props.location.state.isRental);
     axios
       .post(
         "http://127.0.0.1:8000/api/register_house/",
@@ -47,7 +46,14 @@ export default class ListingForm extends React.Component {
           description: this.state.description,
           for_sale: this.props.location.state.isRental ? false : true,
           for_loan: this.props.location.state.isRental,
-          image: "",
+          image: this.state.image,
+          flooring: this.state.flooring,
+          parking: this.state.parking,
+          owner: localStorage.getItem("user_id"),
+          sqft: this.state.sqft,
+          bedrooms: this.state.bedrooms,
+          bathrooms: this.state.bathrooms,
+          year_built: this.state.year_built,
         },
         {
           headers: {
@@ -56,7 +62,11 @@ export default class ListingForm extends React.Component {
         }
       )
       .then((response) => {
-        console.log(response);
+        if (this.props.location.state.isRental) {
+          this.props.history.push("/rent-out");
+        } else {
+          this.props.history.push("/sell");
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -72,15 +82,17 @@ export default class ListingForm extends React.Component {
   render() {
     return (
       <Container>
-        <h2>{this.props.isRental ? "List Rental" : "Sell Home"}</h2>
-        <Form onSubmit={this.handleListSubmit}>
-          <FormGroup onChange={this.handleChange}>
+        <h2>
+          {this.props.location.state.isRental ? "List Rental" : "Sell Home"}
+        </h2>
+        <Form onSubmit={this.handleListSubmit} onChange={this.handleChange}>
+          <FormGroup>
             <Label for="exampleText">
-              {this.props.isRental ? "Price per month" : "Price"}
+              {this.props.location.state.isRental ? "Price per month" : "Price"}
             </Label>
             <Input type="text" name="cost" value={this.state.cost} />
           </FormGroup>
-          <FormGroup onChange={this.handleChange}>
+          <FormGroup>
             <Label>Address</Label>
             <Input value={this.state.address} name="address" />
             <Row>
@@ -99,13 +111,51 @@ export default class ListingForm extends React.Component {
             </Row>
           </FormGroup>
           <FormGroup>
-            <Label for="house_type">House Type</Label>
-            <Input type="select" name="select" id="exampleSelect">
-              <option value="condo">Condo</option>
-              <option value="townhouse">Townhouse</option>
-              <option value="single">Single Family</option>
-              <option value="multi">MultiFamily</option>
-            </Input>
+            <Row>
+              <Col>
+                <Label>Sq Ft</Label>
+                <Input value={this.state.sqft} name="sqft" />
+              </Col>
+              <Col>
+                <Label>Bedrooms</Label>
+                <Input value={this.state.bedrooms} name="bedrooms" />
+              </Col>
+              <Col>
+                <Label>Bathrooms</Label>
+                <Input value={this.state.bathrooms} name="bathrooms" />
+              </Col>
+              <Col>
+                <Label for="house_type">Floor Type</Label>
+                <Input
+                  value={this.state.flooring}
+                  type="select"
+                  name="flooring"
+                >
+                  <option value="tile">Tile</option>
+                  <option value="wooden">Wooden</option>
+                  <option value="carpet">Carpet</option>
+                </Input>
+              </Col>
+              <Col>
+                <Label for="house_type">Parking Type</Label>
+                <Input value={this.state.parking} type="select" name="parking">
+                  <option value="open">Open</option>
+                  <option value="closed">Closed</option>
+                </Input>
+              </Col>
+            </Row>
+          </FormGroup>
+          <FormGroup>
+            <Row>
+              <Col>
+                <Label>Year Built</Label>
+                <Input value={this.state.year_built} name="year_built" />
+              </Col>
+              <Col>
+                <Label>Image Url</Label>
+                <Input value={this.state.image} name="image" />
+              </Col>
+            </Row>
           </FormGroup>
           <FormGroup onChange={this.handleChange}>
             <Label for="exampleText">Description</Label>
@@ -118,7 +168,10 @@ export default class ListingForm extends React.Component {
           <Button color="primary" type="submit" action="submit">
             Submit
           </Button>{" "}
-          <Link className="btn btn-primary" to="/sell">
+          <Link
+            className="btn btn-primary"
+            to={this.props.location.state.isRental ? "/rent-out" : "/sell"}
+          >
             Go Back
           </Link>
         </Form>
@@ -126,3 +179,5 @@ export default class ListingForm extends React.Component {
     );
   }
 }
+
+export default withRouter(ListingForm);

@@ -38,14 +38,18 @@ class RentOut extends React.Component {
 
   getUserListing = () => {
     axios
-      .get("http://127.0.0.1:8000/api/allHouses", {
+      .get("http://127.0.0.1:8000/api/display_house_by_user", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },
+        params: {
+          for_sale: 'False',
+          owner_id: localStorage.getItem("user_id")
+        }
       })
       .then((response) => {
         console.log(response);
-        let tmp = response.data.map((house) => {
+        let tmp = response.data.house.map((house) => {
           house.hide = false;
           return house;
         });
