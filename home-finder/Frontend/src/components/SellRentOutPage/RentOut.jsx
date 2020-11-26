@@ -100,7 +100,7 @@ class RentOut extends React.Component {
   };
 
   manageHouseToggle = (e, house) => {
-    if (Object.keys(house).length === 0) {
+    if (house !== null || house !== undefined && Object.keys(house).length === 0) {
       this.getUserListing();
     }
     this.setState({
@@ -126,12 +126,6 @@ class RentOut extends React.Component {
     this.setState({
       filterOption: e.target.value,
     });
-  };
-
-  handleApproval = () => {
-    // handle approve or reject application
-    // Approved application will close house for further apps
-    // Reject will remove application from the pool
   };
 
   inspectAppToggle = () => {
