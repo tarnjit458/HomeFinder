@@ -8,14 +8,19 @@ import {
   Label,
   Col,
   Container,
+  Row,
+  Alert,
 } from "reactstrap";
 import { withRouter, Link } from "react-router-dom";
 
 class Login extends React.Component {
   state = {
+    role: "",
     email: "",
     password: "",
     password2: "",
+    alertToggle1: false,
+    alertToggle2: false,
   };
 
   handleChange = (event) => {
@@ -24,22 +29,44 @@ class Login extends React.Component {
     });
   };
 
+  toggleAlert1 = () => {
+    this.setState({
+      alertToggle1: !this.state.alertToggle1,
+    });
+  };
+
+  toggleAlert2 = () => {
+    this.setState({
+      alertToggle2: !this.state.alertToggle2,
+    });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
 
     axios
       .post("http://127.0.0.1:8000/api/user_register", {
+        role: this.state.role,
         email: this.state.email,
         password: this.state.password,
         password2: this.state.password2,
       })
       .then((response) => {
         console.log(response);
+        if (
+          response.data.email[0] ===
+          "user with this email address already exists."
+        ) {
+          console.log("LLL");
+          this.toggleAlert1();
+        } else {
+          this.props.history.push("/login");
+        }
       })
       .catch((error) => {
         console.log(error);
+        this.toggleAlert2();
       });
-    this.props.history.push("/login");
   };
 
   render() {
@@ -50,6 +77,22 @@ class Login extends React.Component {
         <Form className="login-form" onSubmit={this.handleSubmit}>
           <Container className="login-border">
             <Col className="font-weight-bold">
+              <FormGroup>
+                <Label for="role">Role</Label>
+                <Input
+                  type="select"
+                  name="role"
+                  placeholder="Role"
+                  value={this.state.role}
+                  onChange={this.handleChange}
+                >
+                  <option value="all">Choose your role</option>
+                  <option value="admin">Administrator</option>
+                  <option value="realtor">Realtor</option>
+                  <option value="landlord">Landlord</option>
+                  <option value="user">User</option>
+                </Input>
+              </FormGroup>
               <FormGroup>
                 <Label for="email">Email</Label>
                 <Input
@@ -89,6 +132,28 @@ class Login extends React.Component {
             </Col>
           </Container>
         </Form>
+        <Row className="justify-content-center">
+          <Col md="4">
+            <Alert
+              color="danger"
+              isOpen={this.state.alertToggle1}
+              toggle={this.toggleAlert1}
+            >
+              This email is already registered!
+            </Alert>
+          </Col>
+        </Row>
+        <Row className="justify-content-center">
+          <Col md="4">
+            <Alert
+              color="danger"
+              isOpen={this.state.alertToggle2}
+              toggle={this.toggleAlert2}
+            >
+              Invalid register information!
+            </Alert>
+          </Col>
+        </Row>
       </div>
     );
   }
