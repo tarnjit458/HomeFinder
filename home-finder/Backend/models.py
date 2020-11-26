@@ -58,7 +58,7 @@ class Application(models.Model):
 	employment = models.CharField('employment', max_length=100)
 	credit_score = models.IntegerField('credit_score', default=0)
 	offer = models.IntegerField('cost', default=0)
-	status = models.IntegerField('status', default=0)
+	status = models.CharField('status', max_length=100, default="Pending")
 	date_applied = models.DateTimeField(_('date_applied'), default=timezone.now)
 
 class Schedule(models.Model):
