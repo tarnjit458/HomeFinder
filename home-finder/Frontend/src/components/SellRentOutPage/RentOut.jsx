@@ -27,6 +27,7 @@ class RentOut extends React.Component {
       userHouses: [],
       filterOption: "all",
       selectedHouse: {},
+      selectedHouseSchedule: []
     };
   }
 

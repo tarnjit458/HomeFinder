@@ -27,6 +27,7 @@ class Sell extends React.Component {
       userHouses: [],
       filterOption: "all",
       selectedHouse: {},
+      selectedHouseSchedule: [],
     };
   }
 
@@ -99,6 +100,27 @@ class Sell extends React.Component {
       manageHouseModal: !this.state.manageHouseModal,
       selectedHouse: house ? house : {},
     });
+    if (house) {
+      this.getHouseApplications(house.id);
+    }
+  };
+
+  getHouseApplications = (id) => {
+    axios
+      .get("http://127.0.0.1:8000/api/display_application/", {
+        headers: {
+          Authorization: "Token " + localStorage.getItem("user"),
+        },
+        params: {
+          house_id: id,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   deleteHouse = (e) => {
