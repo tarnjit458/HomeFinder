@@ -41,7 +41,7 @@ class Schedule extends React.Component {
   };
 
   submitSchedule = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     axios
       .post(
         "http://127.0.0.1:8000/api/schedule_appointment/",
