@@ -63,6 +63,7 @@ def registration_view(request):
 			user = serializer.save()
 			data['response'] = "successfully registered a new user"
 			data['email'] = user.email
+			data['role'] = user.rol
 			token = Token.objects.get(user=user).key
 			data['token'] = token 
 		else:
@@ -312,4 +313,16 @@ def edit_house(request):
 		house.delete()
 		return JsonResponse({'message': 'House was deleted successfully!'})
 
+@api_view(['DELETE'],)
+@permission_classes([IsAuthenticated])
+def delete_user(request):
+	if request.method == 'DELETE':
+		try:
+			user = User.objects.get(id=request.GET.get("user_id"))
+			user.delete()
+			return JsonResponse({
+				'message': "successfully delete a user",
+			})
+		except User.DoesNotExist:
+			return JsonResponse({'message': 'This user does not exist.'})
 

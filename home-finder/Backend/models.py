@@ -16,6 +16,7 @@ class User(AbstractUser):
 	zip_code = models.CharField('zip code', max_length=50, blank=True)
 	phone = models.CharField(_('phone number'), max_length=50, blank=True)
 	email = models.EmailField(_('email address'), unique=True)
+	role = models.CharField('role', max_length=100, blank=True)
 	date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
 	EMAIL_FIELD = 'email'

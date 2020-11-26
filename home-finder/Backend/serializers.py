@@ -5,7 +5,7 @@ from django.core.validators import EmailValidator
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
-		fields = ['id', 'first_name', 'last_name', 'address', 'city', 'state', 'zip_code', 'phone', 'email', 'date_joined']
+		fields = ['id', 'first_name', 'last_name', 'address', 'city', 'state', 'zip_code', 'phone', 'email', 'role', 'date_joined']
 		extra_kwargs = {
         'email': {'validators': [EmailValidator,]},
     	}
@@ -22,7 +22,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = User
-		fields = ['email', 'password', 'password2']
+		fields = ['email', 'role', 'password', 'password2']
 		extra_kwargs = {
 			'password': {'write_only': True}
 		}
@@ -32,6 +32,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 				email = self.validated_data['email']
 			)
 
+		role = self.validated_data['role']
 		password = self.validated_data['password']
 		password2 = self.validated_data['password2']
 
