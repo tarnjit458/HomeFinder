@@ -15,7 +15,12 @@ class Manage extends React.Component {
       editDetailModal: false,
       selectedSchedule: [],
       offer: [],
+      totalSchedules: [],
     };
+  }
+
+  componentDidMount() {
+    this.getSchedules(this.state.home.id);
   }
 
   removeHomeCard = () => {
@@ -38,11 +43,33 @@ class Manage extends React.Component {
   };
 
   scheduleToggle = (e, r) => {
-    // a
+    e.preventDefault();
     this.setState({
       selectedSchedule: r,
       scheduleModal: !this.state.scheduleModal,
     });
+    this.getSchedules(this.state.home.id);
+  };
+
+  getSchedules = (id) => {
+    axios
+      .get("http://127.0.0.1:8000/api/display_schedule/", {
+        headers: {
+          Authorization: "Token " + localStorage.getItem("user"),
+        },
+        params: {
+          house_id: id,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          totalSchedules: response.data.schedule,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -68,6 +95,7 @@ class Manage extends React.Component {
           schedule={this.state.selectedSchedule}
           scheduleToggle={this.scheduleToggle}
           isRental={this.props.isRental}
+          home={this.state.home}
         />
       );
     } else {
@@ -142,12 +170,12 @@ class Manage extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {schedule.map((r) => {
+                {this.state.totalSchedules.map((r) => {
                   return (
                     <tr onClick={(e) => this.scheduleToggle(e, r)}>
-                      <td>{r[0]}</td>
-                      <td>{r[1]}</td>
-                      <td>{r[2]}</td>
+                      <td>{r["date"]}</td>
+                      <td>{r["time"]}</td>
+                      <td>{r["party_size"]}</td>
                     </tr>
                   );
                 })}
