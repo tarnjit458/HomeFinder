@@ -204,7 +204,7 @@ def approve_application(request):
 	if request.method == 'POST':
 		try:
 			application = Application.objects.get(id=request.data['application_id']);
-			application.status = 1;
+			application.status = "Approved";
 			application.save();
 			return JsonResponse({
 				'message': "application approved",
@@ -220,7 +220,7 @@ def reject_application(request):
 	if request.method == 'POST':
 		try:
 			application = Application.objects.get(id=request.data['application_id']);
-			application.status = 2;
+			application.status = "Rejected";
 			application.save();
 			return JsonResponse({
 				'message': "application rejected",
