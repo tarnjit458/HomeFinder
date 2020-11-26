@@ -249,7 +249,7 @@ def schedule_appointment(request):
 def display_schedule(request):
 	if request.method == 'GET':
 		try:
-			queryset = Schedule.objects.filter(user_id=request.user.id, house_id=request.GET.get('house_id'))
+			queryset = Schedule.objects.filter(house_id=request.GET.get('house_id'))
 			return JsonResponse({
 				'schedule': ScheduleSerializer(queryset, many=True).data,
 			})
