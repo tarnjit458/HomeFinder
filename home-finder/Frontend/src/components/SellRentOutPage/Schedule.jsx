@@ -59,11 +59,11 @@ class Schedule extends React.Component {
       )
       .then((response) => {
         console.log(response);
-        this.props.scheduleToggle(e, []);
       })
       .catch((error) => {
         console.log(error);
       });
+    this.props.scheduleToggle();
   };
 
   render() {
@@ -80,7 +80,7 @@ class Schedule extends React.Component {
                 name="date"
                 value={this.state.date}
                 onChange={this.handleChange}
-                placeholder="2020-01-01"
+                placeholder="01-01-2020"
               />
             </FormGroup>
             <FormGroup>
