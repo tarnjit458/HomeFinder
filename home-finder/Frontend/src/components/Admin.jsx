@@ -7,6 +7,7 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
+  Alert,
 } from "reactstrap";
 import axios from "axios";
 
@@ -17,10 +18,18 @@ class Admin extends React.Component {
       users: [],
       manageModal: false,
       selectedUser: {},
+      successAlert: false,
+      errorAlert: false,
+      msg: "",
+      alertToggle: false,
     };
   }
 
   componentDidMount() {
+    this.grabAllUsers();
+  }
+
+  grabAllUsers = () => {
     axios
       .get("http://127.0.0.1:8000/api/allUsers", {
         Authorization: "Token " + localStorage.getItem("user"),
@@ -34,11 +43,17 @@ class Admin extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   manageToggle = () => {
     this.setState({
       manageModal: !this.state.manageModal,
+    });
+  };
+
+  toggleLoginAlert = () => {
+    this.setState({
+      alertToggle: !this.state.alertToggle,
     });
   };
 
@@ -52,18 +67,58 @@ class Admin extends React.Component {
 
   removeUser = () => {
     // delete selected user
-    this.manageToggle();
+    axios
+      .delete("http://127.0.0.1:8000/api/delete_user/", {
+        headers: {
+          Authorization: "Token " + localStorage.getItem("user"),
+        },
+        params: {
+          user_id: this.state.selectedUser.id,
+        },
+      })
+      .then((response) => {
+        let msg = response.data.message.trim();
+        let success = false;
+        if (msg.toLowerCase().startsWith("success")) {
+          success = true;
+        }
+        this.setState({
+          msg: msg,
+          errorAlert: !success,
+          successAlert: success,
+        });
+        this.grabAllUsers();
+        this.toggleLoginAlert();
+        this.manageToggle();
+      })
+      .catch((error) => {
+        console.log(error);
+        this.setState({
+          msg: "Unable to delete user.",
+          errorAlert: true,
+          successAlert: false,
+        });
+        this.toggleLoginAlert();
+        this.manageToggle();
+      });
   };
 
   render() {
     return (
       <Container>
+        <Alert
+          color={this.state.errorAlert ? "danger" : "success"}
+          isOpen={this.state.alertToggle}
+          toggle={this.toggleLoginAlert}
+        >
+          {this.state.msg}
+        </Alert>
         <h5>All Active Users</h5>
         <Table>
           <thead>
             <tr>
               <td>Userid</td>
-              <td>Name</td>
+              <td>Email</td>
               <td>Date Joined</td>
             </tr>
           </thead>
@@ -72,9 +127,7 @@ class Admin extends React.Component {
               return (
                 <tr onClick={(e) => this.onRowClick(e, user)}>
                   <td>{user.id}</td>
-                  <td>
-                    {user.first_name} {user.last_name}
-                  </td>
+                  <td>{user.email}</td>
                   <td>{user.date_joined}</td>
                 </tr>
               );
