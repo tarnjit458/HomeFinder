@@ -16,11 +16,13 @@ class Manage extends React.Component {
       selectedSchedule: [],
       offer: [],
       totalSchedules: [],
+      selectedHouseApp: [],
     };
   }
 
   componentDidMount() {
     this.getSchedules(this.state.home.id);
+    this.getHouseApplications(this.state.home.id);
   }
 
   removeHomeCard = () => {
@@ -65,6 +67,27 @@ class Manage extends React.Component {
         console.log(response);
         this.setState({
           totalSchedules: response.data.schedule,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  getHouseApplications = (id) => {
+    axios
+      .get("http://127.0.0.1:8000/api/display_application/", {
+        headers: {
+          Authorization: "Token " + localStorage.getItem("user"),
+        },
+        params: {
+          house_id: id,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          selectedHouseApp: response.data.application,
         });
       })
       .catch((error) => {
@@ -147,8 +170,7 @@ class Manage extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {/* <tr onClick={(e) => this.props.handleRowClick(e, r)}> */}
-                {offers.map((r) => {
+                {this.state.selectedHouseApp.map((r) => {
                   return (
                     <tr onClick={(e) => this.inspectAppToggle(e, r)}>
                       <td>{r[0]}</td>
