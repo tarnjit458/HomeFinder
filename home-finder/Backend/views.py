@@ -249,7 +249,7 @@ def schedule_appointment(request):
 def display_schedule(request):
 	if request.method == 'GET':
 		try:
-			queryset = Schedule.objects.filter(user_id=request.user.id, house_id=request.data['house_id'])
+			queryset = Schedule.objects.filter(user_id=request.user.id, house_id=request.GET.get('house_id'))
 			return JsonResponse({
 				'schedule': ScheduleSerializer(queryset, many=True).data,
 			})
@@ -263,7 +263,7 @@ def display_schedule(request):
 def display_application(request):
 	if request.method == 'GET':
 		try:
-			queryset = Application.objects.filter(house_id=request.data['house_id'])
+			queryset = Application.objects.filter(house_id=request.GET.get('house_id'))
 			return JsonResponse({
 				'application': ApplicationSerializer(queryset, many=True).data,
 			})
@@ -277,7 +277,7 @@ def display_application(request):
 def display_house_by_user(request):
 	if request.method == 'GET':
 		try:
-			queryset = House.objects.filter(owner_id=request.user.id, for_sale=request.data['for_sale'])
+			queryset = House.objects.filter(owner_id=request.user.id, for_sale=request.GET.get('for_sale'))
 			return JsonResponse({
 				'house': HouseSerializer(queryset, many=True).data,
 			})
