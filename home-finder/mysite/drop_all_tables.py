@@ -43,6 +43,9 @@ mydb.commit()
 mycursor.execute("DROP TABLE `home_finder`.`django_content_type`")
 mydb.commit()
 
+mycursor.execute("DROP TABLE `home_finder`.`backend_favorite`")
+mydb.commit()
+
 mycursor.execute("DROP TABLE `home_finder`.`backend_house`")
 mydb.commit()
 
