@@ -319,32 +319,31 @@ def display_house_by_user(request):
 
 @api_view(['PUT', 'DELETE'],)
 @permission_classes([IsAuthenticated])
-def edit_house(request):
-	print (request.user)
+def edit_house(request, id):
 	try: 
-		house = House.objects.get(id=request.GET.get("house_id"))
+		house = House.objects.get(id=id)
 	except House.DoesNotExist:
 		return JsonResponse({'Message': 'This house does not exist.'})
 	
 	if request.method == 'PUT':
-		house.address = request.data['address']
-		house.city = request.data['city']
-		house.state = request.data['state']
-		house.zip_code = request.data['zip_code']
-		house.cost = request.data['cost']
-		house.description = request.data['description']
-		house.sqft = request.data['sqft']
-		house.bathrooms = request.data['bathrooms']
-		house.bedrooms = request.data['bedrooms']
-		house.flooring = request.data['flooring']
-		house.parking = request.data['parking']
-		house.year_built = request.data['year_built']
-		house.image = request.data['image']
+		data = request.data.get('data')
+		house.address = data['address']
+		house.city = data['city']
+		house.state = data['state']
+		house.zip_code = data['zip_code']
+		house.cost = data['cost']
+		house.description = data['description']
+		house.sqft = data['sqft']
+		house.bathrooms = data['bathrooms']
+		house.bedrooms = data['bedrooms']
+		house.flooring = data['flooring']
+		house.parking = data['parking']
+		house.year_built = data['year_built']
+		house.image = data['image']
 		house.save()
 		return JsonResponse({
 			'message': "successfully edited a house",
 		})
-
 	
 	elif request.method == 'DELETE':
 		house.delete()

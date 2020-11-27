@@ -26,13 +26,10 @@ class Manage extends React.Component {
   }
 
   removeHomeCard = (e) => {
-    axios.delete("http://127.0.0.1:8000/api/edit_house/", {
+    axios.delete("http://127.0.0.1:8000/api/edit_house/" + this.state.home.id, {
       headers: {
         Authorization: "Token " + localStorage.getItem("user"),
-      },
-      params: {
-        house_id: this.state.home.id,
-      },
+      }
     }).then((response) => {
       console.log(response);
       this.props.manageHouseToggle(e, {});
