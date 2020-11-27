@@ -218,7 +218,7 @@ def show_application_for_owner(request):
 def approve_application(request):
 	if request.method == 'POST':
 		try:
-			application = Application.objects.get(id=request.data['application_id']);
+			application = Application.objects.get(id=request.data.get('data')['application_id']);
 			application.status = "Approved";
 			application.save();
 			return JsonResponse({
@@ -232,9 +232,10 @@ def approve_application(request):
 @api_view(['POST'],)
 @permission_classes([IsAuthenticated])
 def reject_application(request):
+	print(request.data.get('data'))
 	if request.method == 'POST':
 		try:
-			application = Application.objects.get(id=request.data['application_id']);
+			application = Application.objects.get(id=request.data.get('data')['application_id']);
 			application.status = "Rejected";
 			application.save();
 			return JsonResponse({

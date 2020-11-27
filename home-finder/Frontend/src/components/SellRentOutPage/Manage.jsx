@@ -46,6 +46,7 @@ class Manage extends React.Component {
       inspectAppModal: !this.state.inspectAppModal,
       offer: r,
     });
+    this.getHouseApplications(this.state.home.id);
   };
 
   editDetailToggle = () => {
@@ -174,20 +175,22 @@ class Manage extends React.Component {
             <Table hover={true}>
               <thead>
                 <tr>
-                  <th>Name</th>
                   <th>{this.props.isRental ? "Salary($)" : "Offer($)"}</th>
+                  <th>Name</th>
                   <th>Credit Score</th>
-                  <th>Payment Type</th>
+                  <th>Employment</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 {this.state.selectedHouseApp.map((r) => {
                   return (
                     <tr onClick={(e) => this.inspectAppToggle(e, r)}>
-                      <td>{r[0]}</td>
-                      <td>{r[1]}</td>
-                      <td>{r[2]}</td>
-                      <td>{r[3]}</td>
+                      <td>{r.offer}</td>
+                      <td>{r.user.first_name} {r.user.last_name}</td>
+                      <td>{r.credit_score}</td>
+                      <td>{r.employment}</td>
+                      <td>{r.status}</td>
                     </tr>
                   );
                 })}
