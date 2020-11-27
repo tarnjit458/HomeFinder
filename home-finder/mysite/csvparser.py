@@ -9,7 +9,7 @@ mydb = mysql.connector.connect(host=DATABASES['default']['HOST'], user=DATABASES
 mycursor = mydb.cursor()
 
 # Insert User Data
-url = "http://127.0.0.1:8000/api/user_register"
+url = "http://127.0.0.1:8000/api/user_register/"
 users = [{'role':'User',
         'email':'john.doe@gmail.com',
         'password':'password',
