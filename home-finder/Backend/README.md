@@ -13,5 +13,11 @@ python manage.py runserver
 
 # Adding test data into your local database
 
-- Go to the mysite folder
-- run python csvparser.py
+- Run pip install requests
+
+Two open terminals required
+
+- 1. In one terminal go to home-finder/mysite/ and run the drop_all_tables.py file
+- 2. In the second terminal, go to home-finder/ and run manage.py migrate
+- 3. In the second terminal, run python manage.py runserver
+- 4. In the first terminal, run python csvparser.py

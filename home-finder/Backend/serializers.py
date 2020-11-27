@@ -22,19 +22,27 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = User
-		fields = ['email', 'role', 'password', 'password2']
+		fields = ['email', 'role', 'password', 'password2', 'first_name', 'last_name', 'address', 'city', 'state', 'zip_code', 'phone']
 		extra_kwargs = {
 			'password': {'write_only': True}
 		}
 
 	def save(self):
 		user = User (
-				email = self.validated_data['email']
+				email = self.validated_data['email'],
+				role = self.validated_data['role'],
+				first_name = self.validated_data['first_name'],
+				last_name = self.validated_data['last_name'],
+				address = self.validated_data['address'],
+				city = self.validated_data['city'],
+				state = self.validated_data['state'],
+				zip_code = self.validated_data['zip_code'],
+				phone = self.validated_data['phone'],
 			)
 
-		role = self.validated_data['role']
 		password = self.validated_data['password']
 		password2 = self.validated_data['password2']
+
 
 		if password != password2:
 			raise serializers.ValidationError({'password': 'Passwords must match.'})

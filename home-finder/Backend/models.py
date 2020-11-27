@@ -8,8 +8,8 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
 class User(AbstractUser):
-	first_name = models.CharField(_('first name'), max_length=50, blank=True)
-	last_name = models.CharField(_('last name'), max_length=50, blank=True)
+	first_name = models.CharField(_('first_name'), max_length=50, blank=True)
+	last_name = models.CharField(_('last_name'), max_length=50, blank=True)
 	address = models.CharField('address', max_length=100, blank=True)
 	city = models.CharField('city', max_length=100, blank=True)
 	state = models.CharField('state', max_length=100, blank=True)
