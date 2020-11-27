@@ -274,6 +274,21 @@ def display_application(request):
 
 @api_view(['GET'],)
 @permission_classes([IsAuthenticated])
+def display_application_by_user(request):
+	if request.method == 'GET':
+		try:
+			#queryset = Application.objects.filter(user_id=request.GET.get('user_id'), house_id=request.GET.get('house_id'))
+			queryset = Application.objects.filter(user_id=request.user, house_id=request.GET.get('house_id'))
+			return JsonResponse({
+				'application': ApplicationSerializer(queryset, many=True).data,
+			})
+		except Application.DoesNotExist:
+			return JsonResponse({
+				'application': ApplicationSerializer(set()).data,
+			})
+
+@api_view(['GET'],)
+@permission_classes([IsAuthenticated])
 def display_house_by_user(request):
 	if request.method == 'GET':
 		try:
