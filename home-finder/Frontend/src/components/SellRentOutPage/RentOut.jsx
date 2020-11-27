@@ -234,7 +234,7 @@ class RentOut extends React.Component {
                         </Col>
                         <Col>
                           <Badge color="info">
-                            {house.for_sale ? "On Market" : "Sold"}
+                            {house.on_loan ? "On Market" : "Sold"}
                           </Badge>
                         </Col>
                       </Row>

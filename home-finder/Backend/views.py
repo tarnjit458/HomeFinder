@@ -135,6 +135,13 @@ def register_house(request):
 		house.cost = request.data['cost']
 		house.description = request.data['description']
 		house.for_sale = request.data['for_sale']
+		house.on_loan = request.data['on_loan']
+		house.sqft = request.data['sqft']
+		house.bathrooms = request.data['bathrooms']
+		house.bedrooms = request.data['bedrooms']
+		house.flooring = request.data['flooring']
+		house.parking = request.data['parking']
+		house.year_built = request.data['year_built']
 		house.image = request.data['image']
 		house.owner = request.user
 		house.save()

@@ -45,7 +45,7 @@ class ListingForm extends React.Component {
           cost: this.state.cost,
           description: this.state.description,
           for_sale: this.props.location.state.isRental ? false : true,
-          for_loan: this.props.location.state.isRental,
+          on_loan: this.props.location.state.isRental,
           image: this.state.image,
           flooring: this.state.flooring,
           parking: this.state.parking,
@@ -74,6 +74,7 @@ class ListingForm extends React.Component {
   };
 
   handleChange = (e) => {
+    console.log(e.target.name, e.target.value);
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -125,20 +126,22 @@ class ListingForm extends React.Component {
                 <Input value={this.state.bathrooms} name="bathrooms" />
               </Col>
               <Col>
-                <Label for="house_type">Floor Type</Label>
+                <Label for="flooring">Floor Type</Label>
                 <Input
                   value={this.state.flooring}
                   type="select"
                   name="flooring"
                 >
+                  <option value="">Select Floor Option</option>
                   <option value="tile">Tile</option>
                   <option value="wooden">Wooden</option>
                   <option value="carpet">Carpet</option>
                 </Input>
               </Col>
               <Col>
-                <Label for="house_type">Parking Type</Label>
+                <Label for="parking">Parking Type</Label>
                 <Input value={this.state.parking} type="select" name="parking">
+                  <option value="">Select Parking Option</option>
                   <option value="open">Open</option>
                   <option value="closed">Closed</option>
                 </Input>
