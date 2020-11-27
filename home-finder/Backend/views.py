@@ -64,6 +64,14 @@ def registration_view(request):
 			data['response'] = "successfully registered a new user"
 			data['email'] = user.email
 			data['role'] = user.role
+			data['first_name'] = user.first_name
+			data['last_name'] = user.last_name
+			data['address'] = user.address
+			data['city'] = user.city
+			data['state'] = user.state
+			data['zip_code'] = user.zip_code
+			data['phone'] = user.phone
+
 			token = Token.objects.get(user=user).key
 			data['token'] = token 
 		else:

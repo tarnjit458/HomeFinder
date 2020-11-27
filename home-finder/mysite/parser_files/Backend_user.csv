@@ -1,4 +1,0 @@
-id,password,last_login,is_superuser,is_staff,is_active,first_name,last_name,address,city,state,zip_code,phone,email,date_joined
-1,password,0000-00-00 00:00:00.000000,0,0,0,John,Doe,971 Amstutz Dr,San Jose,CA,95129,456-897-4568,john.doe@gmail.com,0000-00-00 00:00:00.000000
-2,password,0000-00-00 00:00:00.000000,0,0,0,Mike,Will,355 Kiely Blvd,San Jose,CA,95129,979-123-6548,mike.will@gmail.com,0000-00-00 00:00:00.000000
-3,password,0000-00-00 00:00:00.000000,0,0,0,Sarah,Jones,5192 Westdale Dr APT 1,San Jose,CA,95129,456-789-6321,sarah.jones@gmail.com,0000-00-00 00:00:00.000000
