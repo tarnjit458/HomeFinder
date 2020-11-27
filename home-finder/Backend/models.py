@@ -68,6 +68,11 @@ class Schedule(models.Model):
 	time= models.TimeField(blank=True, null=True)
 	party_size = models.IntegerField('size', default=1)
 	created_at = models.DateTimeField(_('date_applied'), default=timezone.now)
+	
+class Favorite(models.Model):
+	user = models.ForeignKey(User, verbose_name='user', on_delete=models.CASCADE)
+	house = models.ForeignKey(House, verbose_name='house', on_delete=models.CASCADE)
+	date_added = models.DateTimeField(_('date_applied'), default=timezone.now)
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):

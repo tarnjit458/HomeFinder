@@ -356,3 +356,45 @@ def delete_user(request):
 		except User.DoesNotExist:
 			return JsonResponse({'message': 'This user does not exist.'})
 
+
+@api_view(['POST'],)
+@permission_classes([IsAuthenticated])
+def add_favorite(request):
+	if request.method == 'POST':
+		favorite = Favorite()
+		favorite.user = request.user
+		try:
+			favorite.house = House.objects.get(id=request.data['house_id'])
+			favorite.save()
+			return JsonResponse({
+				'message': 'successfully added to favorite',
+			})
+		except House.DoesNotExist:
+			return JsonResponse({
+				'massge': 'no such house id',
+			})
+		
+@api_view(['GET'],)
+@permission_classes([IsAuthenticated])
+def show_favorite_list(request):
+	if request.method == 'GET':
+		favorite_set = Favorite.objects.filter(user_id=request.user.id)
+		return JsonResponse({
+			'favorite': FavoriteSerializer(favorite_set, many=True).data,	
+		})
+
+@api_view(['DELETE'],)
+@permission_classes([IsAuthenticated])
+def delete_favorite(request):
+	if request.method == 'DELETE':
+		try:
+			favorite = Favorite.objects.get(id=request.data['favorite_id'])
+			favorite.delete()
+			return JsonResponse({
+				'message': 'successfully deleted from favorite',
+			})
+		except Favorite.DoesNotExist:
+			return JsonResponse({
+				'massge': 'no such favorite id',
+			})
+
