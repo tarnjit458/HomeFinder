@@ -13,7 +13,7 @@ from django.http import Http404, HttpResponseRedirect, HttpRequest, HttpResponse
 from django.db.models import Q
 from django.http import JsonResponse
 from django.core import serializers
-from .serializers import HouseSerializer, UserSerializer, RegistrationSerializer, ApplicationSerializer, ScheduleSerializer
+from .serializers import HouseSerializer, UserSerializer, RegistrationSerializer, ApplicationSerializer, ScheduleSerializer, FavoriteSerializer
 from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
