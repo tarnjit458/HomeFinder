@@ -320,6 +320,7 @@ def display_house_by_user(request):
 @api_view(['PUT', 'DELETE'],)
 @permission_classes([IsAuthenticated])
 def edit_house(request):
+	print (request.user)
 	try: 
 		house = House.objects.get(id=request.GET.get("house_id"))
 	except House.DoesNotExist:
@@ -332,13 +333,18 @@ def edit_house(request):
 		house.zip_code = request.data['zip_code']
 		house.cost = request.data['cost']
 		house.description = request.data['description']
-		house.for_sale = request.data['for_sale']
+		house.sqft = request.data['sqft']
+		house.bathrooms = request.data['bathrooms']
+		house.bedrooms = request.data['bedrooms']
+		house.flooring = request.data['flooring']
+		house.parking = request.data['parking']
+		house.year_built = request.data['year_built']
 		house.image = request.data['image']
-		house.owner = request.user
 		house.save()
 		return JsonResponse({
 			'message': "successfully edited a house",
 		})
+
 	
 	elif request.method == 'DELETE':
 		house.delete()
