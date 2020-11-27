@@ -20,7 +20,6 @@ class BuySearch extends React.Component {
         headers: { Authorization: "Token " + localStorage.getItem("user") },
       })
       .then((response) => {
-        console.log(response);
         this.setState({ homes: response.data });
         this.props.callbackFromParent(this.state.homes);
       })
@@ -37,11 +36,19 @@ class BuySearch extends React.Component {
 
   filterHomes = (e) => {
     e.preventDefault();
+
     let filter = this.state.filterOption;
     let input = this.state.currentInput.toLowerCase().trim();
+
     this.state.filteredHomes = this.state.homes.filter((home) => {
       if (
         filter === "all" ||
+        (filter === "your_offers" &&
+          this.props.homesOffered
+            .map((r) => {
+              return r.house;
+            })
+            .includes(home.id)) ||
         (filter === "address" &&
           home.address.toLowerCase().startsWith(input)) ||
         (filter === "city" && home.city.toLowerCase().startsWith(input)) ||
@@ -63,7 +70,6 @@ class BuySearch extends React.Component {
       }
     });
     this.setState({ search: true });
-    console.log(this.state);
 
     this.props.callbackFromParent(this.state.filteredHomes);
   };
@@ -95,6 +101,7 @@ class BuySearch extends React.Component {
                 onChange={this.handleChange}
               >
                 <option value="all">Select a Filter</option>
+                <option value="your_offers">Your Offered Homes</option>
                 <option value="address">Street Address</option>
                 <option value="city">City</option>
                 <option value="state">State</option>
