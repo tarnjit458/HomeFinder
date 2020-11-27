@@ -5,7 +5,7 @@ from django.views.generic import CreateView, DetailView, TemplateView
 from django.views import generic
 
 from django.conf import settings
-from .models import User, House, Application, Schedule
+from .models import User, House, Application, Schedule, Favorite
 from .forms import LoginForm, UserRegistrationForm, HouseRegistrationForm
 import stripe
 
