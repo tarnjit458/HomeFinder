@@ -52,5 +52,6 @@ urlpatterns = [
 	path('api/delete_user/', views.delete_user, name='delete_user'),
 	path('api/add_favorite/', views.add_favorite, name='add_favorite'),
 	path('api/show_favorite_list/', views.show_favorite_list, name='show_favorite_list'),
+	path('api/show_favorite_id_by_home/', views.show_favorite_id_by_home, name='show_favorite_id_by_home'),
 	path('api/delete_favorite/', views.delete_favorite, name='delete_favorite'),
 ]

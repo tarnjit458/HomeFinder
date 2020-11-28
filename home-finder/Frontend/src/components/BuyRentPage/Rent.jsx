@@ -1,5 +1,6 @@
 import React from "react";
 import RentSearch from "./RentSearch.jsx";
+import Favorite from "../FavoriteButtons/Favorite.jsx";
 import axios from "axios";
 
 import {
@@ -214,6 +215,7 @@ class Rent extends React.Component {
     const modal = this.state.filteredHomes.map((home) => {
       return this.state.selectedHome === home.id ? (
         <div key={home.id} style={{ textAlign: "center" }}>
+          <Favorite id={home.id} />
           <ModalHeader toggle={this.manageHouseToggle}>
             {home.address}, {home.city} {home.state} {home.zip_code}
           </ModalHeader>
