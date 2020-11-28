@@ -266,13 +266,29 @@ def display_schedule(request):
 	if request.method == 'GET':
 		try:
 			queryset = Schedule.objects.filter(house_id=request.GET.get('house_id'))
-			return JsonResponse({
-				'schedule': ScheduleSerializer(queryset, many=True).data,
-			})
+			'Schedule': ScheduleSerializer(favorite_set, many=True).data,
 		except Schedule.DoesNotExist:
 			return JsonResponse({
-				'schedule': ScheduleSerializer(set()).data,
+				'Message': ScheduleSerializer(set()).data,
 			})
+
+@api_view(['PUT'],)
+@permission_classes([IsAuthenticated])
+def update_schedule(request, id):
+	try: 
+		schedule = Schedule.objects.get(id=id)
+	except Schedule.DoesNotExist:
+		return JsonResponse({'Message': 'This schedule does not exist.'})
+	
+	if request.method == 'PUT':
+		data = request.data.get('data')
+		schedule.date = data['date']
+		schedule.time = data['time']
+		schedule.party_size = data['party_size']
+		schedule.save()
+		return JsonResponse({
+			'Message': "successfully updated a schedule",
+		})
 
 @api_view(['GET'],)
 @permission_classes([IsAuthenticated])

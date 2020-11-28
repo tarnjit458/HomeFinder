@@ -59,9 +59,12 @@ class ApplicationSerializer(serializers.ModelSerializer):
 		fields = ['id', 'user', 'house', 'employment', 'credit_score', 'offer', 'status', 'date_applied']
 
 class ScheduleSerializer(serializers.ModelSerializer):
+	id = serializers.ReadOnlyField()
+	user = UserSerializer()
+	house = HouseSerializer()
 	class Meta:
 		model = Schedule
-		fields = ['user', 'house', 'date', 'time', 'party_size', 'created_at']
+		fields = ['id', 'user', 'house', 'date', 'time', 'party_size', 'created_at']
 		
 class FavoriteSerializer(serializers.ModelSerializer):
 	id = serializers.ReadOnlyField()

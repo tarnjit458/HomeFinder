@@ -54,4 +54,5 @@ urlpatterns = [
 	path('api/show_favorite_list/', views.show_favorite_list, name='show_favorite_list'),
 	path('api/show_favorite_id_by_home/', views.show_favorite_id_by_home, name='show_favorite_id_by_home'),
 	path('api/delete_favorite/', views.delete_favorite, name='delete_favorite'),
+	path('api/update_schedule/<int:id>', views.update_schedule, name='update_schedule'),
 ]
