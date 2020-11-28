@@ -11,10 +11,15 @@ class BuySearch extends React.Component {
       currentInput: "",
       filterOption: "all",
       search: false,
+      favoritedHomes: [],
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.search();
+  }
+
+  search = () => {
     axios
       .get("http://127.0.0.1:8000/api/buy_search?search=", {
         headers: { Authorization: "Token " + localStorage.getItem("user") },
@@ -26,7 +31,25 @@ class BuySearch extends React.Component {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
+
+  getFavorites = () => {
+    axios
+      .get("http://127.0.0.1:8000/api/show_favorite_list/", {
+        headers: {
+          Authorization: "Token " + localStorage.getItem("user"),
+        },
+      })
+      .then((response) => {
+        this.state.favoritedHomes = response.data.favorite.map((f) => {
+          return f.house;
+        });
+        this.props.callbackFromParent(this.state.favoritedHomes);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   handleChange = (event) => {
     this.setState({
@@ -40,37 +63,40 @@ class BuySearch extends React.Component {
     let filter = this.state.filterOption;
     let input = this.state.currentInput.toLowerCase().trim();
 
-    this.state.filteredHomes = this.state.homes.filter((home) => {
-      if (
-        filter === "all" ||
-        (filter === "your_offers" &&
-          this.props.homesOffered
-            .map((r) => {
-              return r.house;
-            })
-            .includes(home.id)) ||
-        (filter === "address" &&
-          home.address.toLowerCase().startsWith(input)) ||
-        (filter === "city" && home.city.toLowerCase().startsWith(input)) ||
-        (filter === "state" && home.state.toLowerCase().startsWith(input)) ||
-        (filter === "zip_code" && home.zip_code.startsWith(input)) ||
-        (filter === "sqft_g" && Number(home.sqft) >= Number(input)) ||
-        (filter === "sqft_l" && Number(home.sqft) <= Number(input)) ||
-        (filter === "year_built_g" &&
-          Number(home.year_built) >= Number(input)) ||
-        (filter === "year_built_l" &&
-          Number(home.year_built) <= Number(input)) ||
-        (filter === "bedrooms" && home.bedrooms.startsWith(input)) ||
-        (filter === "bathrooms" && home.bathrooms.startsWith(input)) ||
-        (filter === "flooring" &&
-          home.flooring.toLowerCase().startsWith(input)) ||
-        (filter === "parking" && home.parking.toLowerCase().startsWith(input))
-      ) {
-        return home;
-      }
-    });
+    if (filter === "favorites") {
+      this.getFavorites();
+    } else {
+      this.state.filteredHomes = this.state.homes.filter((home) => {
+        if (
+          filter === "all" ||
+          (filter === "your_offers" &&
+            this.props.homesOffered
+              .map((r) => {
+                return r.house;
+              })
+              .includes(home.id)) ||
+          (filter === "address" &&
+            home.address.toLowerCase().startsWith(input)) ||
+          (filter === "city" && home.city.toLowerCase().startsWith(input)) ||
+          (filter === "state" && home.state.toLowerCase().startsWith(input)) ||
+          (filter === "zip_code" && home.zip_code.startsWith(input)) ||
+          (filter === "sqft_g" && Number(home.sqft) >= Number(input)) ||
+          (filter === "sqft_l" && Number(home.sqft) <= Number(input)) ||
+          (filter === "year_built_g" &&
+            Number(home.year_built) >= Number(input)) ||
+          (filter === "year_built_l" &&
+            Number(home.year_built) <= Number(input)) ||
+          (filter === "bedrooms" && home.bedrooms.startsWith(input)) ||
+          (filter === "bathrooms" && home.bathrooms.startsWith(input)) ||
+          (filter === "flooring" &&
+            home.flooring.toLowerCase().startsWith(input)) ||
+          (filter === "parking" && home.parking.toLowerCase().startsWith(input))
+        ) {
+          return home;
+        }
+      });
+    }
     this.setState({ search: true });
-
     this.props.callbackFromParent(this.state.filteredHomes);
   };
 
@@ -101,6 +127,7 @@ class BuySearch extends React.Component {
                 onChange={this.handleChange}
               >
                 <option value="all">Select a Filter</option>
+                <option value="favorites">Your Favorites</option>
                 <option value="your_offers">Your Offered Homes</option>
                 <option value="address">Street Address</option>
                 <option value="city">City</option>

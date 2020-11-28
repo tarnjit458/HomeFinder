@@ -293,7 +293,6 @@ def display_application(request):
 def display_application_by_user(request):
 	if request.method == 'GET':
 		try:
-			#queryset = Application.objects.filter(user_id=request.GET.get('user_id'), house_id=request.GET.get('house_id'))
 			queryset = Application.objects.filter(user_id=request.user, house_id=request.GET.get('house_id'))
 			return JsonResponse({
 				'application': ApplicationSerializer(queryset, many=True).data,
@@ -377,7 +376,7 @@ def add_favorite(request):
 			})
 		except House.DoesNotExist:
 			return JsonResponse({
-				'massge': 'no such house id',
+				'message': 'no such house id',
 			})
 		
 @api_view(['GET'],)
@@ -389,18 +388,27 @@ def show_favorite_list(request):
 			'favorite': FavoriteSerializer(favorite_set, many=True).data,	
 		})
 
+@api_view(['GET'],)
+@permission_classes([IsAuthenticated])
+def show_favorite_id_by_home(request):
+	if request.method == 'GET':
+		favorite_set = Favorite.objects.filter(user_id=request.user.id, house_id=request.GET.get('house_id'))
+		return JsonResponse({
+			'favorite': FavoriteSerializer(favorite_set, many=True).data,	
+		})
+
 @api_view(['DELETE'],)
 @permission_classes([IsAuthenticated])
 def delete_favorite(request):
 	if request.method == 'DELETE':
 		try:
-			favorite = Favorite.objects.get(id=request.data['favorite_id'])
+			favorite = Favorite.objects.get(house_id=request.GET.get("house_id"))
 			favorite.delete()
 			return JsonResponse({
 				'message': 'successfully deleted from favorite',
 			})
 		except Favorite.DoesNotExist:
 			return JsonResponse({
-				'massge': 'no such favorite id',
+				'message': 'no such favorite id',
 			})
 
