@@ -267,7 +267,9 @@ def display_schedule(request):
 	if request.method == 'GET':
 		try:
 			queryset = Schedule.objects.filter(house_id=request.GET.get('house_id'))
-			'Schedule': ScheduleSerializer(favorite_set, many=True).data,
+			return JsonResponse({
+				'Schedule': ScheduleSerializer(queryset, many=True).data,
+			})
 		except Schedule.DoesNotExist:
 			return JsonResponse({
 				'Message': ScheduleSerializer(set()).data,
