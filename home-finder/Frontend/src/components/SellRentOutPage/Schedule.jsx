@@ -1,8 +1,5 @@
 import React from "react";
-import PropertyCard from "../PropertyCard.jsx";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import ReviewApp from "./ReviewApp.jsx";
 import {
   Button,
   ModalBody,
@@ -18,20 +15,55 @@ class Schedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: this.props.schedule.length > 0 ? this.props.schedule[0] : "",
-      time: this.props.schedule.length > 0 ? this.props.schedule[1] : "",
-      party: this.props.schedule.length > 0 ? this.props.schedule[2] : 0,
+      date: this.props.schedule ? this.props.schedule.date : "",
+      time: this.props.schedule ? this.props.schedule.time : "",
+      party: this.props.schedule ? this.props.schedule.party_size : "",
+      id: this.props.schedule ? this.props.schedule.id : "",
     };
   }
 
-  updateSchedule = () => {
+  updateSchedule = (e) => {
     // update
-    this.props.scheduleToggle();
+    axios
+      .put(
+        "http://127.0.0.1:8000/api/update_schedule/" + this.state.id,
+        {
+          data: {
+            date: this.state.date,
+            time: this.state.time,
+            party_size: this.state.party,
+          },
+        },
+        {
+          headers: {
+            Authorization: "Token " + localStorage.getItem("user"),
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        this.props.scheduleToggle(e, "", []);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  deleteSchedule = () => {
+  deleteSchedule = (e) => {
     // delete
-    this.props.scheduleToggle();
+    axios
+      .delete("http://127.0.0.1:8000/api/delete_schedule/" + this.state.id, {
+        headers: {
+          Authorization: "Token " + localStorage.getItem("user"),
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        this.props.scheduleToggle(e, "", []);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   handleChange = (e) => {
@@ -103,15 +135,21 @@ class Schedule extends React.Component {
                 placeholder="0"
               />
             </FormGroup>
-            {this.props.schedule.length > 0 ? (
-              <FormGroup>
-                <Button color="danger">Delete</Button>
-              </FormGroup>
-            ) : null}
             <ModalFooter>
-              <Button color="primary" onClick={this.submitSchedule}>
-                Submit
-              </Button>{" "}
+              {this.props.action === "add" ? (
+                <Button color="primary" onClick={this.submitSchedule}>
+                  Submit
+                </Button>
+              ) : (
+                <>
+                  <Button color="primary" onClick={this.updateSchedule}>
+                    Update
+                  </Button>{" "}
+                  <Button color="danger" onClick={this.deleteSchedule}>
+                    Delete
+                  </Button>
+                </>
+              )}{" "}
               <Button color="danger" onClick={this.props.scheduleToggle}>
                 Cancel
               </Button>

@@ -17,6 +17,7 @@ class Manage extends React.Component {
       offer: [],
       totalSchedules: [],
       selectedHouseApp: [],
+      scheduleAction: ""
     };
   }
 
@@ -53,11 +54,12 @@ class Manage extends React.Component {
     });
   };
 
-  scheduleToggle = (e, r) => {
+  scheduleToggle = (e, action, r) => {
     e.preventDefault();
     this.setState({
       selectedSchedule: r,
       scheduleModal: !this.state.scheduleModal,
+      scheduleAction: action
     });
     this.getSchedules(this.state.home.id);
   };
@@ -75,7 +77,7 @@ class Manage extends React.Component {
       .then((response) => {
         console.log(response);
         this.setState({
-          totalSchedules: response.data.schedule,
+          totalSchedules: response.data.Schedule,
         });
       })
       .catch((error) => {
@@ -128,6 +130,7 @@ class Manage extends React.Component {
           scheduleToggle={this.scheduleToggle}
           isRental={this.props.isRental}
           home={this.state.home}
+          action={this.state.scheduleAction}
         />
       );
     } else {
@@ -205,7 +208,7 @@ class Manage extends React.Component {
               <tbody>
                 {this.state.totalSchedules.map((r) => {
                   return (
-                    <tr onClick={(e) => this.scheduleToggle(e, r)}>
+                    <tr onClick={(e) => this.scheduleToggle(e, "edit", r)}>
                       <td>{r["date"]}</td>
                       <td>{r["time"]}</td>
                       <td>{r["party_size"]}</td>
@@ -214,7 +217,7 @@ class Manage extends React.Component {
                 })}
               </tbody>
             </Table>
-            <Button onClick={(e) => this.scheduleToggle(e, [])} color="primary">
+            <Button onClick={(e) => this.scheduleToggle(e, "add", [])} color="primary">
               Add
             </Button>
           </ModalBody>
