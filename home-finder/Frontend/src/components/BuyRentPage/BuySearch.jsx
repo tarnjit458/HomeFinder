@@ -72,7 +72,7 @@ class BuySearch extends React.Component {
           (filter === "your_offers" &&
             this.props.homesOffered
               .map((r) => {
-                return r.house;
+                return r.house.id;
               })
               .includes(home.id)) ||
           (filter === "address" &&

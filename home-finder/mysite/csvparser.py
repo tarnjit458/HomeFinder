@@ -168,7 +168,7 @@ with open(filename, 'r') as csvfile:
 house_query = "INSERT INTO `backend_house` (`id`, `address`, `city`, `state`, `zip_code`, `sqft`, `bedrooms`, `bathrooms`, `flooring`, `parking`, `year_built`, `cost`, `description`, `for_sale`, `registered_at`, `updated_at`,`sold`, `on_loan`, `image`, `owner_id`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 rows_affected = 0
 for row in rows:
-    mycursor.execute(house_query, (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19]))
+    mycursor.execute(house_query, (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], "2020-10-10 01:01:01.000001", "2020-10-10 01:01:01.000001", row[16], row[17], row[18], row[19]))
     mydb.commit() 
     rows_affected += mycursor.rowcount
 

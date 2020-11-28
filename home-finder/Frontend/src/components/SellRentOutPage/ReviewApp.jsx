@@ -16,14 +16,19 @@ class ReviewApp extends React.Component {
 
   approveApp = (e) => {
     axios
-      .post("http://127.0.0.1:8000/api/approve_application/", {
-        headers: {
-          Authorization: "Token " + localStorage.getItem("user"),
+      .post(
+        "http://127.0.0.1:8000/api/approve_application/",
+        {
+          data: {
+            application_id: this.props.offer.id,
+          },
         },
-        data: {
-          application_id: this.props.offer.id,
-        },
-      })
+        {
+          headers: {
+            Authorization: "Token " + localStorage.getItem("user"),
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         this.props.inspectAppToggle(e, {});
@@ -35,14 +40,19 @@ class ReviewApp extends React.Component {
 
   rejectApp = (e) => {
     axios
-      .post("http://127.0.0.1:8000/api/reject_application/", {
-        headers: {
-          Authorization: "Token " + localStorage.getItem("user"),
+      .post(
+        "http://127.0.0.1:8000/api/reject_application/",
+        {
+          data: {
+            application_id: this.props.offer.id,
+          },
         },
-        data: {
-          application_id: this.props.offer.id,
-        },
-      })
+        {
+          headers: {
+            Authorization: "Token " + localStorage.getItem("user"),
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         this.props.inspectAppToggle(e, {});

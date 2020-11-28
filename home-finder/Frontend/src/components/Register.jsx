@@ -45,7 +45,7 @@ class Login extends React.Component {
     event.preventDefault();
 
     axios
-      .post("http://127.0.0.1:8000/api/user_register", {
+      .post("http://127.0.0.1:8000/api/user_register/", {
         role: this.state.role,
         email: this.state.email,
         password: this.state.password,
