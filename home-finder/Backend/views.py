@@ -50,7 +50,8 @@ class CustomAuthToken(ObtainAuthToken):
 		token = Token.objects.get(user=user)
 		return JsonResponse({
 			'token': token.key,
-			'user_id': user.pk
+			'user_id': user.pk,
+			'role': user.role
 		})
 
 @api_view(['POST'],)
@@ -289,6 +290,21 @@ def update_schedule(request, id):
 		return JsonResponse({
 			'Message': "successfully updated a schedule",
 		})
+
+@api_view(['DELETE'],)
+@permission_classes([IsAuthenticated])
+def delete_schedule(request, id):
+	if request.method == 'DELETE':
+		try: 
+			schedule = Schedule.objects.get(id=id)
+		except Schedule.DoesNotExist:
+			return JsonResponse({'Message': 'This schedule does not exist.'})
+
+		schedule.delete()
+		return JsonResponse({
+			'Message': "successfully deleted a schedule.",
+		})
+
 
 @api_view(['GET'],)
 @permission_classes([IsAuthenticated])
