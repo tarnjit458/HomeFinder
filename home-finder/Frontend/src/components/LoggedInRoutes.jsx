@@ -19,7 +19,7 @@ export default class LoggedInRoutes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      role: localStorage.getItem("user"),
+      role: localStorage.getItem("role"),
     };
   }
 
@@ -50,7 +50,7 @@ export default class LoggedInRoutes extends React.Component {
           <Route path="/admin">
             <Admin />
           </Route>
-          {this.state.role === "admin" ? (
+          {this.state.role === "administrator" ? (
             <Route exact path="/">
               <Redirect to="/admin" />
             </Route>

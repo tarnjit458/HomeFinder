@@ -9,7 +9,7 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       profileToggle: false,
-      role: localStorage.getItem("user"),
+      role: localStorage.getItem("role"),
     };
   }
 
@@ -48,7 +48,7 @@ class NavBar extends React.Component {
 
           <div className="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul className="navbar-nav mr-auto">
-              {this.state.role === "admin" ? null : (
+              {this.state.role === "administrator" ? null : (
                 <>
                   <li className="nav-item active">
                     <a className="nav-link" href="/buy">
