@@ -39,28 +39,33 @@ class Details extends React.Component {
 
   updateDetail = () => {
     axios
-      .put("http://127.0.0.1:8000/api/edit_house/" + this.state.home.id, {
-        headers: {
-          Authorization: "Token " + localStorage.getItem("user"),
+      .put(
+        "http://127.0.0.1:8000/api/edit_house/" + this.state.home.id,
+        {
+          data: {
+            address: this.state.home.address,
+            city: this.state.home.city,
+            cost: this.state.home.cost,
+            state: this.state.home.state,
+            zip_code: this.state.home.zip_code,
+            description: this.state.home.description,
+            image: this.state.home.image,
+            owner: localStorage.getItem("user_id"),
+            for_sale: this.state.home.for_sale,
+            sqft: this.props.home.sqft,
+            flooring: this.props.home.flooring,
+            parking: this.props.home.parking,
+            bedrooms: this.props.home.bedrooms,
+            bathrooms: this.props.home.bathrooms,
+            year_built: this.props.home.year_built,
+          },
         },
-        data: {
-          address: this.state.home.address,
-          city: this.state.home.city,
-          cost: this.state.home.cost,
-          state: this.state.home.state,
-          zip_code: this.state.home.zip_code,
-          description: this.state.home.description,
-          image: this.state.home.image,
-          owner: localStorage.getItem("user_id"),
-          for_sale: this.state.home.for_sale,
-          sqft: this.props.home.sqft,
-          flooring: this.props.home.flooring,
-          parking: this.props.home.parking,
-          bedrooms: this.props.home.bedrooms,
-          bathrooms: this.props.home.bathrooms,
-          year_built: this.props.home.year_built,
-        },
-      })
+        {
+          headers: {
+            Authorization: "Token " + localStorage.getItem("user"),
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         this.props.editDetailToggle();
