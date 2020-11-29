@@ -41,9 +41,15 @@ class RentSearch extends React.Component {
         },
       })
       .then((response) => {
-        this.state.favoritedHomes = response.data.favorite.map((f) => {
+        this.state.favoritedHomes = response.data.favorite.filter((f) => {
+          if (f.house.for_sale === false) {
+            return f.house;
+          }
+        });
+        this.state.favoritedHomes = this.state.favoritedHomes.map((f) => {
           return f.house;
         });
+
         this.props.callbackFromParent(this.state.favoritedHomes);
       })
       .catch((error) => {
