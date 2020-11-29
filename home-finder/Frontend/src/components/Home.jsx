@@ -32,14 +32,14 @@ class Home extends React.Component {
         <div className="row card-deck" style={justifyCards}>
           <PropertyCard
             title="Buy a House!"
-            description="Some quick example text to build on the card title and make up the bulk of the card's content."
+            description="Looking for a new home? Start your search here!"
             image_src="/960x0.jpg"
             button="Search Homes"
             button_src="/buy"
           />
           <PropertyCard
             title="Sell your house!"
-            description="Some quick example text to build on the card title and make up the bulk of the card's content."
+            description="Moving? List your house here now!"
             image_src="/For-sale-sign.jpg"
             button="Make Money"
             button_src="/sell"
@@ -47,7 +47,7 @@ class Home extends React.Component {
           {this.state.role !== "realtor" ? (
             <PropertyCard
               title="Find a place to rent!"
-              description="Some quick example text to build on the card title and make up the bulk of the card's content."
+              description="Quality rentals here at home finder."
               image_src="/cover-12.jpg"
               button="Find Rentals"
               button_src="/rent"
