@@ -17,6 +17,13 @@ class Login extends React.Component {
   state = {
     role: "",
     email: "",
+    first_name: "",
+    last_name: "",
+    address: "",
+    city: "",
+    state: "",
+    zip_code: "",
+    phone: "",
     password: "",
     password2: "",
     alertToggle1: false,
@@ -48,6 +55,13 @@ class Login extends React.Component {
       .post("http://127.0.0.1:8000/api/user_register/", {
         role: this.state.role,
         email: this.state.email,
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        address: this.state.address,
+        city: this.state.city,
+        state: this.state.state,
+        zip_code: this.state.zip_code,
+        phone: this.state.phone,
         password: this.state.password,
         password2: this.state.password2,
       })
@@ -100,6 +114,76 @@ class Login extends React.Component {
                   name="email"
                   placeholder="Email"
                   value={this.state.email}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="first_name">FirstName</Label>
+                <Input
+                  type="first_name"
+                  name="first_name"
+                  placeholder="First Name"
+                  value={this.state.first_name}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="last_name">LastName</Label>
+                <Input
+                  type="last_name"
+                  name="last_name"
+                  placeholder="Last Name"
+                  value={this.state.last_name}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="address">Address</Label>
+                <Input
+                  type="address"
+                  name="address"
+                  placeholder="Address"
+                  value={this.state.adress}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="city">City</Label>
+                <Input
+                  type="city"
+                  name="city"
+                  placeholder="City"
+                  value={this.state.city}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="email">State</Label>
+                <Input
+                  type="state"
+                  name="state"
+                  placeholder="State"
+                  value={this.state.state}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="zip_code">ZipCode</Label>
+                <Input
+                  type="zip_code"
+                  name="zip_code"
+                  placeholder="Zip Code"
+                  value={this.state.zip_code}
+                  onChange={this.handleChange}
+                />
+              </FormGroup>
+               <FormGroup>
+                <Label for="phone">Phone</Label>
+                <Input
+                  type="phone"
+                  name="phone"
+                  placeholder="Phone"
+                  value={this.state.phone}
                   onChange={this.handleChange}
                 />
               </FormGroup>
