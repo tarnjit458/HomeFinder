@@ -106,6 +106,9 @@ class Admin extends React.Component {
   render() {
     return (
       <Container>
+        <div className="row justify-content-center">
+          <h2>Administrator Dashboard</h2>
+        </div>
         <Alert
           color={this.state.errorAlert ? "danger" : "success"}
           isOpen={this.state.alertToggle}
@@ -113,11 +116,12 @@ class Admin extends React.Component {
         >
           {this.state.msg}
         </Alert>
-        <h5>All Active Users</h5>
-        <Table>
+        <h5 className="row justify-content-center">All Active Users</h5>
+        <Table dark bordered>
           <thead>
             <tr>
-              <td>Userid</td>
+              <td>User-ID</td>
+              <td>Role</td>
               <td>Email</td>
               <td>Date Joined</td>
             </tr>
@@ -127,6 +131,7 @@ class Admin extends React.Component {
               return (
                 <tr onClick={(e) => this.onRowClick(e, user)}>
                   <td>{user.id}</td>
+                  <td>{user.role}</td>
                   <td>{user.email}</td>
                   <td>{user.date_joined}</td>
                 </tr>
