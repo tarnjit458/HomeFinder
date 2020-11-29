@@ -71,7 +71,6 @@ class Login extends React.Component {
           response.data.email[0] ===
           "user with this email address already exists."
         ) {
-          console.log("LLL");
           this.toggleAlert1();
         } else {
           this.props.history.push("/login");
@@ -100,11 +99,11 @@ class Login extends React.Component {
                   value={this.state.role}
                   onChange={this.handleChange}
                 >
-                  <option value="all">Choose your role</option>
-                  <option value="admin">Administrator</option>
-                  <option value="realtor">Realtor</option>
-                  <option value="landlord">Landlord</option>
-                  <option value="user">User</option>
+                  <option value="">Choose your role</option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="Realtor">Realtor</option>
+                  <option value="Landlord">Landlord</option>
+                  <option value="User">User</option>
                 </Input>
               </FormGroup>
               <FormGroup>
@@ -118,7 +117,7 @@ class Login extends React.Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="first_name">FirstName</Label>
+                <Label for="first_name">First Name</Label>
                 <Input
                   type="first_name"
                   name="first_name"
@@ -128,7 +127,7 @@ class Login extends React.Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="last_name">LastName</Label>
+                <Label for="last_name">Last Name</Label>
                 <Input
                   type="last_name"
                   name="last_name"
@@ -143,7 +142,7 @@ class Login extends React.Component {
                   type="address"
                   name="address"
                   placeholder="Address"
-                  value={this.state.adress}
+                  value={this.state.address}
                   onChange={this.handleChange}
                 />
               </FormGroup>
@@ -168,7 +167,7 @@ class Login extends React.Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="zip_code">ZipCode</Label>
+                <Label for="zip_code">Zip Code</Label>
                 <Input
                   type="zip_code"
                   name="zip_code"
@@ -177,8 +176,8 @@ class Login extends React.Component {
                   onChange={this.handleChange}
                 />
               </FormGroup>
-               <FormGroup>
-                <Label for="phone">Phone</Label>
+              <FormGroup>
+                <Label for="phone">Phone Number</Label>
                 <Input
                   type="phone"
                   name="phone"

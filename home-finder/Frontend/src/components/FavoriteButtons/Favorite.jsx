@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Button, ModalBody, ModalHeader, ModalFooter, Table } from "reactstrap";
+import { Button } from "reactstrap";
 
 class AddFavorite extends React.Component {
   constructor(props) {

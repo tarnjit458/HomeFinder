@@ -27,16 +27,19 @@ export default class LoggedInRoutes extends React.Component {
     return (
       <Layout>
         <Switch>
-          <Route path="/list_form" render={props => {
-                            return <ListingForm {...props} />;
-                        }} />
+          <Route
+            path="/list_form"
+            render={(props) => {
+              return <ListingForm {...props} />;
+            }}
+          />
           <Route path="/home">
             <Home />
           </Route>
           <Route path="/buy">
             <Buy />
           </Route>
-          {this.state.role === "realtor" ? null : (
+          {this.state.role === "Realtor" ? null : (
             <Route path="/rent">
               <Rent />
             </Route>
@@ -50,7 +53,7 @@ export default class LoggedInRoutes extends React.Component {
           <Route path="/admin">
             <Admin />
           </Route>
-          {this.state.role === "administrator" ? (
+          {this.state.role === "Administrator" ? (
             <Route exact path="/">
               <Redirect to="/admin" />
             </Route>
