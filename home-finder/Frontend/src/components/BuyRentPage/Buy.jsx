@@ -71,7 +71,7 @@ class Buy extends React.Component {
       })
       .then((response) => {
         this.setState({
-          totalSchedules: response.data.schedule,
+          totalSchedules: response.data.Schedule,
         });
       })
       .catch((error) => {
