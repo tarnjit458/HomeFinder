@@ -42,7 +42,7 @@ class RentSearch extends React.Component {
       })
       .then((response) => {
         this.state.favoritedHomes = response.data.favorite.filter((f) => {
-          if (f.house.for_sale === false) {
+          if (f.house.on_loan === true) {
             return f.house;
           }
         });
