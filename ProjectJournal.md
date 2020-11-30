@@ -1,17 +1,16 @@
-Project Journal:
+### Project Journal
 
-Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree daily stand-up questions:
+---
 
-1. What tasks did I work on / complete?
-2. What am I planning to work on next?
-3. What tasks are blocked waiting on another team member?
+### XP Core Values
 
-- Select one of the XP Core Values and keep a journal of how the team kept these values throughout the project. Report this in your Project Journal with the weekly Scrum Report submissions:
-  Communication
-  Simplicity
-  Feedback
-  Courage
-  Respect
+---
+
+# Communication: Tarnjit Ghag
+
+I made sure that throughout the project our team made sure to consistently communicate with each other. For communication tools, we used Zoom for our weekly scrums for ease of communication and WhatsApp for text communication. Zoom allowed for us to discuss in details about the project and also helped in troubleshooting through the share screen functionality. WhatsApp allowed us to stay in constant communication throughout the project and discuss anything we needed conveniently. I also made sure that during our weekly scrum meetings that everyone in the team got a chance to ask any questions that they needed to. I also made sure that whenever a team member faced any issues, to help them out to the best of my ability or refer them to another teammate that could help. Overall, through the use of effective communication we were able to successfully collaborate with each other with little difficulties.
+
+### Weekly Scrum Report
 
 ---
 
@@ -237,7 +236,6 @@ Weekly Scrum Report (i.e. weekly version of daily scrum) which answers the tree 
 2. I will continue to work on Sell and Rent out, and House detail API.
 
 3. No tasks are blocked on my end.
-
 
 11/23
 
