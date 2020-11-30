@@ -1,38 +1,16 @@
-from django.shortcuts import render, redirect, resolve_url
-from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import CreateView, DetailView, TemplateView
-from django.views import generic
-
-from django.conf import settings
 from .models import User, House, Application, Schedule, Favorite
-from .forms import LoginForm, UserRegistrationForm, HouseRegistrationForm
-import stripe
-
-from django.http import Http404, HttpResponseRedirect, HttpRequest, HttpResponse
 from django.db.models import Q
 from django.http import JsonResponse
 from django.core import serializers
 from .serializers import HouseSerializer, UserSerializer, RegistrationSerializer, ApplicationSerializer, ScheduleSerializer, FavoriteSerializer
 from rest_framework import generics
-from rest_framework import status
-from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.parsers import JSONParser
   
 # Create your views here.
-
-def homepage(request):
-	return render(request=request,
-				  template_name="Backend/home.html",
-				  context={})
-
 class HouseList(generics.ListAPIView):        
 	queryset = House.objects.all()  
 	serializer_class = HouseSerializer 
@@ -83,8 +61,6 @@ def registration_view(request):
 @permission_classes([IsAuthenticated])
 def rent_search_view(request):
 	if request.method == 'GET':
-		#data = JSONParser().parse(request)
-		#print (data)
 		search = request.GET.get('search')
 		queryset = House.objects.filter((Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search)), Q(for_sale = '0'))
 		if queryset:
@@ -98,8 +74,6 @@ def rent_search_view(request):
 @permission_classes([IsAuthenticated])
 def buy_search_view(request):
 	if request.method == 'GET':
-		#data = JSONParser().parse(request)
-		#print (data)
 		search = request.GET.get('search')
 		queryset = House.objects.filter((Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search)), Q(for_sale = '1'))
 		if queryset:
@@ -116,26 +90,6 @@ def register_house(request):
 	print (request.user)
 
 	if request.method == 'POST':
-		print(request.data)
-		"""
-		if hasattr(request.data, '_mutable'):
-			_mutable = request.data._mutable
-			request.data._mutable = True
-			request_data['owner'] = request.user
-			request.data._mutable = _mutable
-			serializer = HouseSerializer(data = request.data)
-		else:
-			request_data = request.data
-			request_data['owner'] = request.user
-			serializer = HouseSerializer(data = request_data)		
-		data = {}
-		if serializer.is_valid():
-			house = serializer.save()
-			data['response'] = "successfully registered a new house"
-		else:
-			data = serializer.errors
-		return JsonResponse(data)
-		"""
 		house = House()
 		house.address = request.data['address']
 		house.city = request.data['city']
