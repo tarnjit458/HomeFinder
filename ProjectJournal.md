@@ -18,6 +18,11 @@ For feedback, I made sure to check on our current progress and identify areas to
 
 I made sure that our team has courage to tell the truth, deal with problems and ask questions during the project. Every sprint. I made sure every team member speak out the progress and blockers and explain the solution to solve the blocker. With the true infomation for the progree of the project, we can adjust our plan. If a member has questions about how to implement the requirement, I give my advice and also refer them to other team members that could give advice. Giving them the help they need and always courage them to solve the problems. During weekly meeting, I made sure every team member ask question when they were confused. With the help of asking questions, we can identify the requirement of the project clearly and analyze the problems we are facing. Overall, keeping courage during the project, our team was able to work on the project effectively and efficiently.
 
+## Simplicity: Kan Hioki
+
+I made sure that the backend modules provide simple API to the frontend. I was responsible for developing backend API, and I took advantage of Django Web Framework to make our backend API as simple as possible, so that those simplified APIs contributed to readability, maintainability, realiablty, integrity, and also easiness to extend. I also constantly checked and remove unused components to make sure that there was no unnecessary confusion in our application.
+At every sprint, I tried to understand and share what was absolutely necessary to implement our component with my teammates. Overall, by keeping simplicity, our team worked on only necessary tasks and overcame the difficulties we confronted, which might complicate our project. 
+
 ## Weekly Scrum Report
 
 ---
