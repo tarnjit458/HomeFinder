@@ -10,6 +10,10 @@
 
 I made sure that throughout the project our team made sure to consistently communicate with each other. For communication tools, we used Zoom for our weekly scrums for ease of communication and WhatsApp for text communication. Zoom allowed for us to discuss in details about the project and also helped in troubleshooting through the share screen functionality. WhatsApp allowed us to stay in constant communication throughout the project and discuss anything we needed conveniently. I also made sure that during our weekly scrum meetings that everyone in the team got a chance to ask any questions that they needed to. I also made sure that whenever a team member faced any issues, to help them out to the best of my ability or refer them to another teammate that could help. Overall, through the use of effective communication we were able to successfully collaborate with each other with little difficulties.
 
+## Feedback: Eric Lin
+
+For feedback, I made sure to check on our current progress and identify areas to improve. Every sprint, I made sure every team member go over their current implementation practices and identify areas to improve. If a member doesn't understand a requirement, I help work with the member on understanding the requirement. If any members have blockers, I work with them to identify the blocker and find the appropriate member to solve the blocker. I also look into how task can be streamlined in order to decrease the chances of a member getting blocked while developing. I made sure every  member has something to do and that there are no idle members. I also made sure at every sprint, I go over the business requirements solved by each member's task and verify if such task has the expected outcome. I then look for the next task the members can work on for the next sprint. Overall by doing this, our team was able to work on the project efficiently and finish on schedule.
+
 ## Weekly Scrum Report
 
 ---
