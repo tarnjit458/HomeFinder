@@ -14,6 +14,10 @@ I made sure that throughout the project our team made sure to consistently commu
 
 For feedback, I made sure to check on our current progress and identify areas to improve. Every sprint, I made sure every team member go over their current implementation practices and identify areas to improve. If a member doesn't understand a requirement, I help work with the member on understanding the requirement. If any members have blockers, I work with them to identify the blocker and find the appropriate member to solve the blocker. I also look into how task can be streamlined in order to decrease the chances of a member getting blocked while developing. I made sure every  member has something to do and that there are no idle members. I also made sure at every sprint, I go over the business requirements solved by each member's task and verify if such task has the expected outcome. I then look for the next task the members can work on for the next sprint. Overall by doing this, our team was able to work on the project efficiently and finish on schedule.
 
+## Courage: Huiying Li
+
+I made sure that our team has courage to tell the truth, deal with problems and ask questions during the project. Every sprint. I made sure every team member speak out the progress and blockers and explain the solution to solve the blocker. With the true infomation for the progree of the project, we can adjust our plan. If a member has questions about how to implement the requirement, I give my advice and also refer them to other team members that could give advice. Giving them the help they need and always courage them to solve the problems. During weekly meeting, I made sure every team member ask question when they were confused. With the help of asking questions, we can identify the requirement of the project clearly and analyze the problems we are facing. Overall, keeping courage during the project, our team was able to work on the project effectively and efficiently.
+
 ## Weekly Scrum Report
 
 ---
