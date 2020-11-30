@@ -1,16 +1,16 @@
-### Project Journal
+# Project Journal
 
 ---
 
-### XP Core Values
+## XP Core Values
 
 ---
 
-# Communication: Tarnjit Ghag
+## Communication: Tarnjit Ghag
 
 I made sure that throughout the project our team made sure to consistently communicate with each other. For communication tools, we used Zoom for our weekly scrums for ease of communication and WhatsApp for text communication. Zoom allowed for us to discuss in details about the project and also helped in troubleshooting through the share screen functionality. WhatsApp allowed us to stay in constant communication throughout the project and discuss anything we needed conveniently. I also made sure that during our weekly scrum meetings that everyone in the team got a chance to ask any questions that they needed to. I also made sure that whenever a team member faced any issues, to help them out to the best of my ability or refer them to another teammate that could help. Overall, through the use of effective communication we were able to successfully collaborate with each other with little difficulties.
 
-### Weekly Scrum Report
+## Weekly Scrum Report
 
 ---
 
