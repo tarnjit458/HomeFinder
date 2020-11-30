@@ -243,9 +243,9 @@ For feedback, I made sure to check on our current progress and identify areas to
 
 11/23
 
-1. I worked on implementing Sell and Rent out, and House detail API.
+1. I worked on implementing send application, delete application, and show application API.
 
-2. I will work on Sell-Buy, and Rent-Rend Out applicaion.
+2. I will work on add favorite, delete favorite API.
 
 3. No tasks are blocked on my end.
 
