@@ -48,7 +48,7 @@ class NavBar extends React.Component {
 
           <div className="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul className="navbar-nav mr-auto">
-              {this.state.role === "administrator" ? null : (
+              {this.state.role === "Administrator" ? null : (
                 <>
                   <li className="nav-item active">
                     <a className="nav-link" href="/buy">
@@ -60,7 +60,7 @@ class NavBar extends React.Component {
                       Sell
                     </a>
                   </li>
-                  {this.state.role === "realtor" ? null : (
+                  {this.state.role === "Realtor" ? null : (
                     <li className="nav-item active">
                       <a className="nav-link" href="/rent">
                         Rent
