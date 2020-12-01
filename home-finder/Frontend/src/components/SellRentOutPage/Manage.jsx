@@ -27,7 +27,7 @@ class Manage extends React.Component {
   }
 
   removeHomeCard = (e) => {
-    axios.delete("http://127.0.0.1:8000/api/edit_house/" + this.state.home.id, {
+    axios.delete("http://100.24.18.12:8000/api/edit_house/" + this.state.home.id, {
       headers: {
         Authorization: "Token " + localStorage.getItem("user"),
       }
@@ -66,7 +66,7 @@ class Manage extends React.Component {
 
   getSchedules = (id) => {
     axios
-      .get("http://127.0.0.1:8000/api/display_schedule/", {
+      .get("http://100.24.18.12:8000/api/display_schedule/", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },
@@ -87,7 +87,7 @@ class Manage extends React.Component {
 
   getHouseApplications = (id) => {
     axios
-      .get("http://127.0.0.1:8000/api/display_application/", {
+      .get("http://100.24.18.12:8000/api/display_application/", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },

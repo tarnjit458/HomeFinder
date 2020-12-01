@@ -61,7 +61,7 @@ class Buy extends React.Component {
 
   getSchedules = (id) => {
     axios
-      .get("http://127.0.0.1:8000/api/display_schedule/", {
+      .get("http://100.24.18.12:8000/api/display_schedule/", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },
@@ -81,7 +81,7 @@ class Buy extends React.Component {
 
   getHouseApplications = (id) => {
     axios
-      .get("http://127.0.0.1:8000/api/display_application/", {
+      .get("http://100.24.18.12:8000/api/display_application/", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },
@@ -101,7 +101,7 @@ class Buy extends React.Component {
 
   getHouseOfferApplications = () => {
     axios
-      .get("http://127.0.0.1:8000/api/show_application_for_user/", {
+      .get("http://100.24.18.12:8000/api/show_application_for_user/", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },
@@ -118,7 +118,7 @@ class Buy extends React.Component {
 
   getUserOfferApplications = (id) => {
     axios
-      .get("http://127.0.0.1:8000/api/display_application_by_user/", {
+      .get("http://100.24.18.12:8000/api/display_application_by_user/", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },
@@ -147,7 +147,7 @@ class Buy extends React.Component {
 
     axios
       .post(
-        "http://127.0.0.1:8000/api/send_application/",
+        "http://100.24.18.12:8000/api/send_application/",
         {
           house_id: this.state.selectedHome,
           employment: this.state.employment,

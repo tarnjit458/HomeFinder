@@ -37,9 +37,8 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
     axios
-      .post("http://127.0.0.1:8000/api/login/", {
+      .post("http://100.24.18.12:8000/api/login/", {
         username: this.state.email,
         password: this.state.password,
       })

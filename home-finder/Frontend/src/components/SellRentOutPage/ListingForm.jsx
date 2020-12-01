@@ -36,7 +36,7 @@ class ListingForm extends React.Component {
     e.preventDefault();
     axios
       .post(
-        "http://127.0.0.1:8000/api/register_house/",
+        "http://100.24.18.12:8000/api/register_house/",
         {
           address: this.state.address,
           city: this.state.city,
@@ -44,7 +44,7 @@ class ListingForm extends React.Component {
           zip_code: this.state.zip_code,
           cost: this.state.cost,
           description: this.state.description,
-          for_sale: this.props.location.state.isRental ? false : true,
+          for_sale: true,
           on_loan: this.props.location.state.isRental,
           image: this.state.image,
           flooring: this.state.flooring,

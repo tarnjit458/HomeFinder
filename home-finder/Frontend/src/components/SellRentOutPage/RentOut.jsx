@@ -38,7 +38,7 @@ class RentOut extends React.Component {
 
   getUserListing = () => {
     axios
-      .get("http://127.0.0.1:8000/api/display_house_by_user", {
+      .get("http://100.24.18.12:8000/api/display_rental_by_user", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },
@@ -233,8 +233,8 @@ class RentOut extends React.Component {
                           </CardTitle>
                         </Col>
                         <Col>
-                          <Badge color="info">
-                            {house.on_loan ? "On Market" : "Sold"}
+                          <Badge color={house.for_sale ? "info" : "success"}>
+                            {house.for_sale ? "On Market" : "Occupied"}
                           </Badge>
                         </Col>
                       </Row>

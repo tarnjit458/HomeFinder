@@ -21,7 +21,7 @@ class RentSearch extends React.Component {
 
   search = () => {
     axios
-      .get("http://127.0.0.1:8000/api/rent_search?search=", {
+      .get("http://100.24.18.12:8000/api/rent_search?search=", {
         headers: { Authorization: "Token " + localStorage.getItem("user") },
       })
       .then((response) => {
@@ -35,7 +35,7 @@ class RentSearch extends React.Component {
 
   getFavorites = () => {
     axios
-      .get("http://127.0.0.1:8000/api/show_favorite_list/", {
+      .get("http://100.24.18.12:8000/api/show_favorite_list/", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },

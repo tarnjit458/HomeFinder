@@ -26,7 +26,7 @@ class Schedule extends React.Component {
     // update
     axios
       .put(
-        "http://127.0.0.1:8000/api/update_schedule/" + this.state.id,
+        "http://100.24.18.12:8000/api/update_schedule/" + this.state.id,
         {
           data: {
             date: this.state.date,
@@ -52,7 +52,7 @@ class Schedule extends React.Component {
   deleteSchedule = (e) => {
     // delete
     axios
-      .delete("http://127.0.0.1:8000/api/delete_schedule/" + this.state.id, {
+      .delete("http://100.24.18.12:8000/api/delete_schedule/" + this.state.id, {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },
@@ -76,7 +76,7 @@ class Schedule extends React.Component {
     // e.preventDefault();
     axios
       .post(
-        "http://127.0.0.1:8000/api/schedule_appointment/",
+        "http://100.24.18.12:8000/api/schedule_appointment/",
         {
           house_id: this.props.home.id,
           date: this.state.date,

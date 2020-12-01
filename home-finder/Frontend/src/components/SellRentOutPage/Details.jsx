@@ -40,7 +40,7 @@ class Details extends React.Component {
   updateDetail = () => {
     axios
       .put(
-        "http://127.0.0.1:8000/api/edit_house/" + this.state.home.id,
+        "http://100.24.18.12:8000/api/edit_house/" + this.state.home.id,
         {
           data: {
             address: this.state.home.address,

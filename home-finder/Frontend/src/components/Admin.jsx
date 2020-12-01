@@ -31,7 +31,7 @@ class Admin extends React.Component {
 
   grabAllUsers = () => {
     axios
-      .get("http://127.0.0.1:8000/api/allUsers", {
+      .get("http://100.24.18.12:8000/api/allUsers", {
         Authorization: "Token " + localStorage.getItem("user"),
       })
       .then((response) => {
@@ -68,7 +68,7 @@ class Admin extends React.Component {
   removeUser = () => {
     // delete selected user
     axios
-      .delete("http://127.0.0.1:8000/api/delete_user/", {
+      .delete("http://100.24.18.12:8000/api/delete_user/", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },

@@ -19,7 +19,7 @@ class AddFavorite extends React.Component {
   getFavorites = () => {
     axios
       .get(
-        "http://127.0.0.1:8000/api/show_favorite_id_by_home?house_id=" +
+        "http://100.24.18.12:8000/api/show_favorite_id_by_home?house_id=" +
           this.state.home_id,
         {
           headers: {
@@ -47,7 +47,7 @@ class AddFavorite extends React.Component {
   addToFavorite = () => {
     axios
       .post(
-        "http://127.0.0.1:8000/api/add_favorite/",
+        "http://100.24.18.12:8000/api/add_favorite/",
         {
           house_id: this.state.home_id,
         },
@@ -67,7 +67,7 @@ class AddFavorite extends React.Component {
 
   removeFavorite = () => {
     axios
-      .delete("http://127.0.0.1:8000/api/delete_favorite/", {
+      .delete("http://100.24.18.12:8000/api/delete_favorite/", {
         headers: {
           Authorization: "Token " + localStorage.getItem("user"),
         },

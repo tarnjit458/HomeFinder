@@ -62,7 +62,7 @@ def registration_view(request):
 def rent_search_view(request):
 	if request.method == 'GET':
 		search = request.GET.get('search')
-		queryset = House.objects.filter((Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search)), Q(for_sale = '0'))
+		queryset = House.objects.filter((Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search)), Q(on_loan = '1'))
 		if queryset:
 			serializer = HouseSerializer(queryset, many=True)
 			return JsonResponse(serializer.data, safe=False)
@@ -171,18 +171,22 @@ def show_application_for_owner(request):
 @api_view(['POST'],)
 @permission_classes([IsAuthenticated])
 def approve_application(request):
-	if request.method == 'POST':
-		try:
-			application = Application.objects.get(id=request.data.get('data')['application_id']);
-			application.status = "Approved";
-			application.save();
-			return JsonResponse({
-				'message': "application approved",
-			})
-		except Application.DoesNotExist:
-			return JsonResponse({
-				'message': "no matching application",
-			})
+        if request.method == 'POST':
+                try:
+                        application = Application.objects.get(id=request.data.get('data')['application_id']);
+                        application.status = "Approved";
+                        print(application.house.id)
+                        house = House.objects.get(id=application.house.id);
+                        house.for_sale = 0;
+                        house.save();
+                        application.save();
+                        return JsonResponse({
+                            'message': "application approved",
+                        })
+                except Application.DoesNotExist:
+                    return JsonResponse({
+                        'message': "no matching application",
+                    })
 		
 @api_view(['POST'],)
 @permission_classes([IsAuthenticated])
@@ -292,10 +296,10 @@ def display_application_by_user(request):
 
 @api_view(['GET'],)
 @permission_classes([IsAuthenticated])
-def display_house_by_user(request):
+def display_buy_by_user(request):
 	if request.method == 'GET':
 		try:
-			queryset = House.objects.filter(owner_id=request.user.id, for_sale=request.GET.get('for_sale'))
+			queryset = House.objects.filter(owner_id=request.user.id, on_loan=0)
 			return JsonResponse({
 				'house': HouseSerializer(queryset, many=True).data,
 			})
@@ -303,6 +307,21 @@ def display_house_by_user(request):
 			return JsonResponse({
 				'house': HouseSerializer(set()).data,
 			})
+
+@api_view(['GET'],)
+@permission_classes([IsAuthenticated])
+def display_rental_by_user(request):
+        if request.method == 'GET':
+                try:
+                        queryset = House.objects.filter(owner_id=request.user.id, on_loan=1)
+                        return JsonResponse({
+                            'house': HouseSerializer(queryset, many=True).data,
+                        })
+                except House.DoesNotExist:
+                        return JsonResponse({
+                            'house': HouseSerializer(set()).data,
+                        })
+
 
 @api_view(['PUT', 'DELETE'],)
 @permission_classes([IsAuthenticated])

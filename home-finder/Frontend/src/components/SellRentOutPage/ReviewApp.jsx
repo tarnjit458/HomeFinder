@@ -17,7 +17,7 @@ class ReviewApp extends React.Component {
   approveApp = (e) => {
     axios
       .post(
-        "http://127.0.0.1:8000/api/approve_application/",
+        "http://100.24.18.12:8000/api/approve_application/",
         {
           data: {
             application_id: this.props.offer.id,
@@ -41,7 +41,7 @@ class ReviewApp extends React.Component {
   rejectApp = (e) => {
     axios
       .post(
-        "http://127.0.0.1:8000/api/reject_application/",
+        "http://100.24.18.12:8000/api/reject_application/",
         {
           data: {
             application_id: this.props.offer.id,

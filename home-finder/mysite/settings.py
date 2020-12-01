@@ -25,7 +25,7 @@ SECRET_KEY = 'jh*kn4-v6_ukm9b=ss+24k(4$%hsl&f!)o)u$dzp8*3qct*3fn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', '127.0.0.1', '100.24.18.12', '100.24.18.12:3000','100.24.18.12:8000', 'n.n.n.n']
 
 
 # Application definition
@@ -87,7 +87,7 @@ REST_FRAMEWORK = {
     ]
 }
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'http://127.0.0.1:8000', 'http://100.24.18.12:3000', 'https://100.24.18.12:3000', 'http://127.0.0.1:8002']
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
