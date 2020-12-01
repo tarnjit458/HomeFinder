@@ -102,6 +102,14 @@ At every sprint, I tried to understand and share what was absolutely necessary t
 
 3. Wait on backend for the buy/rent application APIs.
 
+11/30
+
+1. I worked on cleaning up the frontend and testing that everything works correctly.
+
+2. Next step is to prepare for the demo, test the aws instance and finialize all of the documentation.
+
+3. No blockers.
+
 ---
 
 ## Eric Lin
