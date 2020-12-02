@@ -2,10 +2,10 @@
 
 ## Team Members
 
-Tarnjit Ghag - 009592102  
-Huiying Li - 012289069  
-Eric Lin - 015215837  
-Kan Hioki - 013195845  
+- Tarnjit Ghag - 009592102
+- Huiying Li - 012289069
+- Eric Lin - 015215837
+- Kan Hioki - 013195845
 
 [Project Journal](ProjectJournal.md)
 
@@ -23,6 +23,24 @@ UI Wireframes: https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project
 ## Component Diagram
 
 ![Component_Diagram](Screenshots/Component_Diagram.PNG)
+
+## Architecture Diagram
+
+![Architecture_Diagram](Screenshots/Architecture_Diagram.PNG)
+
+## Feature Set
+
+- Roles: Administrator, User(Renter, Landlord, Buyer, Seller), Realtor
+- Register/Login
+- View/Remove users
+- Search
+- Save as Favorites
+- Buy/Sell/Rent/Rent out
+- Supports Google Chrome on laptop or mobile device
+- Secure multi-user access
+- User authentication
+- Easy-to-use user interface (UI)
+- Persistent data storage
 
 ## AWS Deployment Screenshots
 
