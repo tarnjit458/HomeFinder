@@ -5,6 +5,7 @@
 Tarnjit Ghag - 009592102
 Huiying Li - 012289069
 Eric Lin - 015215837
+Kan Hioki - 013195845
 
 [Project Journal](ProjectJournal.md)
 
