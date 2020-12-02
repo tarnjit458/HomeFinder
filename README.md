@@ -14,7 +14,7 @@ Trello (Weekly Scrum Task Board): https://trello.com/b/Q60c8fsj
 
 [XP Core Values](ProjectJournal.md)
 
-![UI Wireframes](UI\ Wireframe)
+UI Wireframes: https://github.com/gopinathsjsu/fa20-cmpe-202-sec-03-team-project-team-awesome/tree/master/UI%20Wireframe
 
 ## Tech Stack Diagram
 
