@@ -12,9 +12,9 @@ Kan Hioki - 013195845
 Trello (Weekly Scrum Task Board): https://trello.com/b/Q60c8fsj
 ![Burndown_chart](Screenshots/Burndown_chart.PNG)
 
-![XP Core Values](ProjectJournal.md)
+[XP Core Values](ProjectJournal.md)
 
-![UI Wireframes](UI/ Wireframe)
+![UI Wireframes](UI\ Wireframe)
 
 ## Tech Stack Diagram
 
