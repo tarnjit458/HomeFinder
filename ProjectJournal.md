@@ -275,6 +275,14 @@ At every sprint, I tried to understand and share what was absolutely necessary t
 
 3. No tasks are blocked on my end.
 
+11/30
+
+1. I worked on implementing send favorite and delete favorite API.
+
+2. Next step is to prepare for the demo, test the aws instance and finialize all of the documentation.
+
+3. No tasks are blocked on my end.
+
 ---
 
 ## Huiying Li
@@ -349,5 +357,13 @@ At every sprint, I tried to understand and share what was absolutely necessary t
 1. I worked on implementing API for user properties.
 
 2. I will work on APIs for Sell and Rend Out.
+
+3. No tasks are blocked on my end.
+
+11/30
+
+1. I worked on APIs for Sell and Rend Out and update registor component to include all fields.
+
+2. Next step is to prepare for the demo, test the aws instance and finialize all of the documentation.
 
 3. No tasks are blocked on my end.
