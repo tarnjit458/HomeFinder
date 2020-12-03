@@ -75,7 +75,7 @@ def rent_search_view(request):
 def buy_search_view(request):
 	if request.method == 'GET':
 		search = request.GET.get('search')
-		queryset = House.objects.filter((Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search)), Q(for_sale = '1'))
+		queryset = House.objects.filter((Q(address__icontains=search) | Q(zip_code__icontains=search) | Q(city__icontains=search) | Q(state__icontains=search)), Q(on_loan = '0'))
 		if queryset:
 			serializer = HouseSerializer(queryset, many=True)
 			return JsonResponse(serializer.data, safe=False)

@@ -42,7 +42,7 @@ class BuySearch extends React.Component {
       })
       .then((response) => {
         this.state.favoritedHomes = response.data.favorite.filter((f) => {
-          if (f.house.for_sale === true) {
+          if (f.house.on_loan === false) {
             return f.house;
           }
         });
